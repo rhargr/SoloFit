@@ -40,7 +40,8 @@
         "rimraf": "^2.6.2",
         "stripe": "^6.11.0",
         "uuid": "^3.3.2",
-        "webpack": "^4.19.0"
+        "webpack": "^4.19.0",
+        "webpack-cli": "^3.1.0"
     },
     "devDependencies": {
         "concurrently": "^4.0.1",
