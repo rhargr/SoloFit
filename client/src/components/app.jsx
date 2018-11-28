@@ -9,10 +9,13 @@ import PrivateRoute from './auth/privateRoute';
 import Login from './auth/login';
 import Logout from './auth/logout';
 import AuthButton from './auth/authButton';
+
 import SignUp from './SignUp';
 import Trainers from './TrainerPage';
 import Profile from './TrainerProfile';
 import Schedule from './Schedule';
+import Navbar from './Navbar';
+
 
 class Navigation extends Component {
 
@@ -20,6 +23,7 @@ class Navigation extends Component {
         return (
             <Router>
                 <Fragment>
+                <Navbar />
                     <Link to="/goodbye">Goodbye</Link>
                     <Link to="/Sign-Up">sign up</Link>
                     <Link to="/Trainers">check out trainers</Link>
