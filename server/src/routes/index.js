@@ -1,23 +1,23 @@
 import { Router } from 'express';
 import peopleRouter from './people';
-import classesRouter from './classes';
-import authRouter from './auth';
-import usersRouter from './users';
-import stripeDonationsRouter from './stripeDonations';
+import traineeRouter from './trainee';
+import trainerRouter from './trainer';
+import userRouter from './user';
+import reviewRouter from './review';
 import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
 let router = Router();
 
-router.use('/auth', authRouter);
-router.use('/donate', stripeDonationsRouter);
+router.use('/trainer', trainerRouter);
+router.use('/review', reviewRouter);
 
 router.route('*')
     .post(tokenMiddleware, isLoggedIn)
     .put(tokenMiddleware, isLoggedIn)
     .delete(tokenMiddleware, isLoggedIn);
 
-router.use('/classes', classesRouter);
+router.use('/trainee', traineeRouter);
 router.use('/people', peopleRouter);
-router.use('/users', usersRouter);
+router.use('/user', userRouter);
 
 export default router;
