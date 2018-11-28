@@ -2,13 +2,13 @@ import { Router } from 'express';
 import Table from '../table';
 
 let router = Router();
-let trainerTable = new Table('trainer');
+let tsTable = new Table('trainerservice');
 
 router.get('/', async (req, res) => {
     console.log(req.user);
     try {
-        let trainers = await trainerTable.getAll()
-        res.json(trainers);
+        let trainservice = await tsTable.getAll()
+        res.json(trainservice);
     } catch (err) {
         console.log(err);
         res.sendStatus(500);
@@ -18,8 +18,9 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         // idObj will look like { id: 7 }
-        let idObj = await trainerTable.insert({
-            user_id: req.body.user_id,
+        let idObj = await tsTable.insert({
+            trainer_id: req.body.trainer_id,
+            service_id: req.body.service_id,
             description: req.body.description
         });
         res.status(201).json(idObj);
@@ -30,9 +31,9 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    try {
-        let foundTrainer = await trainerTable.getOne(req.params.id);
-        res.json(foundTrainer);
+    try { 
+        let foundTs = await tsTable.getOne(req.params.id);
+        res.json(foundTs);
     } catch (err) {
         console.log(err);
         res.sendStatus(500);
@@ -42,7 +43,7 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         // not concerned about getting a value back, just waiting on update to finish
-        await trainerTable.update(req.params.id, req.body);
+        await tsTable.update(req.params.id, req.body);
         res.sendStatus(200);
     } catch (err) {
         console.log(err);
@@ -53,7 +54,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         // not concerned about getting a value back, just waiting on delete to finish
-        await trainerTable.delete(req.params.id);
+        await tsTable.delete(req.params.id);
         res.sendStatus(200);
     } catch (err) {
         console.log(err);

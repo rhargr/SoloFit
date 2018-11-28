@@ -2,7 +2,7 @@ import { Router } from 'express';
 import Table from '../table';
 
 let router = Router();
-let reviewTable = new Table('review');
+let reviewTable = new Table('Review');
 
 router.get('/', async (req, res) => {
     console.log(req.user);
@@ -19,8 +19,10 @@ router.post('/', async (req, res) => {
     try {
         // idObj will look like { id: 7 }
         let idObj = await reviewTable.insert({
-            name: req.body.name,
-            description: req.body.description
+            text: req.body.text,
+            rating: req.body.rating,
+            trainee_id: req.body.trainee_id,
+            trainer_id: req.body.trainer_id
         });
         res.status(201).json(idObj);
     } catch (err) {

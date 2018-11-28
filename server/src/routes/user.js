@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import Table from '../table';
+// import { isLoggedIn, tokenMiddleware} from '../middleware/auth.mw';
 
 let router = Router();
 let userTable = new Table('user');
@@ -20,7 +21,9 @@ router.post('/', async (req, res) => {
         // idObj will look like { id: 7 }
         let idObj = await userTable.insert({
             name: req.body.name,
-            description: req.body.description
+            // description: req.body.description,
+            age: req.body.age,
+            email: req.body.email
         });
         res.status(201).json(idObj);
     } catch (err) {
@@ -28,6 +31,10 @@ router.post('/', async (req, res) => {
         res.sendStatus(500);
     }
 });
+
+// router.get('/me', tokenMiddleware, isLoggedIn, (req, res) => {
+//     res.json(req.user);
+// });
 
 router.get('/:id', async (req, res) => {
     try {
@@ -60,5 +67,7 @@ router.delete('/:id', async (req, res) => {
         res.sendStatus(500);
     }
 });
+
+// tokenMiddleware, isLoggedIn, this goes after id in delete
 
 export default router;
