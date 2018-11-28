@@ -13,6 +13,7 @@ import SignUp from './SignUp';
 import Trainers from './TrainerPage';
 import Profile from './TrainerProfile';
 import Schedule from './Schedule';
+import Footer from './Footer';
 
 class Navigation extends Component {
 
@@ -37,6 +38,7 @@ class Navigation extends Component {
                         <Route exact path="/donate" component={Donate} />
                         <Route exact path="/goodbye" component={GoodbyeWorld} />
                     </Switch>
+                    <Footer />
                 </Fragment>
             </Router>
         )
