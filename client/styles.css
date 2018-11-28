@@ -78,16 +78,18 @@ body {
 
   /* NAVBAR */
 
-/* .navbar {
-  align-items: center;
-  
-} */
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;  
+} 
 
 /* .navbar-right {
   float: right;
   text-align: right;
 } */
 
-.nav-right {
-  float: right;
+.navbar-nav {
+  display: flex;
+  align-items: center;
 }
