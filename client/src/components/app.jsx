@@ -15,6 +15,7 @@ import Trainers from './TrainerPage';
 import Profile from './TrainerProfile';
 import Schedule from './Schedule';
 import Footer from './Footer';
+import Navbar from './Navbar';
 
 
 class Navigation extends Component {
@@ -23,7 +24,7 @@ class Navigation extends Component {
         return (
             <Router>
                 <Fragment>
-               
+                <Navbar />
                     <Link to="/goodbye">Goodbye</Link>
                     <Link to="/Sign-Up">sign up</Link>
                     <Link to="/Trainers">check out trainers</Link>
