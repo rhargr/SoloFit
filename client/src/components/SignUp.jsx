@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-class HelloWorld extends Component {
+class SignUp extends Component {
 
     constructor(props) {
         super(props);
     }
     
     render() {
-        return <h1>Hello World!</h1>;
+        return <h1>Sign up page</h1>;
     }
 }
 
-export default HelloWorld;
+export default SignUp;
