@@ -9,7 +9,7 @@ class Footer extends Component {
 
     render() {
         return (
-            <footer id="foot" className="navbar bg-warning fixed-bottom py-2">
+            <footer id="foot" className="navbar bg-warning sticky-bottom py-2">
                 <span className="text-black mx-auto">Birmingham, Ala.</span>
               
                  <a href="http://facebook.com">
