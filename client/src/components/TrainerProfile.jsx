@@ -94,7 +94,7 @@ class Profile extends Component {
                             <div className="hours" >
                                 <div>
                                     <div className="table-hours">
-                                        <h3>Training Hours</h3>
+                                        <h3>Training Hourss</h3>
                                         <table>
                                             <tbody>
                                                 <tr>
