@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 
+
 class Homepage extends Component {
   constructor(props) {
     super(props);
+
   }
 
   render() {
@@ -11,99 +13,99 @@ class Homepage extends Component {
       // jumbotron
       <div>
         <div
-          class="jumbotron jumbotron-fluid"
+          className="jumbotron jumbotron-fluid"
           style={{
             margin: "0px",
             borderBottom: "1px solid black",
             height: "300px"
           }}
         >
-          <div class="container">
-            <h1 class="display-4">SoloFit</h1>
-            <p class="lead">
+          <div className="container">
+            <h1 className="display-4">SoloFit</h1>
+            <p className="lead">
               The App that enhances the opportunity for you to maximize your
               full potential within your own boundaries.
             </p>
           </div>
         </div>
         {/* carousel */}
-        <div class="row">
-        <div class="col-8">
+        <div className="row">
+        <div className="col-8">
           <div
             id="carouselExampleControls"
-            class="carousel slide"
+            className="carousel slide"
             data-ride="carousel"
           >
-            <div class="carousel-inner">
-              <div class="carousel-item active">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
                 <img
-                  class="d-block w-100"
+                  className="d-block w-100"
                   src=".../800x400?auto=yes&bg=777&fg=555&text=First slide"
                   alt="First slide"
                 />
               </div>
-              <div class="carousel-item">
+              <div className="carousel-item">
                 <img
-                  class="d-block w-100"
+                  className="d-block w-100"
                   src=".../800x400?auto=yes&bg=666&fg=444&text=Second slide"
                   alt="Second slide"
                 />
               </div>
-              <div class="carousel-item">
+              <div className="carousel-item">
                 <img
-                  class="d-block w-100"
+                  className="d-block w-100"
                   src=".../800x400?auto=yes&bg=555&fg=333&text=Third slide"
                   alt="Third slide"
                 />
               </div>
             </div>
             <a
-              class="carousel-control-prev"
+              className="carousel-control-prev"
               href="#carouselExampleControls"
               role="button"
               data-slide="prev"
             >
-              <span class="carousel-control-prev-icon" aria-hidden="true" />
-              <span class="sr-only">Previous</span>
+              <span className="carousel-control-prev-icon" aria-hidden="true" />
+              <span className="sr-only">Previous</span>
             </a>
             <a
-              class="carousel-control-next"
+              className="carousel-control-next"
               href="#carouselExampleControls"
               role="button"
               data-slide="next"
             >
-              <span class="carousel-control-next-icon" aria-hidden="true" />
-              <span class="sr-only">Next</span>
+              <span className="carousel-control-next-icon" aria-hidden="true" />
+              <span className="sr-only">Next</span>
             </a>
           </div>
           </div>
 
           {/* login form  */}
-          <div class="col-4">
+          <div className="col-4">
           <form>
              
-            <div class="form-group">
-              <label for="exampleInputEmail1">Login</label>
+            <div className="form-group">
+              <label htmlFor="exampleInputEmail1">Login</label>
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
               />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <input
                 type="password"
-                class="form-control"
+                className="form-control"
                 id="exampleInputPassword1"
                 placeholder="Password"
               />
             
             </div>
-            <div class="form-group form-check">
+            <div className="form-group form-check">
             </div>
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" className="btn btn-primary">
               Submit
             </button>
             
@@ -115,56 +117,56 @@ class Homepage extends Component {
         {/* 2nd jumbotron */}
 
         <div
-          class="jumbotron jumbotron-fluid"
+          className="jumbotron jumbotron-fluid"
           style={{
             height: "650px",
             borderBottom: "1px solid black",
             margin: "0px"
           }}
         >
-          <div class="container">
-            <h1 class="display-4">GoogleMap</h1>
-            <p class="lead">Yeet</p>
+          <div className="container">
+            <h1 className="display-4">GoogleMap</h1>
+            <p className="lead">Yeet</p>
           </div>
         </div>
 
         {/* //   3rd jumbotron */}
 
         <div
-          class="jumbotron jumbotron-fluid"
+          className="jumbotron jumbotron-fluid"
           style={{ height: "410px", borderBottom: "1px solid black", padding: '0px' }}
         >
-          <div class="container">
+          <div className="container">
           <div style={{padding: '20px'}}>
-            <h1 class="display-4">Choose You</h1>
+            <h1 className="display-4">Choose You</h1>
           </div>
             
 
 
-<div class="row" style={{display: 'flex', flexWrap: 'wrap', justifyContent:'space-between'}}>
-            <div class="card text-white bg-dark mb-3 col-3">
-  <div class="card-header">Strength</div>
-  <div class="card-body">
-    <h5 class="card-title">Dark card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<div className="row" style={{display: 'flex', flexWrap: 'wrap', justifyContent:'space-between'}}>
+            <div className="card text-white bg-dark mb-3 col-3">
+  <div className="card-header">Strength</div>
+  <div className="card-body">
+    <h5 className="card-title">Dark card title</h5>
+    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
 
 
-<div class="card text-white bg-dark mb-3 col-3">
-  <div class="card-header">Yoga</div>
-  <div class="card-body">
-    <h5 class="card-title">Dark card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<div className="card text-white bg-dark mb-3 col-3">
+  <div className="card-header">Yoga</div>
+  <div className="card-body">
+    <h5 className="card-title">Dark card title</h5>
+    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
 
 
-<div class="card text-white bg-dark mb-3 col-3">
-  <div class="card-header">Endurance</div>
-  <div class="card-body">
-    <h5 class="card-title">Dark card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<div className="card text-white bg-dark mb-3 col-3">
+  <div className="card-header">Endurance</div>
+  <div className="card-body">
+    <h5 className="card-title">Dark card title</h5>
+    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
 </div>
