@@ -4,12 +4,10 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Homepage from "./Home";
 import GoodbyeWorld from "./goodbye";
 import Donate from "./donate";
-
 import PrivateRoute from "./auth/privateRoute";
 import Login from "./auth/login";
 import Logout from "./auth/logout";
 import AuthButton from "./auth/authButton";
-
 import SignUp from "./SignUp";
 import Trainers from "./TrainerPage";
 import Profile from "./TrainerProfile";
@@ -18,6 +16,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 
 class Navigation extends Component {
+
   render() {
     return (
       <Router>
@@ -44,6 +43,7 @@ class Navigation extends Component {
       </Router>
     );
   }
+
 }
 
 export default Navigation;
