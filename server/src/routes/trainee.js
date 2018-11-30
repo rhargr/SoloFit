@@ -19,8 +19,7 @@ router.post('/', async (req, res) => {
     try {
         // idObj will look like { id: 7 }
         let idObj = await traineeTable.insert({
-            name: req.body.name,
-            description: req.body.description
+            user_id: req.body.user_id,
         });
         res.status(201).json(idObj);
     } catch (err) {

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import Table from '../table';
+import Trainers from '../controllers/trainer'
 
 let router = Router();
 let trainerTable = new Table('trainer');
@@ -7,8 +8,9 @@ let trainerTable = new Table('trainer');
 router.get('/', async (req, res) => {
     console.log(req.user);
     try {
-        let trainers = await trainerTable.getAll()
-        res.json(trainers);
+        // let trainers = await trainerTable.getAll()
+        let trainers = await Trainers.all(req, res)
+        // res.json(trainers);
     } catch (err) {
         console.log(err);
         res.sendStatus(500);
@@ -20,7 +22,6 @@ router.post('/', async (req, res) => {
         // idObj will look like { id: 7 }
         let idObj = await trainerTable.insert({
             user_id: req.body.user_id,
-            description: req.body.description
         });
         res.status(201).json(idObj);
     } catch (err) {
