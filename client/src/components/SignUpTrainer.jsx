@@ -12,6 +12,10 @@ class New extends Component {
     render() {
         return (
             <div style={{minHeight: '100vh'}}>
+            <div style={{display: 'flex', flexDirection: 'column', position: 'relative', top: '100px'}}>
+                <h3>"Combine your natural ability with a mission to help people and you will have a rich, fulfilling life"</h3>
+                <h4>-Bryan Krahn, Physique Coach</h4>
+            </div>
             <div style={{display: 'flex', justifyContent: 'center'}}>
           
             <div style={{display: 'flex', justifyContent: 'center', position: 'relative', top: '200px', flexDirection: 'column', maxWidth: '800px'}}>
@@ -29,27 +33,27 @@ class New extends Component {
   
     <div className="form-group col-md-6">
     
-      <label htmlFor="inputEmail4">Email</label>
+      <label htmlFor="inputEmail4"></label>
       <input type="email" className="form-control" id="inputEmail4" placeholder="Email" />
     </div>
     <div className="form-group col-md-6">
-      <label htmlFor="inputPassword4">Password</label>
+      <label htmlFor="inputPassword4"></label>
       <input type="password" className="form-control" id="inputPassword4" placeholder="Password" />
     </div>
   </div>
   <div className="form-group">
-    <label htmlFor="inputAddress">Address</label>
-    <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" />
+    <label htmlFor="inputAddress"></label>
+    <input type="text" className="form-control" id="inputAddress" placeholder="Address" />
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
-      <label htmlFor="inputCity">City</label>
-      <input type="text" className="form-control" id="inputCity" />
+      <label htmlFor="inputCity"></label>
+      <input type="text" className="form-control" id="inputCity" placeholder="City" />
     </div>
     <div className="form-group col-md-4">
-      <label htmlFor="inputState">State</label>
+      <label htmlFor="inputState"></label>
       <select id="inputState" className="form-control">
-        <option selected>Choose...</option>
+        <option selected>State</option>
         <option value="AL">Alabama</option>
 	<option value="AK">Alaska</option>
 	<option value="AZ">Arizona</option>
@@ -104,8 +108,8 @@ class New extends Component {
       </select>
     </div>
     <div className="form-group col-md-2">
-      <label htmlFor="inputZip">Zip</label>
-      <input type="text" className="form-control" id="inputZip" />
+      <label htmlFor="inputZip"></label>
+      <input type="text" className="form-control" id="inputZip" placeholder="Zip" />
     </div>
   </div>
   <div style={{display: 'flex', justifyContent: 'space-around', flexDirection: 'row'}}>
@@ -115,10 +119,10 @@ class New extends Component {
   <label className="checkbox-inline"><input type="checkbox" value="" />Weight-Loss</label>
   </div>
 
-  <div style={{display: 'flex', justifyContent: 'center', }}>
+  <div style={{display: 'flex', justifyContent: 'center', maxWidth: '100%' }}>
   <div className="form-group col-md-6" style={{flex: '1', maxWidth:'100%'}}>
-      <label htmlFor="inputCity">About Me</label>
-      <textarea type="text-area" className="form-control" id="input" />
+      <label htmlFor="inputCity"></label>
+      <textarea type="text-area" className="form-control" id="input" placeholder="About Me"/>
   </div>
 
   <div className="form-group">

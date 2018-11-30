@@ -12,6 +12,11 @@ class SignUp extends Component {
         return (
             
             <div style={{minHeight: '100vh'}}>
+            <div style={{display: 'flex', flexDirection: 'column', position: 'relative', top: '100px'}}>
+                <h3>"Motivation is what gets you started. Habit is what keeps you going."</h3>
+                <h4>-Jim Ryan, Olympic Athelete</h4>
+            </div>
+          
             <div style={{display: 'flex', justifyContent: 'center'}}>
           
             <div style={{display: 'flex', justifyContent: 'center', position: 'relative', top: '200px', flexDirection: 'column', maxWidth: '800px'}}>
@@ -29,27 +34,27 @@ class SignUp extends Component {
   
     <div className="form-group col-md-6">
     
-      <label htmlFor="inputEmail4">Email</label>
+      <label htmlFor="inputEmail4"></label>
       <input type="email" className="form-control" id="inputEmail4" placeholder="Email" />
     </div>
     <div className="form-group col-md-6">
-      <label htmlFor="inputPassword4">Password</label>
+      <label htmlFor="inputPassword4"></label>
       <input type="password" className="form-control" id="inputPassword4" placeholder="Password" />
     </div>
   </div>
   <div className="form-group">
-    <label htmlFor="inputAddress">Address</label>
-    <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" />
+    <label htmlFor="inputAddress"></label>
+    <input type="text" className="form-control" id="inputAddress" placeholder="Address" />
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
-      <label htmlFor="inputCity">City</label>
-      <input type="text" className="form-control" id="inputCity" />
+      <label htmlFor="inputCity"></label>
+      <input type="text" className="form-control" id="inputCity" placeholder="City" />
     </div>
     <div className="form-group col-md-4">
-      <label htmlFor="inputState">State</label>
+      <label htmlFor="inputState"></label>
       <select id="inputState" className="form-control">
-        <option selected>Choose...</option>
+        <option selected>State</option>
         <option value="AL">Alabama</option>
 	<option value="AK">Alaska</option>
 	<option value="AZ">Arizona</option>
@@ -104,8 +109,8 @@ class SignUp extends Component {
       </select>
     </div>
     <div className="form-group col-md-2">
-      <label htmlFor="inputZip">Zip</label>
-      <input type="text" className="form-control" id="inputZip" />
+      <label htmlFor="inputZip"></label>
+      <input type="text" className="form-control" id="inputZip" placeholder="Zip" />
     </div>
   </div>
   <div className="form-group">
