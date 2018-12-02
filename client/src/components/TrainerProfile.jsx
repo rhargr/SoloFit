@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import * as classService from '../services/classes';
+import Reviews from './Reviews';
 
 import profilePicture from '../images/profile-picture-placholder.png';
 import rating from '../images/ratings.png';
@@ -10,6 +11,8 @@ class Profile extends Component {
 
     constructor(props) {
         super(props);
+
+   
     }
 
     render() {
@@ -94,7 +97,7 @@ class Profile extends Component {
                             <div className="hours" >
                                 <div>
                                     <div className="table-hours">
-                                        <h3>Training Hourss</h3>
+                                        <h3>Training Hours</h3>
                                         <table>
                                             <tbody>
                                                 <tr>
@@ -136,47 +139,11 @@ class Profile extends Component {
                         {/* REVIEWS */}
                         <div className="reviews-container container-fluid" style={{ paddingTop: '10px' }}>
                             <div className="reviews">
+
                             <h1 style={{paddingBottom: '10px'}}>Reviews</h1>
-
-                                <div className="review-card" style={{ paddingBottom: '20px' }}>
-                                    <div className="card" style={{ textAlign: 'left' }}>
-                                        <div className="card-header">Client Name</div>
-                                        <div className="card-body">
-                                            <img src={rating} style={{ width: 'auto', height: '30px' }} alt="rating" />
-                                            <br />
-                                            <p className="card-text">I just started working out here and I’m very excited to see results. I know I feel so much better then before. They immediately put me on a meal plan. The environment is so comfortable and encouraging. I highly recommend them.</p>
-                                            <p>Month/Day/Year</p>
-                                            {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="review-card" style={{ paddingBottom: '20px' }}>
-                                    <div className="card" style={{ textAlign: 'left' }}>
-                                        <div className="card-header">Client Name</div>
-                                        <div className="card-body">
-                                            <img src={rating} style={{ width: 'auto', height: '30px' }} alt="rating" />
-                                            <br />
-                                            <p className="card-text">I just started working out here and I’m very excited to see results. I know I feel so much better then before. They immediately put me on a meal plan. The environment is so comfortable and encouraging. I highly recommend them.</p>
-                                            <p>Month/Day/Year</p>
-                                            {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="review-card" style={{ paddingBottom: '20px' }}>
-                                    <div className="card" style={{ textAlign: 'left' }}>
-                                        <div className="card-header">Client Name</div>
-                                        <div className="card-body">
-                                            <img src={rating} style={{ width: 'auto', height: '30px' }} alt="rating" />
-                                            <br />
-                                            <p className="card-text">I just started working out here and I’m very excited to see results. I know I feel so much better then before. They immediately put me on a meal plan. The environment is so comfortable and encouraging. I highly recommend them.</p>
-                                            <p>Month/Day/Year</p>
-                                            {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                                        </div>
-                                    </div>
-                                </div>
-
+                              
+                            <Reviews />
+                              
                             </div>
                         </div>
 

@@ -15,6 +15,12 @@ import Schedule from "./Schedule";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
+import SignUpTrainer from "./SignUpTrainer";
+
+
+
+
+
 class Navigation extends Component {
 
   render() {
@@ -25,6 +31,7 @@ class Navigation extends Component {
           <Switch>
             <Route exact path="/" component={Homepage} />
             <Route exact path="/Sign-Up" component={SignUp} />
+            <Route exact path="/Sign-Up-Trainer" component={SignUpTrainer} />
             <Route exact path="/Trainers" component={Trainers} />
             <Route exact path="/Profile" component={Profile} />
             <Route exact path="/login" component={Login} />
