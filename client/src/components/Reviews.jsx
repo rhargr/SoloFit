@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import rating from '../images/ratings.png';
+import Rating from 'react-rating';
 
 class Reviews extends Component {
     constructor(props) {
@@ -8,28 +8,28 @@ class Reviews extends Component {
 
         this.state = {
             reviews: [
-              {
-                name: 'Rob',
-                text: 'It was alright',
-                date: '12/13/18' 
-              },
-              {
-                  name: 'Drayton',
-                  text: 'Was good',
-                  date: '12/23/18'
-              },
-              {
-                  name: 'Ray',
-                  text: 'Great!',
-                  date: '12/56/18'
-              },
-              {
-                  name: 'ash',
-                  text: 'rather eat cake',
-                  date: '12/30/18'
-              }
+                {
+                    name: 'Rob',
+                    text: 'It was alright',
+                    date: '12/13/18'
+                },
+                {
+                    name: 'Drayton',
+                    text: 'Was good',
+                    date: '12/23/18'
+                },
+                {
+                    name: 'Ray',
+                    text: 'Great!',
+                    date: '12/56/18'
+                },
+                {
+                    name: 'ash',
+                    text: 'rather eat cake',
+                    date: '12/30/18'
+                }
             ]
-          }
+        }
     }
 
     // componentDidMount() {
@@ -44,19 +44,23 @@ class Reviews extends Component {
 
     render() {
         return this.state.reviews.map(review => {
-            return ( 
+            return (
                 <div className="review-card" style={{ paddingBottom: '20px' }} key={review.id}>
-                <div className="card" style={{ textAlign: 'left' }}>
-                    <div className="card-header">{review.name}</div>
-                    <div className="card-body">
-                        <img src={rating} style={{ width: 'auto', height: '30px' }} alt="rating" />
-                        <br />
-                        <p className="card-text">{review.text}</p>
-                        <p>{review.date}</p>
-                        {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+                    <div className="card" style={{ textAlign: 'left' }}>
+                        <div className="card-header">{review.name}</div>
+                        <div className="card-body">
+                            <Rating
+                                initialRating={3}
+                                emptySymbol="fa fa-star-o fa-2x"
+                                fullSymbol="fa fa-star fa-2x"
+                                style={{ color: 'gold'}}
+                            />
+                            <br />
+                            <p className="card-text">{review.text}</p>
+                            <p>{review.date}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
             )
         })
