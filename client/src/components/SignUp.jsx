@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Homepage from './Home';
+import BGPic from "../images/BG.png"
 
 class SignUp extends Component {
 
@@ -11,8 +12,8 @@ class SignUp extends Component {
     render() {
         return (
             
-            <div style={{minHeight: '100vh'}}>
-            <div style={{display: 'flex', flexDirection: 'column', position: 'relative', top: '100px'}}>
+            <div style={{minHeight: '100vh', backgroundImage: `url(${BGPic})`, backgroundSize: "cover"}}>
+            <div style={{display: 'flex', flexDirection: 'column', position: 'relative', top: '100px', color: 'white'}}>
                 <h3>"Motivation is what gets you started. Habit is what keeps you going."</h3>
                 <h4>-Jim Ryan, Olympic Athelete</h4>
             </div>
@@ -28,7 +29,7 @@ class SignUp extends Component {
                     <a className="nav-link" href="/Sign-Up-Trainer">Trainer</a>
                 </li>
             </ul>
-            <form style={{ maxWidth: '900px', border: '1px solid black', padding: '25px', borderRadius: '3px', backgroundColor: 'lightGray'}}>
+            <form style={{ maxWidth: '900px', padding: '25px', borderRadius: '3px', backgroundColor: 'lightGray'}}>
             <h1>Client</h1>
   <div className="form-row">
   
