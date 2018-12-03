@@ -1,10 +1,11 @@
-create table
-if not exists user (
+
+create table if not exists user (
     id int auto_increment primary key,
-    name varchar (60) not null,
+    name varchar(60) not null,
     age tinyint not null,
-    email varchar (60) not null
+    email varchar(60) not null
 );
+
 
 drop procedure if exists spDeleteUser;
 
@@ -48,7 +49,7 @@ delimiter ;
 drop procedure if exists spInsertUser;
 
 delimiter $$
-create procedure spInsertUser (in _name varchar (60), in _age tinyint, in _email varchar (60), out user_id int)
+create procedure spInsertUser (in _name varchar (60), in _age tinyint, in _email varchar (60))
 begin
     insert into user (
         name,
@@ -82,3 +83,4 @@ begin
    limit 1;
 end$$
 delimiter ;
+

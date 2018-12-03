@@ -1,6 +1,7 @@
 -- https://developers.google.com/maps/documentation/javascript/mysql-to-maps#creating-a-table-in-mysql
 use heroku_8991593871cf416;
 
+
 create table if not exists address (
     id int auto_increment primary key,
     address varchar (80) not null,
@@ -73,3 +74,4 @@ begin
     where address.trainer_id = trainer_id;
 end $$
 delimiter ;
+
