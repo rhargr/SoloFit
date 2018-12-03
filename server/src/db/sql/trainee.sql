@@ -74,3 +74,4 @@ begin
     where id = trainee_id;
 end $$
 delimiter ;
+

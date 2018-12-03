@@ -16,7 +16,7 @@ function isServerAsset(path) {
     }
     // ex: in the same example, last would be 'tree.png'
     let last = pieces[pieces.length - 1]; // Get the last piece after we've cut up the URL on the /
-    
+
     // "If it's not the case that /api is NOT found OR it's not the case that /? is NOT found"
     // AKA: If /api or /? was found
     if (path.indexOf('/api') !== -1 || path.indexOf('/?') !== -1) {
