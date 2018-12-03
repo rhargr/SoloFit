@@ -75,7 +75,7 @@ delimiter $$
 create procedure spGetTrainer (in trainer_id int)
 begin
     select
-        *
+        * 
     from
         trainer t
     join 
@@ -93,7 +93,7 @@ drop procedure if exists spInsertTrainer;
 delimiter $$
 create procedure spInsertTrainer (in _name varchar (60), in _age tinyint, in _email varchar (60))
 begin
-    call spInsertUser(_name, _age,  _email, @user_id);
+    set @user_id = (call spInsertUser(_name, _age,  _email));
     insert into trainer (user_id)
     values (@user_id);
 end $$

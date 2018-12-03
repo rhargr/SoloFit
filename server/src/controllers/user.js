@@ -1,58 +1,49 @@
-// import Users from './procedures/user';
+import Users from '../procedures/user';
 
-// function update(req, res, next){
-//     const { id, name, age, email } = req.body;
+function update(req, res, next){
+    const { id, name, age, email } = req.body;
 
-//     Tra.update([id , name, age, email]).then(()=>{
-//         res.end();
-//     })
-// }
+    Users.update([id , name, age, email]).then(()=>{
+        res.end();
+    })
+}
 
-// function destroy(req, res, next){
-//     const id = req.body.id;
-//     Trainers.destroy([id]). then(()=>{
-//         res.end()
-//     })
-// }
+function destroy(req, res, next){
+    const id = req.body.id;
+    Users.destroy([id]). then(()=>{
+        res.end()
+    })
+}
 
-// function create(req, res, next){
-//     const{name, age, email} = req.body;
+function create(req, res, next){
+    const{name, age, email} = req.body;
 
-//     Trainers.create([name, age, email].then((id)=>{
-//         res.json(id)
-//     }))
-// }
+    Users.create([name, age, email]).then((id)=>{
+        res.json(id)
+    })
+}
 
-// function read(req, res, next){
-//     const id = req.params.id;
+function read(req, res, next){
+    const id = req.params.id;
 
-//     Trainers.read([id]).then((trainer)=>{
-//         res.json(trainer)
-//     })
-// }
+    Users.read([id]).then((user)=>{
+        res.json(user)
+    })
+}
 
-// function all(req, res, next) {
-//     Trainers.all().then((coaches)=>{
-//         res.json(coaches);
-//     })
-// }
+function all(req, res, next) {
+    Users.all().then((user)=>{
+        console.log(user)
+        res.json(user); 
+    })
+}
 
-// function getByService(req, res, next) {
-//     let serviceid = req.params.service_id
-    
-//     Trainers.read([serviceid]).then((service)=>{
-//         res.json(service);
-//     })
-// }
+function getUser(req, res, next){
+    const id = req.params.id;
 
-// function getByRating(req, res, next){
-//     let ratingid = req.params.review_id
+    Users.getUser([id]).then((ts)=>{
+        res.json(ts)
+    })
+}
 
-//     Trainers.read()[ratingid].then((rating)=>{
-//         res.json(rating);
-//     })
-// }
-
-// function getTrainer(req, res, next){
-//     let 
-// }
+export default { all, create, destroy, update, read, getUser}

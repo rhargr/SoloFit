@@ -1,4 +1,4 @@
-import { procedure } from './db'
+import { callProcedure as procedure } from '../config/db'
 
 function all(args){
     return procedure(`spGetUsers`, args).then((res) => {

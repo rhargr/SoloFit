@@ -49,7 +49,7 @@ delimiter ;
 drop procedure if exists spInsertUser;
 
 delimiter $$
-create procedure spInsertUser (in _name varchar (60), in _age tinyint, in _email varchar (60), out user_id int)
+create procedure spInsertUser (in _name varchar (60), in _age tinyint, in _email varchar (60))
 begin
     insert into user (
         name,

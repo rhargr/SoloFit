@@ -1,4 +1,5 @@
-import { procedure } from './db'
+import { callProcedure as procedure } from '../config/db'
+
 
 function all(args){
     return procedure(`spGetTrainees`, args).then((res) => {
@@ -8,7 +9,7 @@ function all(args){
 
 function create(args){
     return procedure(`spInsertTrainee`, args).then((res) => {
-       return res[0][0]; 
+       return res; 
     })
 }
 

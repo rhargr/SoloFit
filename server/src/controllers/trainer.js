@@ -3,7 +3,7 @@ import Trainers from '../procedures/trainer';
 function update(req, res, next){
     const { id, name, age, email } = req.body;
 
-    Trainers.update(id , name, age, email).then(()=>{
+    Trainers.update([id , name, age, email]).then(()=>{
         res.end();
     })
 }
@@ -34,7 +34,7 @@ function read(req, res, next){
 function all(req, res, next) {
     Trainers.all().then((coaches)=>{
         console.log(coaches)
-        res.json(coaches);
+        res.json(coaches); 
     })
 }
 
@@ -55,9 +55,9 @@ function getByRating(req, res, next){
 }
 
 function getTrainer(req, res, next){
-    let newTrainer = req.params.trainerservice_id
+    const id = req.params.id;
 
-    Trainers.getTrainer().then((ts)=>{
+    Trainers.getTrainer([id]).then((ts)=>{
         res.json(ts)
     })
 }

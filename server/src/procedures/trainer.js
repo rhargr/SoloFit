@@ -39,7 +39,7 @@ function getByRating(args){
 
 function getTrainer(args){
     return procedure(`spGetTrainer`, args).then((res)=>{
-        return res[0][0]
+        return res[0]
     })
 }
 export default {

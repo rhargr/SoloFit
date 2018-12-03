@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import Table from '../table';
+import Users from '../controllers/User';
 // import { isLoggedIn, tokenMiddleware} from '../middleware/auth.mw';
 
 let router = Router();
@@ -16,35 +17,39 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
-    try {
-        // idObj will look like { id: 7 }
-        let idObj = await userTable.insert({
-            name: req.body.name,
-            // description: req.body.description,
-            age: req.body.age,
-            email: req.body.email
-        });
-        res.status(201).json(idObj);
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(500);
-    }
-});
+router.post('/', Users.create);
+
+// router.post('/', async (req, res) => {
+//     try {
+//         // idObj will look like { id: 7 }
+//         let idObj = await userTable.insert({
+//             name: req.body.name,
+//             // description: req.body.description,
+//             age: req.body.age,
+//             email: req.body.email
+//         });
+//         res.status(201).json(idObj);
+//     } catch (err) {
+//         console.log(err);
+//         res.sendStatus(500);
+//     }
+// });
 
 // router.get('/me', tokenMiddleware, isLoggedIn, (req, res) => {
 //     res.json(req.user);
 // });
 
-router.get('/:id', async (req, res) => {
-    try {
-        let foundUser = await userTable.getOne(req.params.id);
-        res.json(foundUser);
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(500);
-    }
-});
+router.get('/:id', Users.getUser);
+
+// router.get('/:id', async (req, res) => {
+//     try {
+//         let foundUser = await userTable.getOne(req.params.id);
+//         res.json(foundUser);
+//     } catch (err) {
+//         console.log(err);
+//         res.sendStatus(500);
+//     }
+// });
 
 router.put('/:id', async (req, res) => {
     try {
