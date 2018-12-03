@@ -40,11 +40,6 @@ class Navigation extends Component {
             <Route exact path="/donate" component={Donate} />
             <Route exact path="/goodbye" component={GoodbyeWorld} />
           </Switch>
-          <AuthButton />
-          <Link to="/goodbye">Goodbye</Link>
-          <Link to="/Trainers">check out trainers</Link>
-          <Link to="/Profile">single Trainer</Link>
-          <Link to="/Scheduling">Calendar</Link>
           <Footer />
         </Fragment>
       </Router>
