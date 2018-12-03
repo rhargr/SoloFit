@@ -1,43 +1,49 @@
-create table if not exists trainer (
-    id int auto_increment primary key,
-    user_id int,
-    foreign key (user_id)
-        references users(id)
-);
-
 drop procedure if exists spGetTrainers;
 
 delimiter $$
 create procedure spGetTrainers ()
 begin
     select
-        *
+        t.id as trainer_id,
+        t.user_id as user_id,
+        u.name,
+        u.age,
+        u.email,
+        a.address
     from
         trainer t
-    join 
+    join
+        address a
+    on 
+        a.user_id = t.id
+    join
         user u
     on
         u.id = t.user_id;
 end $$
 delimiter ;
 
-call spGetTrainers
-();
+call spGetTrainers();
 
 drop procedure if exists spGetTrainerByService;
 
 delimiter $$
 create procedure spGetTrainerByService (in service_id int)
 begin
-    select
-        *
+    select 
+        ts.trainer_id as trainer_id,
+        u.id as user_id,
+        ts.description,
+        u.name,
+        u.age,
+        u.email
     from
         trainerservice ts
-        join
-        trainer t
-        on 
-        t.id = ts.trainer_id
     join 
+        trainer t
+    on 
+        t.id = ts.trainer_id
+    join
         user u
     on
         u.id = t.user_id
@@ -52,21 +58,26 @@ delimiter $$
 create procedure spGetTrainerByRating (in rating int)
 begin
     select
-        *
+        t.id as trainer_id,
+        u.id as user_id,
+        u.name,
+        u.age,
+        u.email,
+        r.rating,
+        r.text
     from
         review r
-        join
-        trainer t
-        on 
-        t.id = r.trainer_id
     join 
+        trainer t
+    on 
+        t.id = r.trainer_id
+    join
         user u
     on
         u.id = t.user_id
 	where
         r.rating = rating;
-end
-$$
+end $$
 delimiter ;
 
 drop procedure if exists spGetTrainer;
@@ -75,17 +86,25 @@ delimiter $$
 create procedure spGetTrainer (in trainer_id int)
 begin
     select
-        * 
+        t.id as trainer_id,
+        t.user_id as user_id,
+        u.name,
+        u.age,
+        u.email,
+        a.address
     from
         trainer t
-    join 
-		user u
+    join
+        address a
     on 
-		u.id = t.user_id
+        a.user_id = t.id
+    join
+        user u
+    on
+        u.id = t.user_id
 	where
 		t.id = trainer_id;
-end
-$$
+end $$
 delimiter ;
 
 drop procedure if exists spInsertTrainer;
@@ -93,9 +112,19 @@ drop procedure if exists spInsertTrainer;
 delimiter $$
 create procedure spInsertTrainer (in _name varchar (60), in _age tinyint, in _email varchar (60))
 begin
-    set @user_id = (call spInsertUser(_name, _age,  _email));
-    insert into trainer (user_id)
-    values (@user_id);
+    insert into user (
+        name,
+        age,
+        email
+    )
+    values(
+        _name,
+        _age,
+        _email
+   );
+
+    set @user_id = LAST_INSERT_ID();
+    insert into trainer (user_id) values (@user_id);
 end $$
 delimiter ;
 
@@ -105,8 +134,8 @@ delimiter $$
 create procedure spUpdateTrainer (in trainer_id int, in _name varchar (60), in _age tinyint, in _email varchar (60))
 begin
     set @user_id = (select user_id from trainer where trainer.id = trainer_id);
-    call spUpdateUser (@user_id, _name, _age, _email);
-end $$
+    call spUpdateUser(@user_id, _name, _age, _email);
+end$$
 delimiter ;
 
 drop procedure if exists spDeleteTrainer;
@@ -117,7 +146,5 @@ begin
     delete
     from trainer
     where id = trainer_id;
-end
-$$
+end $$
 delimiter ;
-

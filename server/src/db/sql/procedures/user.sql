@@ -1,12 +1,3 @@
-
-create table if not exists user (
-    id int auto_increment primary key,
-    name varchar(60) not null,
-    age tinyint not null,
-    email varchar(60) not null
-);
-
-
 drop procedure if exists spDeleteUser;
 
 delimiter $$
@@ -75,12 +66,11 @@ begin
     update
        user
     set
-		user.name = _name,
-        user.age = _age,
-        user.email = _email
+		user.name = coalesce(_name, user.name),
+        user.age = coalesce(_age, user.age),
+        user.email = coalesce(_email, user.email)
    where
        id = user_id
    limit 1;
 end$$
 delimiter ;
-

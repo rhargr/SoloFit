@@ -1,8 +1,3 @@
-create table if not exists service (
-    id int auto_increment primary key,
-    name varchar(45) not null
-);
-
 drop procedure if exists spGetServices;
 
 delimiter $$
@@ -14,8 +9,6 @@ begin
         service;
 end $$
 delimiter ;
-
-call spGetServices();
 
 drop procedure if exists spGetService;
 
@@ -30,8 +23,6 @@ begin
         service.id = service_id;
 end $$
 delimiter ;
-
-call spGetService(1);
 
 drop procedure if exists spInsertService;
 

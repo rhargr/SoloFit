@@ -1,22 +1,18 @@
-create table if not exists trainee (
-    id int auto_increment primary key,
-    user_id int,
-    foreign key (user_id)
-        references users (id)
-);
-
 drop procedure if exists spGetTrainees;
 
 delimiter $$
 create procedure spGetTrainees ()
 begin
     select
-        *
+        t.id as trainerId,
+        t.user_id as userId,
+        u.name,
+        u.age,
+        u.email
     from
         trainee t
-        join    
-        user
-    u
+    join    
+        user u
     on
         u.id = t.user_id;
 end $$
@@ -28,12 +24,15 @@ delimiter $$
 create procedure spGetTrainee (in trainee_id int)
 begin
     select
-        *
+        t.id as trainerId,
+        t.user_id as userId,
+        u.name,
+        u.age,
+        u.email
     from
         trainee t
-        join    
-		user
-    u
+    join    
+		user u
     on 
 		u.id = t.user_id
 	where
@@ -51,6 +50,7 @@ begin
     values (@user_id);
 end $$
 delimiter ;
+call spInsertTrainee();
 
 drop procedure if exists spUpdateTrainee;
 
@@ -74,4 +74,3 @@ begin
     where id = trainee_id;
 end $$
 delimiter ;
-
