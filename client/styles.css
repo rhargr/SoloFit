@@ -2,20 +2,6 @@ body {
   text-align: center;
 }
 
-/* .Checkout {
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-    max-width: 800px;
-    box-sizing: border-box;
-    padding: 0 5px;
-  }
-
-  label {
-    color: #6b7c93;
-    font-weight: 300;
-    letter-spacing: 0.025em;
-  } */
 
   button {
     white-space: nowrap;
@@ -38,14 +24,6 @@ body {
     transition: all 150ms ease;
     margin-top: 10px;
   }
-/* 
-  form {
-    margin: 2em 1em;
-    padding: 2em;
-    background-color: lightgray;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, .11);
-    border-radius: 4px;
-  } */
 
   button:hover {
     color: #fff;
@@ -55,27 +33,6 @@ body {
     box-shadow: 0 7px 14px rgba(50, 50, 93, .10), 0 3px 6px rgba(0, 0, 0, .08);
   }
 
-  /* .StripeElement {
-    align-content: center;
-    display: block;
-    margin: 1em auto;
-    max-width: 500px;
-    padding: 10px 14px;
-    box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px, rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
-    border-radius: 4px;
-    background: white;
-  } */
-
-  /* .StripeElement--focus {
-    box-shadow: rgba(50, 50, 93, 0.109804) 0px 4px 6px, rgba(0, 0, 0, 0.0784314) 0px 1px 3px;
-    -webkit-transition: all 150ms ease;
-    transition: all 150ms ease;
-  }
-
-  .StripeElement.PaymentRequestButton {
-    padding: 0;
-  } */
-
   /* NAVBAR */
 
 .navbar {
@@ -84,12 +41,11 @@ body {
   justify-content: space-between;  
 } 
 
-/* .navbar-right {
-  float: right;
-  text-align: right;
-} */
-
 .navbar-nav {
   display: flex;
   align-items: center;
+}
+
+#trainerJumbo{
+  background-image: url('../images/db-trainer-image.jpg');
 }

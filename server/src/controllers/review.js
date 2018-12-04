@@ -1,47 +1,56 @@
-import Ratings from '../procedures/review';
+import Reviews from '../procedures/review';
 
-function update(req, res, next){
-    const { user_id, address, latitude, longitude} = req.body;
+function update(req, res, next) {
+    const { text, rating, trainer_id, trainee_id } = req.body;
 
-    Addresses.update([user_id, address, latitude, longitude]).then(()=>{
+    Reviews.update([text, rating, trainer_id, trainee_id]).then(() => {
         res.end();
-    })
+    });
 }
 
-function destroy(req, res, next){
+function destroy(req, res, next) {
     const id = req.body.id;
-    Addresses.destroy([id]). then(()=>{
-        res.end()
-    })
+    Reviews.destroy([id]).then(() => {
+        res.end();
+    });
 }
 
-function create(req, res, next){
-    const{user_id, address, latitude, longitude} = req.body;
+function create(req, res, next) {
+    const { text, rating, trainer_id, trainee_id } = req.body;
 
-    Addresses.create([user_id, address, latitude, longitude]).then((id)=>{
-        res.json(id)
-    })
+    Reviews.create([trainer_id, trainee_id, text, rating]).then((id) => {
+        res.json(id);
+    });
 }
 
-function read(req, res, next){
+function read(req, res, next) {
+
     const id = req.params.id;
-
-    Addresses.read([id]).then((address)=>{
-        res.json(address)
-    })
+    console.log(id);
+    Reviews.read([id]).then((rating) => {
+        res.json(rating);
+    });
 }
 
 function all(req, res, next) {
-    Addresses.all().then((address)=>{
-        console.log(address)
-        res.json(address); 
-    })
+    Reviews.all().then((rating) => {
+        console.log(rating);
+        res.json(rating);
+    });
 }
 
-function destroyAddressByTrainer(req, res, next) {
-    let id = req.params.trainer_id
-    Addresses.destroy([id]).then(()=>{
-        res.end()
-
-    })
+function getReviewByTrainer(req, res, next) {
+    let id = req.params.trainer_id;
+    Reviews.destroy([id]).then(() => {
+        res.end();
+    });
 }
+
+export default {
+    update,
+    destroy,
+    create,
+    read,
+    all,
+    getReviewByTrainer,
+};

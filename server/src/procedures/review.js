@@ -1,26 +1,44 @@
-import { callProcedure as procedure } from '../config/db'
+import { callProcedure as procedure } from '../config/db';
 
-function all(args){
-    return procedure(`spGetTrainerByService`, args).then((res) => {
+function all(args) {
+    return procedure(`spGetReviews`, args).then((res) => {
         return res[0];
-    })
+    });
 }
 
-// function create(args){
-//     return procedure(`spInsertTrainer`, args).then((res) => {
-//        return res[0][0]; 
-//     })
-// }
+function create(args) {
+    return procedure(`spInsertReview`, args).then((res) => {
+        return res[0][0];
+    });
+}
 
-// function update(args){
-//     return procedure(`spUpdateTrainer`, args).then((res) => {
-//         return true;
-//     })
-// }
+function update(args) {
+    return procedure(`spUpdateReview`, args).then((res) => {
+        return true;
+    });
+}
 
-// function destroy(args){
-//     return procedure(`spDeleteTrainer`, args).then((res) => {
-//         return true;
-        
-//     })
-// }
+function destroy(args) {
+    return procedure(`spDeleteReview`, args).then((res) => {
+        return true;
+    });
+}
+function read(args) {
+    return procedure(`spGetReviewsByTrainer`, args).then((res) => {
+        return res[0][0];
+    });
+}
+
+function getReviewsByTrainee(args) {
+    return procedure(`spGetReviewsByTrainee`, args).then((res) => {
+        return res[0][0];
+    });
+}
+export default {
+    all,
+    create,
+    update,
+    destroy,
+    read,
+    getReviewsByTrainee,
+};

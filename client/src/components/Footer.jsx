@@ -13,22 +13,14 @@ class Footer extends Component {
                 <span className="text-black mx-auto">Birmingham, Ala.</span>
               
                  <a href="http://facebook.com">
-                 <i className="fab fa-facebook-square" style={{fontSize: '35px'}}></i> 
+                 <i className="fa fa-facebook-square" style={{fontSize: '35px'}}></i> 
                  </a>
                  <a href="http://instagram.com">
-                 <i className="fab fa-instagram" style={{paddingLeft: '15px',paddingRight: '15px', fontSize: '35px'}} ></i>
+                 <i className="fa fa-instagram" style={{paddingLeft: '15px',paddingRight: '15px', fontSize: '35px'}} ></i>
                  </a>
                  <a href="http://twitter.com">
-                 <i className="fab fa-twitter-square" style={{fontSize: '35px'}}></i>  
-                 </a>
-                    
-                   
-                   
-
-                 
-         
-               
-               
+                 <i className="fa fa-twitter-square" style={{fontSize: '35px'}}></i>  
+                 </a>       
         </footer>
         )
     }

@@ -1,36 +1,35 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Homepage from './Home';
+import * as classService from '../services/classes';
 import BGPic from "../images/BG.png"
 
-class SignUp extends Component {
-
+class New extends Component {
+    
     constructor(props) {
         super(props);
     }
-    
+
+
     render() {
         return (
-            
             <div style={{minHeight: '100vh', backgroundImage: `url(${BGPic})`, backgroundSize: "cover"}}>
             <div style={{display: 'flex', flexDirection: 'column', position: 'relative', top: '100px', color: 'white'}}>
-                <h3>"Motivation is what gets you started. Habit is what keeps you going."</h3>
-                <h4>-Jim Ryan, Olympic Athelete</h4>
+                <h3>"Combine your natural ability with a mission to help people and you will have a rich, fulfilling life"</h3>
+                <h4>-Bryan Krahn, Physique Coach</h4>
             </div>
-          
             <div style={{display: 'flex', justifyContent: 'center'}}>
           
             <div style={{display: 'flex', justifyContent: 'center', position: 'relative', top: '200px', flexDirection: 'column', maxWidth: '800px'}}>
             <ul className="nav nav-tabs">
                  <li className="nav-item">
-                    <a className="nav-link active" href="/Sign-Up">Client</a>
+                    <a className="nav-link" href="/Sign-Up">Client</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="/Sign-Up-Trainer">Trainer</a>
+                    <a className="nav-link active" href="/Sign-Up-Trainer">Trainer</a>
                 </li>
             </ul>
             <form style={{ maxWidth: '900px', padding: '25px', borderRadius: '3px', backgroundColor: 'lightGray'}}>
-            <h1>Client</h1>
+            <h1>Trainer</h1>
   <div className="form-row">
   
     <div className="form-group col-md-6">
@@ -114,18 +113,31 @@ class SignUp extends Component {
       <input type="text" className="form-control" id="inputZip" placeholder="Zip" />
     </div>
   </div>
+  <div style={{display: 'flex', justifyContent: 'space-around', flexDirection: 'row'}}>
+  <label className="checkbox-inline"><input type="checkbox" value="" />Yoga</label>
+  <label className="checkbox-inline"><input type="checkbox" value="" />Endurance</label>
+  <label className="checkbox-inline"><input type="checkbox" value="" />Strength</label>
+  <label className="checkbox-inline"><input type="checkbox" value="" />Weight-Loss</label>
+  </div>
+
+  <div style={{display: 'flex', justifyContent: 'center', maxWidth: '100%' }}>
+  <div className="form-group col-md-6" style={{flex: '1', maxWidth:'100%'}}>
+      <label htmlFor="inputCity"></label>
+      <textarea type="text-area" className="form-control" id="input" placeholder="About Me"/>
+  </div>
+
   <div className="form-group">
   </div>
+  </div>
+
   <button type="submit" className="btn btn-primary">Create Account</button>
 </form>
 </div>
 </div>
 </div>
 
-        
-
         )
     }
 }
 
-export default SignUp;
+export default New;
