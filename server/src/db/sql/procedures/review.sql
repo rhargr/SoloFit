@@ -1,49 +1,52 @@
-create table if not exists review (
-    id int auto_increment primary key,
-    text text,
-    rating int not null,
-    trainee_id int,
-    trainer_id int,
-    foreign key (trainee_id)
-        references trainee (id)
-    foreign key (trainer_id)
-        references trainer (id)
-);
+drop procedure if exists spGetAverageRatingForTrainer;
+delimiter $$
+create procedure spGetAverageRatingForTrainer (in trainer_id int)
+begin
+    select
+        avg(r.rating) as average_rating,
+        r.trainer_id
+    from
+        review r
+    where
+        r.trainer_id = trainer_id;
+end $$
+delimiter ;
 
 drop procedure if exists spGetReviewsByTrainer;
-
 delimiter $$
 create procedure spGetReviewsByTrainer (in trainer_id int)
 begin
     select
-        *
+        r.id as review_id,
+        r.text,
+        r.trainer_id,
     from
-        review
+        review r
+    join
+        trainee t
+    on
+        r.trainee_id = t.id
     where
-        review.trainer_id = trainer_id;
+        r.trainer_id = trainer_id;
 end $$
 delimiter ;
 
-call spGetReviewsByTrainer(11);
-
 drop procedure if exists spGetReviewsByTrainee;
-
 delimiter $$
 create procedure spGetReviewsByTrainee (in trainee_id int)
 begin
     select
-        *
+        r.id as review_id,
+        r.text,
+        r.trainer_id,
     from
-        review
+        review r
     where
-        review.trainee_id = trainee_id;
+        r.trainee_id = trainee_id;
 end $$
 delimiter ;
 
-call spGetReviewsByTrainee(1);
-
 drop procedure if exists spGetReviews;
-
 delimiter $$
 create procedure spGetReviews ()
 begin
@@ -54,22 +57,19 @@ begin
 end $$
 delimiter ;
 
-call spGetReviews();
-
 drop procedure if exists spInsertReview;
-
 delimiter $$
 create procedure spInsertReview (in _trainer_id int, in _trainee_id int, in _text text, _rating int)
 begin
     insert into review (trainer_id, trainee_id, text, rating)
     values (_trainer_id, _trainee_id, _text, _rating);
+
+    select
+        last_insert_id() as id;
 end $$
 delimiter ;
 
-call spInsertReview(11, 1, 'new review', 5);
-
 drop procedure if exists spUpdateReview;
-
 delimiter $$
 create procedure spUpdateReview (in review_id int, in _text text, _rating int)
 begin
@@ -84,10 +84,7 @@ begin
 end $$
 delimiter ;
 
-call spUpdateReview(1, 'new review', 5);
-
 drop procedure if exists spDeleteReview;
-
 delimiter $$
 create procedure spDeleteReview (in review_id int)
 begin
@@ -97,5 +94,3 @@ begin
     limit 1;
 end $$
 delimiter ;
-
-call spDeleteReview(1);
