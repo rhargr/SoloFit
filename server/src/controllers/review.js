@@ -1,4 +1,4 @@
-import Addresses from '../procedures/address';
+import Ratings from '../procedures/review';
 
 function update(req, res, next){
     const { user_id, address, latitude, longitude} = req.body;
@@ -45,13 +45,3 @@ function destroyAddressByTrainer(req, res, next) {
 
     })
 }
-
-function getAddressByTrainer(req, res, next){
-    const id = req.params.user_id;
-
-    Addresses.getAddressByTrainer([id]).then((x)=>{
-        res.json(x)
-    })
-}
-
-export default { all, create, destroy, update, read, getAddressByTrainer, destroyAddressByTrainer}

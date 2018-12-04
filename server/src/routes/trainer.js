@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import Table from '../table';
 import Trainers from '../controllers/trainer';
+// import Ratings from '../controllers/review'
 
 let router = Router();
 let trainerTable = new Table('trainer');
@@ -41,6 +42,7 @@ router.get('/:id', Trainers.getTrainer);
 //         res.sendStatus(500);
 //     }
 // });
+// router.get('/:id', Ratings.getTrainingByRating)
 
 router.put('/:id', Trainers.update);
 

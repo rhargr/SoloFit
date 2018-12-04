@@ -1,6 +1,6 @@
-import { procedure } from '../config/db'
+import { callProcedure as procedure } from '../config/db'
 
-function all(args){
+function read(args){
     return procedure(`spGetAddress`, args).then((res) => {
         return res[0];
     })
@@ -8,7 +8,7 @@ function all(args){
 
 function create(args){
     return procedure(`spInsertAddress`, args).then((res) => {
-       return res[0][0]; 
+       return res[0]; 
     })
 }
 
@@ -37,5 +37,5 @@ function getTrainerAddress(args){
     })
 }
 export default {
-    all,create,update,destroy,destroyAddressByTrainer,getTrainerAddress
+    read,create,update,destroy,destroyAddressByTrainer,getTrainerAddress
 }

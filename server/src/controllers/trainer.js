@@ -1,4 +1,6 @@
 import Trainers from '../procedures/trainer';
+import Ratings from '../procedures/review';
+// import Services from '../procedures/service';
 
 function update(req, res, next){
     const { id, name, age, email } = req.body;
@@ -39,22 +41,24 @@ function all(req, res, next) {
 }
 
 function getByService(req, res, next) {
-    let serviceid = req.params.service_id
+    let serviceid = req.params.id
     
-    Trainers.getByService([serviceid]).then((service)=>{
+    Services.getByService([serviceid]).then((service)=>{
         res.json(service);
     })
 }
 
 function getByRating(req, res, next){
-    let ratingid = req.params.review_id
+    let ratingid = req.params.id
 
-    Trainers.getByRating([ratingid]).then((rating)=>{
+    Ratings.getByRating([ratingid]).then((rating)=>{
         res.json(rating);
     })
 }
 
-function getTrainer(req, res, next){
+
+
+function getTrainer (req, res, next){
     const id = req.params.id;
 
     Trainers.getTrainer([id]).then((ts)=>{
