@@ -1,9 +1,9 @@
 import Users from '../procedures/user';
 
 function update(req, res, next){
-    const { id, name, age, email } = req.body;
+    const { id, name, age, email, hash } = req.body;
 
-    Users.update([id , name, age, email]).then(()=>{
+    Users.update([id , name, age, email, hash]).then(()=>{
         res.end();
     })
 }
@@ -16,9 +16,9 @@ function destroy(req, res, next){
 }
 
 function create(req, res, next){
-    const{name, age, email} = req.body;
+    const{name, age, email, hash} = req.body;
 
-    Users.create([name, age, email]).then((id)=>{
+    Users.create([name, age, email, hash]).then((id)=>{
         res.json(id)
     })
 }
@@ -45,5 +45,9 @@ function getUser(req, res, next){
         res.json(ts)
     })
 }
+
+
+
+
 
 export default { all, create, destroy, update, read, getUser}

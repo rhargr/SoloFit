@@ -30,6 +30,7 @@ function getUser(args){
         return res[0][0]
     })
 }
+
 export default {
     all,create,update,destroy,getUser
 }

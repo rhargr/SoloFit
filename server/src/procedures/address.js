@@ -1,4 +1,4 @@
-import { procedure } from './db'
+import { procedure } from '../config/db'
 
 function all(args){
     return procedure(`spGetAddress`, args).then((res) => {
