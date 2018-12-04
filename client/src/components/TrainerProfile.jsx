@@ -5,7 +5,7 @@ import Reviews from './Reviews';
 import Rating from 'react-rating';
 
 import profilePicture from '../images/profile-picture-placholder.png';
-import bgImage from '../images/background-banner-fitness.jpg';
+import bgImage from '../images/jumbo.jpg';
 
 class Profile extends Component {
 
@@ -25,13 +25,13 @@ class Profile extends Component {
         return (
             <React.Fragment>
                 {/* JUMBOTRON */}
-                <div className="jumbotron jumbotron-fluid" id="trainerJumbo" style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '350px' }}>
+                <div className="jumbotron jumbotron-fluid" id="trainerJumbo" style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '300px', marginBottom: '0' }}>
                 </div>
                 {/* END JUMBOTRON */}
 
 
                 {/* PROFILE */}
-                <div className="container-fluid" style={{ minHeight: '100vh' }}>
+                <div className="container-fluid" style={{ minHeight: '100vh', backgroundColor: 'grey'}}>
                     <div className="inner container" style={{ backgroundColor: 'lightgrey', padding: '20px', maxWidth: '960px' }}>
 
                         <div className="top-div" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>

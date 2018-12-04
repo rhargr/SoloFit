@@ -45,7 +45,3 @@ body {
   display: flex;
   align-items: center;
 }
-
-#trainerJumbo{
-  background-image: url('../images/db-trainer-image.jpg');
-}

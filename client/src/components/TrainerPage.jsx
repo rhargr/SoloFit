@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import { Link } from 'react-router-dom';
 import caro2 from '../images/caro2.png';
 import jumbo1 from '../images/jumbo.jpg';
 
@@ -9,34 +10,22 @@ class Trainers extends Component {
     super(props);
 
     this.state = {
-      trainers: [
-        {
-          name: "Rob",
-          location: "Birmingham",
-          cost: "35/hr",
-          img: caro2
-        },
-        {
-          name: "Drayton",
-          location: "Hoover",
-          cost: "30/hr",
-          img: caro2
-        },
-        {
-          name: "Ashley",
-          location: "Birmingham",
-          cost: "50/hr",
-          img: caro2
-        },
-        {
-          name: "Ray",
-          location: "Birmingham",
-          cost: "100/hr",
-          img: caro2
-        }
-      ]
+      trainers: []
     };
+    
   }
+
+  componentDidMount() {
+    fetch('/api/trainer')
+        .then((res) => res.json())
+        .then((trainers) => {
+            this.setState({
+                trainers,
+            });
+        });
+};
+
+
 
   render() {
       return (
@@ -51,18 +40,16 @@ class Trainers extends Component {
                                     <div>
                                         <img style={{ borderRadius: '50%', height: '200px', width: '200px', float: 'left'}}
                                             className="proPic"
-                                            src={train.img}
+                                            src={caro2}
                                             alt="Profile Picture"
                                         />
                                     </div>
                                     <div>
                                         <h5 className="card-title">{train.location}</h5>
                                         <p className="card-text">
-                                            {train.cost}
+                                            {train.age}
                                         </p>
-                                        <a href="#" className="btn btn-primary">
-                                            View Trainer
-                                        </a>
+                                        <Link to={`/trainer/${train.id}`} className="btn btn-secondary btn-sm">View Trainer</Link>
                                     </div>
                                 </div>
                             </div>
