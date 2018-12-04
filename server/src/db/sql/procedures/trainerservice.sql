@@ -5,10 +5,11 @@ create procedure spInsertTrainerService (in _trainer_id int, in _service_id int,
 begin
     insert into trainerservice (trainer_id, service_id, description)
     values (_trainer_id, _service_id, _description);
+
+    select
+        last_insert_id() as id;
 end $$
 delimiter ;
-
-call spInsertTrainerService(11, 11, 'ftyfyytgyuytyuyuiuyuiuyuiuyyuyuyyujhyyuh');
 
 drop procedure if exists spUpdateTrainerService;
 
@@ -24,8 +25,6 @@ begin
 end $$
 delimiter ;
 
-call spUpdateTrainerService(31, 'updated');
-
 drop procedure if exists spDeleteTrainerService;
 
 delimiter $$
@@ -38,5 +37,3 @@ begin
         trainerservice.id = _trainerservice_id;
 end $$
 delimiter ;
-
-call spDeleteTrainerService(31);

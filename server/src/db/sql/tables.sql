@@ -121,6 +121,14 @@ select * from trainerservice;
 select * from trainer;
 select * from trainee;
 
+insert into review (text, trainee_id, trainer_id, rating) values ('In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 61, 11, 3);
+insert into review (text, trainee_id, trainer_id, rating) values ('In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 21, 11, 5);
+insert into review (text, trainee_id, trainer_id, rating) values ('In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 31, 11, 4);
+insert into review (text, trainee_id, trainer_id, rating) values ('In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 41, 11, 1);
+insert into review (text, trainee_id, trainer_id, rating) values ('In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 51, 11, 1);
+insert into review (text, trainee_id, trainer_id, rating) values ('In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 1, 11, 3);
+
+
 insert into review (text, trainee_id, trainer_id, rating) values ('Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.', 1, 11, 3);
 insert into review (text, trainee_id, trainer_id, rating) values ('Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.', 41, 21, 14);
 insert into review (text, trainee_id, trainer_id, rating) values ('In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 51, 11, 2);

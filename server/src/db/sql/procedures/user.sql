@@ -40,21 +40,23 @@ delimiter ;
 drop procedure if exists spInsertUser;
 
 delimiter $$
-create procedure spInsertUser (in _name varchar (60), in _age tinyint, in _email varchar (60))
+create procedure spInsertUser (in _name varchar (60), in _age tinyint, in _email varchar (60), in _hash varchar(60))
 begin
     insert into user (
         name,
         age,
-        email
+        email,
+        hash
     )
     values(
         _name,
         _age,
-        _email
+        _email,
+        _hash
    );
 
     select
-        LAST_INSERT_ID() into user_id;
+        last_insert_id() as id;
 end$$
 delimiter ;
 

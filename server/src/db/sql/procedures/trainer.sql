@@ -1,21 +1,22 @@
 drop procedure if exists spGetTrainers;
-
 delimiter $$
 create procedure spGetTrainers ()
 begin
     select
         t.id as trainer_id,
-        t.user_id as user_id,
+        t.user_id,
         u.name,
         u.age,
         u.email,
-        a.address
+        a.address,
+        a.latitude,
+        a.longitude
     from
         trainer t
     join
         address a
-    on 
-        a.user_id = t.id
+    on
+        a.user_id = t.user_id
     join
         user u
     on
@@ -23,10 +24,7 @@ begin
 end $$
 delimiter ;
 
-call spGetTrainers();
-
 drop procedure if exists spGetTrainerByService;
-
 delimiter $$
 create procedure spGetTrainerByService (in service_id int)
 begin
@@ -53,13 +51,12 @@ end $$
 delimiter ;
 
 drop procedure if exists spGetTrainerByRating;
-
 delimiter $$
 create procedure spGetTrainerByRating (in rating int)
 begin
     select
         t.id as trainer_id,
-        u.id as user_id,
+        t.user_id,
         u.name,
         u.age,
         u.email,
@@ -81,17 +78,18 @@ end $$
 delimiter ;
 
 drop procedure if exists spGetTrainer;
-
 delimiter $$
 create procedure spGetTrainer (in trainer_id int)
 begin
     select
         t.id as trainer_id,
-        t.user_id as user_id,
+        t.user_id,
         u.name,
         u.age,
         u.email,
-        a.address
+        a.address,
+        a.latitude,
+        a.longitude
     from
         trainer t
     join
@@ -108,28 +106,32 @@ end $$
 delimiter ;
 
 drop procedure if exists spInsertTrainer;
-
 delimiter $$
-create procedure spInsertTrainer (in _name varchar (60), in _age tinyint, in _email varchar (60))
+create procedure spInsertTrainer (in _name varchar (60), in _age tinyint, in _email varchar (60), in _hash varchar(60))
 begin
     insert into user (
         name,
         age,
-        email
+        email,
+        hash
     )
     values(
         _name,
         _age,
-        _email
+        _email,
+        _hash
    );
 
-    set @user_id = LAST_INSERT_ID();
+    set @user_id = last_insert_id();
+
     insert into trainer (user_id) values (@user_id);
+
+    select
+        last_insert_id() as id;
 end $$
 delimiter ;
 
 drop procedure if exists spUpdateTrainer;
-
 delimiter $$
 create procedure spUpdateTrainer (in trainer_id int, in _name varchar (60), in _age tinyint, in _email varchar (60))
 begin
@@ -139,7 +141,6 @@ end$$
 delimiter ;
 
 drop procedure if exists spDeleteTrainer;
-
 delimiter $$
 create procedure spDeleteTrainer (in trainer_id int)
 begin
