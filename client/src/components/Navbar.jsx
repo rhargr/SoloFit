@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import Logo from '../images/solofit.png';
 import SignUp from './SignUp';
 import Trainers from './TrainerPage';
+import AuthButton from './auth/authButton';
+
 
 
 class Navbar extends Component {
@@ -30,6 +32,8 @@ class Navbar extends Component {
                         <Link to="/Sign-up" className="nav-link nav-right" > 
                         <button className="btn btn-outline-success my-2 my-sm-0" type="button">Sign Up</button>
                         </Link>
+                        <AuthButton />
+                  
                         </li>
                     </ul>
                 </div>

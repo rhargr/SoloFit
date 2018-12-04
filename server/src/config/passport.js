@@ -4,7 +4,7 @@
 // import Table from '../table';
 // import { encode, decode } from '../utils/tokens';
 
-// let usersTable = new Table('Users');
+// let usersTable = new Table('user');
 // let tokensTable = new Table('Tokens');
 
 // function configurePassport(app) {

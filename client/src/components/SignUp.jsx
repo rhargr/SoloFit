@@ -3,11 +3,66 @@ import { render } from 'react-dom';
 import Homepage from './Home';
 import BGPic from "../images/BG.png"
 
+
 class SignUp extends Component {
 
     constructor(props) {
         super(props);
-    }
+        this.state = {
+      
+            name: '',
+            age: '',
+            email: '',
+            hash: '',
+ 
+
+
+
+        };
+
+
+        this.handleChange1 = event => {
+          console.log(this.state)
+          this.setState({ name: event.target.value });
+        };
+      
+        this.handleChange2 = event => {
+          this.setState({ age: event.target.value });
+        };
+
+        this.handleChange3 = event => {
+          this.setState({ email: event.target.value });
+        };
+      
+        this.handleChange4 = event => {
+          this.setState({ hash: event.target.value });
+        };
+
+
+
+        this.submit = () => {
+          let newUser = {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email,
+            hash: this.state.hash
+          }
+
+
+        fetch(`localhost:3000/api/user`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newUser)
+        })
+          .then(res => res.json())
+          .then(newUser => {
+            this.setState({ newUser });
+          })
+          .catch(e => console.log(e));
+      };
+    };
     
     render() {
         return (
@@ -35,19 +90,59 @@ class SignUp extends Component {
   
     <div className="form-group col-md-6">
     
-      <label htmlFor="inputEmail4"></label>
-      <input type="email" className="form-control" id="inputEmail4" placeholder="Email" />
+      <label htmlFor="Name"></label>
+      <input type="text"
+             className="form-control"
+             id="Name" 
+             placeholder="Name"
+             value={this.state.name} 
+             onChange={this.handleChange1}
+             />
     </div>
+
+     <div className="form-group col-md-6">
+    
+    <label htmlFor="age"></label>
+    <input type="integer"
+           className="form-control" 
+           id="age" 
+           placeholder="Age"
+           value={this.state.age} 
+           onChange={this.handleChange2}
+           />
+  </div>
+
+    <div className="form-group col-md-6">
+    
+    <label htmlFor="inputEmail4"></label>
+    <input type="email" 
+           className="form-control" 
+           id="inputEmail4" 
+           placeholder="Email"
+           value={this.state.email} 
+           onChange={this.handleChange3}
+           />
+  </div>
+
+
     <div className="form-group col-md-6">
       <label htmlFor="inputPassword4"></label>
-      <input type="password" className="form-control" id="inputPassword4" placeholder="Password" />
+      <input type="text" 
+             className="form-control" 
+             id="inputPassword4" 
+             placeholder="Password"
+             value={this.state.hash} 
+             onChange={this.handleChange4}
+             />
     </div>
+
+     
   </div>
-  <div className="form-group">
+  {/* <div className="form-group">
     <label htmlFor="inputAddress"></label>
     <input type="text" className="form-control" id="inputAddress" placeholder="Address" />
-  </div>
-  <div className="form-row">
+  </div> */}
+  {/* <div className="form-row">
     <div className="form-group col-md-6">
       <label htmlFor="inputCity"></label>
       <input type="text" className="form-control" id="inputCity" placeholder="City" />
@@ -115,9 +210,19 @@ class SignUp extends Component {
     </div>
   </div>
   <div className="form-group">
-  </div>
-  <button type="submit" className="btn btn-primary">Create Account</button>
-</form>
+  </div> */}
+
+  <button 
+  type="submit"
+  onClick={this.submit}
+  onClick={console.log(this.state)} 
+  className="btn btn-primary">
+  Create Account
+  </button>
+
+
+
+  </form>
 </div>
 </div>
 </div>

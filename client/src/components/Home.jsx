@@ -5,7 +5,8 @@ import last1 from '../images/last1.png';
 import caro2 from '../images/caro2.png';
 import caro3 from '../images/caro3.png';
 import maybe from '../images/maybe.png';
-
+import AuthButton from '../components/auth/authButton';
+import Login from '../components/auth/login';
 
  class Homepage extends Component {
   constructor(props) {
@@ -15,10 +16,16 @@ import maybe from '../images/maybe.png';
 
   componentDidMount() {
   // The location of Uluru
-  var uluru = {lat: 33.520682, lng: -86.802433};
+  var bham = {lat: 33.520682, lng: -86.802433};
   // The map, centered at Uluru
   var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 12, center: uluru});
+      document.getElementById('map'), {zoom: 11, center: bham});
+
+
+      var marker = new google.maps.Marker({
+        position: {lat: 33.366653  , lng: -86.768528  },
+        map: map
+      });
   }
 
   render() {
@@ -104,6 +111,9 @@ import maybe from '../images/maybe.png';
           {/* login form  */}
 
           <div className="col-4" style={{display: 'flex', justifyContent: 'space-around', marginTop: '30px'}} >
+
+
+
         
           <form>
              
@@ -130,7 +140,8 @@ import maybe from '../images/maybe.png';
              <button type="submit" className="btn btn-primary">
                Submit
              </button>
-         
+             <div>
+            </div>
            </form>
            </div>
            </div>
@@ -146,7 +157,7 @@ import maybe from '../images/maybe.png';
 
         <div
 
-         className="jumbotron jumbotron-fluid"
+         className="jumbotron jumbotron-fluid bg-success"
 
           style={{
             height: "650px",
@@ -155,7 +166,7 @@ import maybe from '../images/maybe.png';
           }}
         >
 
-          <div className="container" style={{display: 'flex', justifyContent: 'center'}}>
+          <div className="container" style={{display: 'flex', justifyContent: 'center', backgroundColor: 'green'}}>
             <div id="map" style={{height: '500px', width: '1200px'}}></div>
 
           </div>
@@ -180,7 +191,7 @@ import maybe from '../images/maybe.png';
             <div className="card text-white bg-success mb-3 col-3">
   <div className="card-header">Strength</div>
   <div className="card-body">
-    <p className="card-text">a method of improving muscular strength by gradually increasing the ability to resist force through the use of free weights and machines.</p>
+    <p className="card-text">A method of improving muscular strength by gradually increasing the ability to resist force through the use of free weights and machines.</p>
   </div>
 </div>
 
@@ -188,7 +199,7 @@ import maybe from '../images/maybe.png';
 <div className="card text-white bg-success mb-3 col-3">
   <div className="card-header">Yoga</div>
   <div className="card-body">
-    <p className="card-text">Yoga combines physical exercises, mental meditation, and breathing techniques to strengthen the muscles and relieve stress.</p>
+    <p className="card-text">Combines physical exercises, mental meditation, and breathing techniques to strengthen the muscles and relieve stress.</p>
 
   </div>
 </div>
@@ -196,7 +207,7 @@ import maybe from '../images/maybe.png';
 <div className="card text-white bg-success mb-3 col-3">
   <div className="card-header">Endurance</div>
   <div className="card-body">
-    <p className="card-text">training for athletic events requiring prolonged effort, such as running a marathon, swimming a long distance, or climbing mountains.</p>
+    <p className="card-text">Training for athletic events requiring prolonged effort, such as running a marathon, swimming a long distance, or climbing mountains.</p>
 
   </div>
 </div>

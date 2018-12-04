@@ -63,7 +63,6 @@ class Login extends Component {
 
        return (
            <Fragment>
-                <p>You must be logged in to view this page.</p>
                 <form onSubmit={(e) => this.login(e)}>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>

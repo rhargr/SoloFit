@@ -14,7 +14,7 @@ import Profile from "./TrainerProfile";
 import Schedule from "./Schedule";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-
+import NewLogin from "./Login";
 import SignUpTrainer from "./SignUpTrainer";
 
 
@@ -34,7 +34,7 @@ class Navigation extends Component {
             <Route exact path="/Sign-Up-Trainer" component={SignUpTrainer} />
             <Route exact path="/Trainers" component={Trainers} />
             <Route exact path="/Profile" component={Profile} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/login" component={NewLogin} />
             <Route exact path="/Scheduling" component={Schedule} />
             <Route exact path="/logout" component={Logout} />
             <Route exact path="/donate" component={Donate} />

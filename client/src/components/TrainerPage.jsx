@@ -4,6 +4,7 @@ import caro2 from '../images/caro2.png';
 import jumbo1 from '../images/jumbo.jpg';
 
 
+
 class Trainers extends Component {
   constructor(props) {
     super(props);
@@ -63,6 +64,7 @@ class Trainers extends Component {
                                         <a href="#" className="btn btn-primary">
                                             View Trainer
                                         </a>
+                                  
                                     </div>
                                 </div>
                             </div>
