@@ -9,7 +9,7 @@ import jumbo1 from '../images/jumbo.jpg';
 class Trainers extends Component {
   constructor(props) {
     super(props);
-
+    this.trainerRepo = new TrainerRepository();
     this.state = {
       trainers: []
     };
@@ -17,15 +17,13 @@ class Trainers extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/trainer')
-        .then((res) => res.json())
-        .then((trainers) => {
-          console.log(trainers);
-            this.setState({
-                trainers,
-            });
-        }); 
-  };
+    this.trainerRepo.all().then((trainers) => {
+        console.log(trainers);
+        this.setState({
+            trainers,
+        });
+    });
+};
 
   render() {
       return (
@@ -33,7 +31,7 @@ class Trainers extends Component {
             <div className="row">
                 {this.state.trainers.map(trainer => {
                     return (
-                        <div key={trainer.trainerId} className="col-sm-6">
+                        <div key={trainer.id} className="col-sm-6">
                             <div className="card" style={{marginTop: '20px', backgroundColor: 'lightGray', top: '50px'}}>
                                 <h5 className="card-header">{trainer.name}</h5>
                                 <div className="card-body">
@@ -49,7 +47,7 @@ class Trainers extends Component {
                                         <p className="card-text">
                                             {trainer.age}
                                         </p>
-                                        <Link to={`api/trainer/${trainer.trainerId}`} className="btn btn-secondary btn-sm">View Trainer</Link>
+                                        <Link to={`/trainer/${trainer.id}`} className="btn btn-secondary btn-sm">View Trainer</Link>
                                     </div>
                                 </div>
                             </div>
