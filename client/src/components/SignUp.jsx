@@ -9,21 +9,18 @@ class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-      
+          user: {
             name: '',
             age: '',
             email: '',
             hash: '',
- 
-
-
-
+          },
         };
 
 
         this.handleChange1 = event => {
-          console.log(this.state)
-          this.setState({ name: event.target.value });
+          console.log(this.state);
+          this.setState({ ...this.state.user, name: event.target.value });
         };
       
         this.handleChange2 = event => {
@@ -41,11 +38,11 @@ class SignUp extends Component {
 
 
         this.submit = () => {
-          let newUser = {
-            name: this.state.name,
-            age: this.state.age,
-            email: this.state.email,
-            hash: this.state.hash
+          let user = {
+            name: this.state.user.name,
+            age: this.state.user.age,
+            email: this.state.user.email,
+            hash: this.state.user.hash
           }
 
 
@@ -54,7 +51,7 @@ class SignUp extends Component {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify(newUser)
+          body: JSON.stringify(user)
         })
           .then(res => res.json())
           .then(newUser => {
@@ -95,7 +92,7 @@ class SignUp extends Component {
              className="form-control"
              id="Name" 
              placeholder="Name"
-             value={this.state.name} 
+             value={this.state.user.name} 
              onChange={this.handleChange1}
              />
     </div>
@@ -107,7 +104,7 @@ class SignUp extends Component {
            className="form-control" 
            id="age" 
            placeholder="Age"
-           value={this.state.age} 
+           value={this.state.user.age} 
            onChange={this.handleChange2}
            />
   </div>
@@ -119,7 +116,7 @@ class SignUp extends Component {
            className="form-control" 
            id="inputEmail4" 
            placeholder="Email"
-           value={this.state.email} 
+           value={this.state.user.email} 
            onChange={this.handleChange3}
            />
   </div>
@@ -131,7 +128,7 @@ class SignUp extends Component {
              className="form-control" 
              id="inputPassword4" 
              placeholder="Password"
-             value={this.state.hash} 
+             value={this.state.user.hash} 
              onChange={this.handleChange4}
              />
     </div>
