@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import * as classService from '../services/classes';
 import Reviews from './Reviews';
 import Rating from 'react-rating';
+import TrainerRepository from '../repositories/trainer';
 
 import profilePicture from '../images/profile-picture-placholder.png';
 import bgImage from '../images/jumbo.jpg';
@@ -11,11 +12,25 @@ class Profile extends Component {
 
     constructor(props) {
         super(props);
+        this.trainerRepo = new TrainerRepository();
         this.handleRatingClick = this.handleRatingClick.bind(this);
         this.state = {
-            initialRating: 3
+            initialRating: 3,
+            trainer: {
+
+            }
         };
     }
+
+    async componentDidMount() {
+        try {
+            let res = await fetch(`/api/trainer/${this.props.match.params.trainerId}`);
+            let trainer = await res.json();
+            this.setState({ trainer });
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
     handleRatingClick(value) {
         console.log(value);
@@ -41,8 +56,8 @@ class Profile extends Component {
                                     <img src={profilePicture} className="img-rounded" alt="profile-picture" style={{ width: 'auto', height: '250px', border: '2px solid lightgrey', borderRadius: '3px' }} />
                                 </div>
                                 <div style={{ paddingLeft: '10px', textAlign: 'center' }}>
-                                    <h2>Trainer's Name</h2>
-                                    <p>Birmingham</p>
+                                    <h2>{trainer.name}</h2>
+                                    <p>{trainer.city}</p>
                                     <div className="social-media" style={{ display: 'flex', flexDirection: 'row', padding: '10px', fontSize: '35px', justifyContent: 'center' }}>
                                         <a href=""><i className="fa fa-facebook-square"></i></a>
                                         <a href="" style={{ paddingLeft: '10px', paddingRight: '10px' }}><i className="fa fa-twitter-square"></i></a>
