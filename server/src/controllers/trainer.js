@@ -1,4 +1,5 @@
 import Trainers from '../procedures/trainer';
+import Addresses from '../procedures/address';
 import { client, allClient } from '../utils';
 
 function update(req, res, next) {
@@ -28,8 +29,16 @@ function create(req, res, next) {
 
 function read(req, res, next) {
     const id = req.params.id;
+    let trainer;
 
-    Trainers.read([id]).then((trainer) => {
+    Trainers.read([id]).then((t) => {
+        trainer = t;
+
+        return Addresses.read([t.user_id]);
+    })
+    .then((a) => {
+        trainer.address = a;
+
         res.json(trainer);
     });
 }

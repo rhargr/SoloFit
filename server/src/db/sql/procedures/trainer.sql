@@ -1,6 +1,6 @@
 drop procedure if exists spGetTrainers;
 delimiter $$
-create procedure spGetTrainers ()
+create procedure spGetTrainers()
 begin
     select
         t.id as trainer_id,
@@ -8,15 +8,13 @@ begin
         u.name,
         u.age,
         u.email,
-        a.address,
-        a.latitude,
-        a.longitude
+        a.*
     from
         trainer t
-    join
+    left join
         address a
     on
-        a.user_id = t.user_id
+        a.id = t.user_id
     join
         user u
     on
@@ -86,16 +84,9 @@ begin
         t.user_id,
         u.name,
         u.age,
-        u.email,
-        a.address,
-        a.latitude,
-        a.longitude
+        u.email
     from
         trainer t
-    join
-        address a
-    on 
-        a.user_id = t.id
     join
         user u
     on

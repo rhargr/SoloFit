@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Rating from 'react-rating';
+import ReviewRepository from '../repositories/review';
 
 class Reviews extends Component {
     constructor(props) {
         super(props);
+        //console.log(ReviewRepository);
+        this.reviewRepo = new ReviewRepository();
 
         this.state = {
             reviews: []
@@ -12,13 +15,12 @@ class Reviews extends Component {
     }
 
     componentDidMount() {
-        fetch('/api/review')
-            .then((res) => res.json())
-            .then((reviews) => {
-                this.setState({
-                    reviews,
-                });
+        this.reviewRepo.all().then((reviews) => {
+            console.log(reviews);
+            this.setState({
+                reviews,
             });
+        });
     };
 
     render() {

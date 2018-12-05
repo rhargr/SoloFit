@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import caro2 from '../images/caro2.png';
 import jumbo1 from '../images/jumbo.jpg';
 
-
 class Trainers extends Component {
   constructor(props) {
     super(props);
@@ -19,13 +18,12 @@ class Trainers extends Component {
     fetch('/api/trainer')
         .then((res) => res.json())
         .then((trainers) => {
+          console.log(trainers);
             this.setState({
                 trainers,
             });
-        });
-};
-
-
+        }); 
+  };
 
   render() {
       return (
@@ -33,7 +31,7 @@ class Trainers extends Component {
             <div className="row">
                 {this.state.trainers.map(train => {
                     return (
-                        <div className="col-sm-6">
+                        <div key={train.trainerId} className="col-sm-6">
                             <div className="card" style={{marginTop: '20px', backgroundColor: 'lightGray', top: '50px'}}>
                                 <h5 className="card-header">{train.name}</h5>
                                 <div className="card-body">
@@ -45,7 +43,7 @@ class Trainers extends Component {
                                         />
                                     </div>
                                     <div>
-                                        <h5 className="card-title">{train.location}</h5>
+                                        <h5 className="card-title">{train.city}</h5>
                                         <p className="card-text">
                                             {train.age}
                                         </p>

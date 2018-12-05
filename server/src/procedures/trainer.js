@@ -36,17 +36,18 @@ function getByRating(args) {
     });
 }
 
-function getTrainer(args) {
+function read(args) {
     return procedure(`spGetTrainer`, args).then((res) => {
         return res[0][0];
     });
 }
+
 export default {
     all,
     create,
     update,
     destroy,
+    read,
     getByService,
     getByRating,
-    getTrainer,
 };

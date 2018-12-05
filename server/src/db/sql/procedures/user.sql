@@ -1,5 +1,3 @@
-<<<<<<< HEAD:server/src/db/sql/procedures/user.sql
-=======
 
 create table if not exists user (
     id int auto_increment primary key,
@@ -10,7 +8,6 @@ create table if not exists user (
 );
 
 
->>>>>>> frontend-dev:server/src/db/sql/user.sql
 drop procedure if exists spDeleteUser;
 
 delimiter $$
