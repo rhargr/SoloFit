@@ -58,3 +58,28 @@ begin
     where id = service_id;
 end $$
 delimiter ;
+
+drop procedure if exists spGetServiceByTrainer;
+delimiter $$
+create procedure spGetServiceByTrainer (in p_trainer_id int)
+begin
+    select 
+        t.*,
+        ts.description,
+        u.name,
+        u.age,
+        u.email
+    from
+        trainerservice ts
+    join 
+        trainer t
+    on 
+        t.id = ts.trainer_id
+    join
+        user u
+    on
+        u.id = t.user_id
+	where
+        ts.trainer_id = p_trainer_id;
+end $$
+delimiter ;
