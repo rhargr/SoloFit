@@ -16,11 +16,42 @@ class Navbar extends Component {
     render() {
         return (
         <React.Fragment>
-            <header className="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar bg-warning">
+            <header className="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar bg-warning" style={{alignItems: 'baseline'}}>
                 <Link to="/" className="navbar-brand navbar-left"><img src={Logo} width="100px" style={{marginleft: '10px'}} alt="logo"/></Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
+                {/* <div className="col-4" style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row' }} > */}
+
+<form>
+ <div className="form-row" style={{display: 'flex', alignItems: 'center'}}>
+  <div className="form-group" style={{marginRight: '5px'}}>
+    <input
+      type="email"
+      className="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      placeholder="Email"
+    />
+  </div>
+  <div className="form-group">
+    <input
+      type="password"
+      className="form-control"
+      id="exampleInputPassword1"
+      placeholder="Password"
+    />
+
+  </div>
+  <div className="form-group form-check" style={{paddingLeft: '5px'}}>
+  <button type="submit" className="btn btn-dark" style={{margin: '0px'}}>
+    Login
+ </button>
+  </div>
+</div>
+
+</form>
+{/* </div> */}
                 <div className="navbar-right" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">

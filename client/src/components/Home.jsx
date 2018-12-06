@@ -15,10 +15,28 @@ class Homepage extends Component {
 
   componentDidMount() {
     // The location of Uluru
-    var uluru = { lat: 33.520682, lng: -86.802433 };
+    var bham = { lat: 33.520682, lng: -86.802433 };
     // The map, centered at Uluru
     var map = new google.maps.Map(
-      document.getElementById('map'), { zoom: 12, center: uluru });
+      document.getElementById('map'), { zoom: 10, center: bham });
+
+      var marker1 = new google.maps.Marker({
+        position: {lat: 33.366653, lng: -86.768528},
+        map: map,
+        title: 'Personal Trainer 1'
+      });
+
+      var marker2 = new google.maps.Marker({
+        position: {lat: 33.389933, lng: -86.766959},
+        map: map,
+        title: 'Personal Trainer 2'
+      });
+
+      var marker3 = new google.maps.Marker({
+        position: {lat: 33.490923, lng: -86.808188},
+        map: map, 
+        title: 'Personal Trainer 3'
+      });
   }
 
   render() {
@@ -103,36 +121,7 @@ class Homepage extends Component {
 
           {/* login form  */}
 
-          <div className="col-4" style={{ display: 'flex', justifyContent: 'space-around', marginTop: '30px' }} >
-
-            <form>
-
-              <div className="form-group" >
-                <input
-                  type="email"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  type="password"
-                  className="form-control"
-                  id="exampleInputPassword1"
-                  placeholder="Password"
-                />
-
-              </div>
-              <div className="form-group form-check">
-              </div>
-              <button type="submit" className="btn btn-primary">
-                Submit
-             </button>
-
-            </form>
-          </div>
+         
         </div>
 
 
@@ -151,7 +140,8 @@ class Homepage extends Component {
           style={{
             height: "650px",
             borderBottom: "1px solid black",
-            margin: "0px"
+            margin: "0px",
+            backgroundImage: `url(${jumbo1})`
           }}
         >
 
@@ -180,7 +170,7 @@ class Homepage extends Component {
               <div className="card text-white bg-success mb-3 col-3">
                 <div className="card-header">Strength</div>
                 <div className="card-body">
-                  <p className="card-text">a method of improving muscular strength by gradually increasing the ability to resist force through the use of free weights and machines.</p>
+                  <p className="card-text">A method of improving muscular strength by gradually increasing the ability to resist force through the use of free weights and machines.</p>
                 </div>
               </div>
 
@@ -188,7 +178,7 @@ class Homepage extends Component {
               <div className="card text-white bg-success mb-3 col-3">
                 <div className="card-header">Yoga</div>
                 <div className="card-body">
-                  <p className="card-text">Yoga combines physical exercises, mental meditation, and breathing techniques to strengthen the muscles and relieve stress.</p>
+                  <p className="card-text">Combines physical exercises, mental meditation, and breathing techniques to strengthen the muscles and relieve stress.</p>
 
                 </div>
               </div>
@@ -196,7 +186,7 @@ class Homepage extends Component {
               <div className="card text-white bg-success mb-3 col-3">
                 <div className="card-header">Endurance</div>
                 <div className="card-body">
-                  <p className="card-text">training for athletic events requiring prolonged effort, such as running a marathon, swimming a long distance, or climbing mountains.</p>
+                  <p className="card-text">Training for athletic events requiring prolonged effort, such as running a marathon, swimming a long distance, or climbing mountains.</p>
 
                 </div>
               </div>
