@@ -10,7 +10,8 @@ router
     .get('/:id', Services.read)
     .post('/', Services.create)
     .put('/:id', Services.update)
-    .delete('/:id', Services.destroy);
+    .delete('/:id', Services.destroy)
+    // .get('/:id', Services.getByService);
 
 export default router;
 

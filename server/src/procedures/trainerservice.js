@@ -20,11 +20,7 @@ function destroy(args) {
     });
 }
 
-function getByService(args) {
-    return procedure(`spGetTrainerByService`, args).then((res) => {
-        return res[0][0];
-    });
-}
+
 
 
 
@@ -33,7 +29,7 @@ export default {
     create,
     update,
     destroy,
-    getByService
+    
   
    
 };

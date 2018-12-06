@@ -26,12 +26,6 @@ function update(req, res, next) {
         res.end();
     });
 }
-function getByService(req, res, next) {
-    let serviceid = req.params.id;
 
-    TrainerServices.getByService([serviceid]).then((service) => {
-        res.json(service);
-    });
-}
 
-export default { create, destroy, update, getByService}
+export default { create, destroy, update}
