@@ -25,7 +25,7 @@ function destroy(args) {
 }
 function read(args) {
     return procedure(`spGetReviewsByTrainer`, args).then((res) => {
-        return res[0][0];
+        return res[0];
     });
 }
 
