@@ -10,13 +10,80 @@ class SignUp extends Component {
     super(props);
     this.state = {
       states: [],
+      user: {
+        name: "",
+        age: "",
+        email: "",
+        hash: ""
+      }
     };
     this.dataInj = new DataInjectable();
   }
 
   componentDidMount() {
     this.setState({ states: this.dataInj.states });
+  };
+
+  handleChange1 = event => {
+    console.log(this.state.user)
+    this.setState({ 
+      ...this.state, 
+      user: {
+        ...this.state.user,
+       name: event.target.value }
+     });
+  };
+
+  handleChange2 = event => {
+    this.setState({ 
+      ...this.state, 
+      user: {
+        ...this.state.user,
+       age: event.target.value }
+     });
+  };
+
+  handleChange3 = event => {
+    this.setState({ 
+      ...this.state, 
+      user: {
+        ...this.state.user,
+       email: event.target.value }
+     });
+  };
+
+  handleChange4 = event => {
+    this.setState({ 
+      ...this.state, 
+      user: {
+        ...this.state.user,
+       hash: event.target.value }
+     });
+  };
+
+
+  submit = () => {
+    let  newUser = {
+      name: this.state.user.name,
+      age: this.state.user.age,
+      email: this.state.user.email,
+      hash: this.state.user.hash
+    }
+
+    fetch(`http://localhost:3000/api/user`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newUser)
+    })
+      .then(res => res.json())
+      .then(newUserApp => {
+        this.setState({ newUserApp });
+      })
+      .catch(e => console.log(e));
   }
+
 
   render() {
     return (
@@ -26,7 +93,7 @@ class SignUp extends Component {
           <h4>-Jim Ryan, Olympic Athelete</h4>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', position: 'relative', top: '200px', flexDirection: 'column', maxWidth: '800px' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', position: 'relative', top: '200px', flexDirection: 'column', maxWidth: '800px', opacity: '0.8' }}>
             <ul className="nav nav-tabs">
               <li className="nav-item">
                 <a className="nav-link active" href="/Sign-Up">Client</a>
@@ -36,48 +103,58 @@ class SignUp extends Component {
               </li>
             </ul>
             <form style={{ maxWidth: '900px', padding: '25px', borderRadius: '3px', backgroundColor: 'lightGray' }}>
-              <h1>Client</h1>
-              <div className="form-row">
-
-                <div className="form-group col-md-6">
-
-                  <label htmlFor="inputEmail4"></label>
-                  <input type="email" className="form-control" id="inputEmail4" placeholder="Email" />
-                </div>
-                <div className="form-group col-md-6">
-                  <label htmlFor="inputPassword4"></label>
-                  <input type="password" className="form-control" id="inputPassword4" placeholder="Password" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="inputAddress"></label>
-                <input type="text" className="form-control" id="inputAddress" placeholder="Address" />
-              </div>
-              <div className="form-row">
-                <div className="form-group col-md-6">
-                  <label htmlFor="inputCity"></label>
-                  <input type="text" className="form-control" id="inputCity" placeholder="City" />
-                </div>
-                <div className="form-group col-md-4">
-                  <label htmlFor="inputState"></label>
-                  <select id="inputState" className="form-control">
-                      {this.state.states.map((state) => {
-                        return <option key={state.code} value={state.code}>{state.name}</option>
-                      })}
-                  </select>
-                </div>
-                <div className="form-group col-md-2">
-                  <label htmlFor="inputZip"></label>
-                  <input type="text" className="form-control" id="inputZip" placeholder="Zip" />
-                </div>
-              </div>
-              <div className="form-group">
-              </div>
-              <button type="submit" className="btn btn-primary">Create Account</button>
+            <div className="form-row">
+    <div className="form-group col-md-6">
+   
+      <input 
+      type="text" 
+      className="form-control" 
+      id="inputName" 
+      placeholder="Name"
+      value={this.state.user.name}
+      onChange={this.handleChange1} 
+      />
+    </div>
+    <div className="form-group col-md-6">
+      <input 
+      type="text" 
+      className="form-control" 
+      id="inputAge" 
+      placeholder="Age"
+      value={this.state.user.age}
+      onChange={this.handleChange2} 
+      />
+    </div>
+    <div className="form-group col-md-6">
+      <input 
+      type="email" 
+      className="form-control" 
+      id="inputEmail4" 
+      placeholder="Email"
+      value={this.state.user.email}
+      onChange={this.handleChange3} 
+      />
+    </div>
+    <div className="form-group col-md-6">
+      <input 
+      type="password" 
+      className="form-control" 
+      id="inputPassword4" 
+      placeholder="Password"
+      value={this.state.user.hash}
+      onChange={this.handleChange4} 
+      />
+    </div>
+  </div>
+  <div className="form-group">
+  </div>
+  <button type="submit" onClick={this.submit} className="btn btn-primary">Submit</button>
             </form>
           </div>
         </div>
+       
       </div>
+
 
 
 

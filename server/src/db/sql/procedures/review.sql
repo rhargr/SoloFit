@@ -14,35 +14,63 @@ delimiter ;
 
 drop procedure if exists spGetReviewsByTrainer;
 delimiter $$
-create procedure spGetReviewsByTrainer (in trainer_id int)
+create procedure spGetReviewsByTrainer (in p_trainer_id int)
 begin
     select
-        r.id as review_id,
-        r.text,
-        r.trainer_id,
+        r.*,
+        u_te.name as trainee_name,
+        u_tr.name as trainer_name
     from
         review r
-    join
-        trainee t
-    on
-        r.trainee_id = t.id
+	join
+		trainee te
+	on
+		r.trainee_id = te.id
+	join
+		user u_te
+	on
+		u_te.id = te.user_id
+	join
+		trainer tr
+	on
+		r.trainer_id = tr.id
+	join
+		user u_tr
+	on
+		u_tr.id = tr.user_id
     where
-        r.trainer_id = trainer_id;
+        r.trainee_id = p_trainer_id;
 end $$
 delimiter ;
 
 drop procedure if exists spGetReviewsByTrainee;
 delimiter $$
-create procedure spGetReviewsByTrainee (in trainee_id int)
+create procedure spGetReviewsByTrainee (in p_trainee_id int)
 begin
     select
-        r.id as review_id,
-        r.text,
-        r.trainer_id,
+        r.*,
+        u_te.name as trainee_name,
+        u_tr.name as trainer_name
     from
         review r
+	join
+		trainee te
+	on
+		r.trainee_id = te.id
+	join
+		user u_te
+	on
+		u_te.id = te.user_id
+	join
+		trainer tr
+	on
+		r.trainer_id = tr.id
+	join
+		user u_tr
+	on
+		u_tr.id = tr.user_id
     where
-        r.trainee_id = trainee_id;
+        r.trainee_id = p_trainee_id;
 end $$
 delimiter ;
 
@@ -51,9 +79,27 @@ delimiter $$
 create procedure spGetReviews ()
 begin
     select
-        *
+        r.*,
+        u_te.name as trainee_name,
+        u_tr.name as trainer_name
     from
-        review;
+        review r
+	join
+		trainee te
+	on
+		r.trainee_id = te.id
+	join
+		user u_te
+	on
+		u_te.id = te.user_id
+	join
+		trainer tr
+	on
+		r.trainer_id = tr.id
+	join
+		user u_tr
+	on
+		u_tr.id = tr.user_id;
 end $$
 delimiter ;
 

@@ -8,7 +8,7 @@ function all(args){
 
 function create(args){
     return procedure(`spInsertUser`, args).then((res) => {
-       return res[0]; 
+       return res[0][0]; 
     })
 }
 

@@ -9,6 +9,8 @@ router
     .post('/', Trainers.create)
     .get('/:id', Trainers.read)
     .put('/:id', Trainers.update)
-    .delete('/:id', Trainers.destroy);
+    .delete('/:id', Trainers.destroy)
+    .get('/rating/:rating', Trainers.getByRating)
+    .get('/service/:serviceId', Trainers.getByService);
 
 export default router;

@@ -8,6 +8,7 @@ function all(args) {
 
 function create(args) {
     return procedure(`spInsertTrainer`, args).then((res) => {
+        console.log('insert res', res);
         return res[0][0];
     });
 }
@@ -26,13 +27,13 @@ function destroy(args) {
 
 function getByService(args) {
     return procedure(`spGetTrainerByService`, args).then((res) => {
-        return res[0][0];
+        return res[0];
     });
 }
 
 function getByRating(args) {
     return procedure(`spGetTrainerByRating`, args).then((res) => {
-        return res[0][0];
+        return res[0];
     });
 }
 

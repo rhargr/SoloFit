@@ -1,5 +1,8 @@
 import Trainers from '../procedures/trainer';
 import Addresses from '../procedures/address';
+import Services from '../procedures/service';
+import Reviews from '../procedures/review'
+import TrainerServices from "../procedures/trainerservice"
 import { client, allClient } from '../utils';
 
 function update(req, res, next) {
@@ -18,13 +21,20 @@ function destroy(req, res, next) {
 }
 
 function create(req, res, next) {
-    const { name, age, email } = req.body;
+    const { name, age, email, hash} = req.body;
+    // let = trainer;
 
-    Trainers.create(
-        [name, age, email].then((id) => {
-            res.json(id);
-        }),
-    );
+    console.log('creating this user', req.body);
+
+    Trainers.create([name, age, email, hash])
+        .then((id) => {
+            return res.json(id);
+        })
+        // .then((trainerId) => {
+        //     trainer = t
+        //     console.log('updating address table now');
+        //     return Addresses.create(([t.user_id]))
+        // });
 }
 
 function read(req, res, next) {
@@ -33,15 +43,39 @@ function read(req, res, next) {
 
     Trainers.read([id]).then((t) => {
         trainer = t;
-
+            
         return Addresses.read([t.user_id]);
     })
     .then((a) => {
-        trainer.address = a;
+            trainer.address = a;
 
-        res.json(trainer);
-    });
+            res.json(trainer);
+        })
 }
+
+function getByService(req, res, next) {
+    const serviceId = req.params.serviceId;
+    let trainer;
+
+    Trainers.getByService([serviceId]).then((t)=> {
+        trainer = t
+        console.log(t)
+        res.send(t);
+    })
+
+    // Trainers.read([id]).then((t)=> {
+    //     trainer = t
+
+    //     return Services.read([t.user_id]);
+    // })
+    // .then((s) =>{
+    //     trainer.service = s
+
+    //     res.json(trainer);
+    // })
+}
+
+
 
 function all(req, res, next) {
     Trainers.all().then((trainers) => {
@@ -49,20 +83,22 @@ function all(req, res, next) {
     });
 }
 
-function getByService(req, res, next) {
-    let serviceid = req.params.service_id;
 
-    Trainers.getByService([serviceid]).then((service) => {
-        res.json(service);
-    });
-}
 
 function getByRating(req, res, next) {
-    let ratingid = req.params.review_id;
+    const rating = req.params.rating;
+    let trainer;
 
-    Trainers.getByRating([ratingid]).then((rating) => {
-        res.json(rating);
-    });
+    Trainers.getByRating([rating]).then((t)=> {
+        console.log(t)
+        trainer = t
+        res.send(t);
+    })
+    // .then((r) =>{
+    //     trainer.review = r
+
+    //     res.json(trainer);
+    // })
 }
 
 function getTrainer(req, res, next) {

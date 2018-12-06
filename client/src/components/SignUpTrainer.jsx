@@ -2,24 +2,212 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import * as classService from '../services/classes';
 import BGPic from "../images/BG.png"
+import DataInjectable from '../injectables/data';
+import ServiceRepository from '../repositories/service';
 
 class New extends Component {
     
     constructor(props) {
         super(props);
+        this.serviceRepo =new ServiceRepository();
+        this.state = {
+          states: [],
+          user: {
+            name: "",
+            age: "",
+            email: "",
+            hash: "",
+            address: {
+              street1: "",
+              street2: "",
+              city: "",
+              state: "",
+              zip: ""
+            },
+            service: {
+              name: ""
+            }
+          },
+          services: []
+          
+        };
+
+        this.dataInj = new DataInjectable();
     }
+
+    componentDidMount() {
+      this.setState({ states: this.dataInj.states });
+      this.serviceRepo.all()
+      .then(services => {
+        this.setState({ services })
+      })
+    }
+
+    handleChange1 = event => {
+      console.log(this.state.user)
+      this.setState({ 
+        ...this.state, 
+        user: {
+          ...this.state.user,
+         name: event.target.value }
+       });
+    };
+
+    handleChange2 = event => {
+      this.setState({ 
+        ...this.state, 
+        user: {
+          ...this.state.user,
+         age: event.target.value }
+       });
+    };
+
+
+  handleChange3 = event => {
+    this.setState({ 
+      ...this.state, 
+      user: {
+        ...this.state.user,
+       email: event.target.value }
+     });
+  };
+
+  handleChange4 = event => {
+    this.setState({ 
+      ...this.state, 
+      user: {
+        ...this.state.user,
+       hash: event.target.value }
+     });
+  };
+
+  handleChange5 = event => {
+    this.setState({ 
+      ...this.state,
+      user: {
+          ...this.state.user,
+        address: {
+          ...this.state.user.address,
+         street1: event.target.value }
+      } 
+      
+     });
+  };
+
+  handleChange6 = event => {
+    this.setState({ 
+      ...this.state,
+      user: {
+          ...this.state.user,
+        address: {
+          ...this.state.user.address,
+         street2: event.target.value }
+      } 
+      
+     });
+  };
+
+  handleChange7 = event => {
+    this.setState({ 
+      ...this.state,
+      user: {
+          ...this.state.user,
+        address: {
+          ...this.state.user.address,
+         city: event.target.value }
+      } 
+      
+     });
+  };
+
+  handleChange8 = event => {
+    this.setState({ 
+      ...this.state,
+      user: {
+          ...this.state.user,
+        address: {
+          ...this.state.user.address,
+         state: event.target.value }
+      } 
+      
+     });
+  };
+
+  handleChange9 = event => {
+    this.setState({ 
+      ...this.state,
+      user: {
+          ...this.state.user,
+        address: {
+          ...this.state.user.address,
+         zip: event.target.value }
+      } 
+      
+     });
+  };
+
+  handleChange10 = event => {
+    this.setState({ 
+      ...this.state,
+      user: {
+          ...this.state.user,
+        service: {
+          ...this.state.user.service,
+         name: event.target.value }
+      } 
+      
+     });
+  };
+
+  submit = () => {
+    let  newUser = {
+      name: this.state.user.name,
+      age: this.state.user.age,
+      email: this.state.user.email,
+      hash: this.state.user.hash,
+      address: {
+        street1: this.state.user.address.street1,
+              street2: this.state.user.address.street2,
+              city: this.state.user.address.city,
+              state: this.state.user.address.state,
+              zip: this.state.user.address.zip
+      },
+      servie: {
+        name: this.state.user.service.name
+      }
+    }
+
+    fetch(`http://localhost:3000/api/user`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newUser)
+    })
+      .then(res => res.json())
+      .then(newUserApp => {
+        this.setState({ newUserApp });
+      })
+      .catch(e => console.log(e));
+  }
+
+
+
+  
 
 
     render() {
         return (
             <div style={{minHeight: '100vh', backgroundImage: `url(${BGPic})`, backgroundSize: "cover"}}>
+            {console.log(this.state.services)}
             <div style={{display: 'flex', flexDirection: 'column', position: 'relative', top: '100px', color: 'white'}}>
                 <h3>"Combine your natural ability with a mission to help people and you will have a rich, fulfilling life"</h3>
                 <h4>-Bryan Krahn, Physique Coach</h4>
             </div>
             <div style={{display: 'flex', justifyContent: 'center'}}>
           
-            <div style={{display: 'flex', justifyContent: 'center', position: 'relative', top: '200px', flexDirection: 'column', maxWidth: '800px'}}>
+            <div style={{display: 'flex', justifyContent: 'center', position: 'relative', top: '200px', flexDirection: 'column', maxWidth: '900px', top: '125px'}}>
+            <div>
             <ul className="nav nav-tabs">
                  <li className="nav-item">
                     <a className="nav-link" href="/Sign-Up">Client</a>
@@ -28,109 +216,147 @@ class New extends Component {
                     <a className="nav-link active" href="/Sign-Up-Trainer">Trainer</a>
                 </li>
             </ul>
-            <form style={{ maxWidth: '900px', padding: '25px', borderRadius: '3px', backgroundColor: 'lightGray'}}>
+            </div>
+            <form style={{ maxWidth: '900px', padding: '25px', borderRadius: '3px', backgroundColor: 'lightGray', position: 'relative'}}>
             <h1>Trainer</h1>
+            <div className="form-row">
+            <div className="form-group col-md-6">
+    
+    <label htmlFor="inputEmail4"></label>
+    <input 
+    type="text" 
+    className="form-control" 
+    id="inputName"
+    placeholder="Name"
+    value={this.state.user.name}
+    onChange={this.handleChange1}
+    />
+  </div>
+
+
+  <div className="form-group col-md-6">
+    
+    <label htmlFor="inputEmail4"></label>
+    <input 
+    type="text" 
+    className="form-control" 
+    id="inputAge"
+    placeholder="Age"
+    value={this.state.user.age}
+    onChange={this.handleChange2}
+    />
+  </div>
+  </div>
   <div className="form-row">
   
     <div className="form-group col-md-6">
     
       <label htmlFor="inputEmail4"></label>
-      <input type="email" className="form-control" id="inputEmail4" placeholder="Email" />
+      <input 
+      type="email" 
+      className="form-control" 
+      id="inputEmail4"
+      placeholder="Email"
+      value={this.state.user.email}
+      onChange={this.handleChange3}
+      />
     </div>
     <div className="form-group col-md-6">
       <label htmlFor="inputPassword4"></label>
-      <input type="password" className="form-control" id="inputPassword4" placeholder="Password" />
+      <input 
+      type="text" 
+      className="form-control" 
+      id="inputPassword4" 
+      placeholder="Password"
+      value={this.state.user.hash}
+      onChange={this.handleChange4}
+       />
     </div>
   </div>
   <div className="form-group">
     <label htmlFor="inputAddress"></label>
-    <input type="text" className="form-control" id="inputAddress" placeholder="Address" />
+    <input 
+    type="text" 
+    className="form-control" 
+    id="inputAddress1" 
+    placeholder="Street 1" 
+    value={this.state.user.address.street1}
+    onChange={this.handleChange5}
+    />
+  </div>
+  <div className="form-group">
+    <label htmlFor="inputAddress"></label>
+    <input 
+    type="text" 
+    className="form-control" 
+    id="inputAddress2" 
+    placeholder="Street 2"
+    value={this.state.user.address.street2}
+    onChange={this.handleChange6} 
+    />
   </div>
   <div className="form-row">
     <div className="form-group col-md-6">
       <label htmlFor="inputCity"></label>
-      <input type="text" className="form-control" id="inputCity" placeholder="City" />
+      <input 
+      type="text" 
+      className="form-control" 
+      id="inputCity" 
+      placeholder="City"
+      value={this.state.user.address.city}
+      onChange={this.handleChange7}
+
+       />
     </div>
     <div className="form-group col-md-4">
-      <label htmlFor="inputState"></label>
-      <select id="inputState" className="form-control">
-        <option selected>State</option>
-        <option value="AL">Alabama</option>
-	<option value="AK">Alaska</option>
-	<option value="AZ">Arizona</option>
-	<option value="AR">Arkansas</option>
-	<option value="CA">California</option>
-	<option value="CO">Colorado</option>
-	<option value="CT">Connecticut</option>
-	<option value="DE">Delaware</option>
-	<option value="DC">District Of Columbia</option>
-	<option value="FL">Florida</option>
-	<option value="GA">Georgia</option>
-	<option value="HI">Hawaii</option>
-	<option value="ID">Idaho</option>
-	<option value="IL">Illinois</option>
-	<option value="IN">Indiana</option>
-	<option value="IA">Iowa</option>
-	<option value="KS">Kansas</option>
-	<option value="KY">Kentucky</option>
-	<option value="LA">Louisiana</option>
-	<option value="ME">Maine</option>
-	<option value="MD">Maryland</option>
-	<option value="MA">Massachusetts</option>
-	<option value="MI">Michigan</option>
-	<option value="MN">Minnesota</option>
-	<option value="MS">Mississippi</option>
-	<option value="MO">Missouri</option>
-	<option value="MT">Montana</option>
-	<option value="NE">Nebraska</option>
-	<option value="NV">Nevada</option>
-	<option value="NH">New Hampshire</option>
-	<option value="NJ">New Jersey</option>
-	<option value="NM">New Mexico</option>
-	<option value="NY">New York</option>
-	<option value="NC">North Carolina</option>
-	<option value="ND">North Dakota</option>
-	<option value="OH">Ohio</option>
-	<option value="OK">Oklahoma</option>
-	<option value="OR">Oregon</option>
-	<option value="PA">Pennsylvania</option>
-	<option value="RI">Rhode Island</option>
-	<option value="SC">South Carolina</option>
-	<option value="SD">South Dakota</option>
-	<option value="TN">Tennessee</option>
-	<option value="TX">Texas</option>
-	<option value="UT">Utah</option>
-	<option value="VT">Vermont</option>
-	<option value="VA">Virginia</option>
-	<option value="WA">Washington</option>
-	<option value="WV">West Virginia</option>
-	<option value="WI">Wisconsin</option>
-	<option value="WY">Wyoming</option>
-      </select>
-    </div>
+                  <label htmlFor="inputState"></label>
+                  <select id="inputState" className="form-control">
+                      {this.state.states.map((state) => {
+                        return <option key={state.code} onChange={this.handleChange8} value={state.code}>{state.name}</option>
+                      })}
+                  </select>
+                </div>
     <div className="form-group col-md-2">
       <label htmlFor="inputZip"></label>
-      <input type="text" className="form-control" id="inputZip" placeholder="Zip" />
+      <input 
+      type="text" 
+      className="form-control" 
+      id="inputZip" 
+      placeholder="Zip"
+      value={this.state.user.address.zip}
+      onChange={this.handleChange9}
+       />
     </div>
   </div>
-  <div style={{display: 'flex', justifyContent: 'space-around', flexDirection: 'row'}}>
-  <label className="checkbox-inline"><input type="checkbox" value="" />Yoga</label>
-  <label className="checkbox-inline"><input type="checkbox" value="" />Endurance</label>
-  <label className="checkbox-inline"><input type="checkbox" value="" />Strength</label>
-  <label className="checkbox-inline"><input type="checkbox" value="" />Weight-Loss</label>
-  </div>
-
   <div style={{display: 'flex', justifyContent: 'center', maxWidth: '100%' }}>
-  <div className="form-group col-md-6" style={{flex: '1', maxWidth:'100%'}}>
+  <div className="form-group col-md-6" style={{flex: '1', maxWidth:'100%', padding: '0px'}}>
       <label htmlFor="inputCity"></label>
-      <textarea type="text-area" className="form-control" id="input" placeholder="About Me"/>
+      <textarea 
+      type="text-area" 
+      className="form-control" 
+      id="input" 
+      placeholder="About Me"
+      />
   </div>
 
   <div className="form-group">
   </div>
   </div>
+<div style={{display: 'flex', justifyContent: 'space-around', flexDirection: 'row'}}>
+  <div style={{display: 'flex', justifyContent: 'space-around'}}>
+    {this.state.services.map(service => {
+      return (
+        <div style={{marginLeft: '6px', marginRight: '6px'}}>
+        <input type="checkbox" value={this.state.user.service} onChange={this.handleChange10}></input>{service.name}
+        </div>
+      )
+    })}
+  </div>
+</div>
 
-  <button type="submit" className="btn btn-primary">Create Account</button>
+  
+
+  <button type="submit" onChange={this.submit} className="btn btn-primary">Create Account</button>
 </form>
 </div>
 </div>

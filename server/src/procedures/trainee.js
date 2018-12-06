@@ -9,7 +9,7 @@ function all(args){
 
 function create(args){
     return procedure(`spInsertTrainee`, args).then((res) => {
-       return res; 
+       return res[0][0]; 
     })
 }
 
