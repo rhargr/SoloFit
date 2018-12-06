@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { Link } from "react-router-dom";
 import * as classService from '../services/classes';
 import Reviews from './Reviews';
 import Rating from 'react-rating';
@@ -25,7 +26,6 @@ class Profile extends Component {
     componentDidMount() {
        
         this.trainerRepo.read(this.props.match.params.id).then((trainer) => {
-            console.log('hello');
             console.log(trainer);
             this.setState({
                 trainer,
@@ -91,7 +91,7 @@ class Profile extends Component {
                                     <div className="card-body">
                                         <h5 className="card-title">Book a Session Today!</h5>
                                         <p className="card-text">Starting Cost : $35</p>
-                                        <a href="#" className="btn btn-primary"><i className="far fa-calendar-alt"></i> Check Availability</a>
+                                        <Link to="/Scheduling" className="btn btn-primary"><i className="fa fa-calendar"></i>Check Availability</Link>
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@ class Profile extends Component {
                             </div>
                             <div className="hours" >
                                 <div>
-                                    <div className="table-hours">
+                                    <div className="table-hours" style={{ paddingRight: '35px' }}>
                                         <h3>Training Hours</h3>
                                         <table>
                                             <tbody>
@@ -162,7 +162,7 @@ class Profile extends Component {
                                         </table>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                        
                         </div>
                         {/* END ABOUT ME */}
 

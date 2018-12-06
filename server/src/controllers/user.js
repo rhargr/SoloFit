@@ -1,7 +1,7 @@
 import Users from '../procedures/user';
 
 function update(req, res, next){
-    const { id, name, age, email, hash} = req.body;
+    const { id, name, age, email, hash } = req.body;
 
     Users.update([id , name, age, email, hash]).then(()=>{
         res.end();

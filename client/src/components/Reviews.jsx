@@ -6,7 +6,6 @@ import ReviewRepository from '../repositories/review';
 class Reviews extends Component {
     constructor(props) {
         super(props);
-        //console.log(ReviewRepository);
         this.reviewRepo = new ReviewRepository();
 
         this.state = {
