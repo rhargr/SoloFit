@@ -57,13 +57,7 @@ function all(req, res, next) {
     });
 }
 
-function getByService(req, res, next) {
-    let serviceid = req.params.id;
 
-    TrainerServices.getByService([serviceid]).then((service) => {
-        res.json(service);
-    });
-}
 
 function getByRating(req, res, next) {
     let ratingid = req.params.review_id;
@@ -87,7 +81,6 @@ export default {
     destroy,
     update,
     read,
-    getByService,
     getByRating,
     getTrainer,
 };

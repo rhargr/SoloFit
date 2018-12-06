@@ -19,9 +19,10 @@ function destroy(args) {
         return true;
     });
 }
-function get(args) {
-    return procedure(`spGetTrainers`, args).then((res) => {
-        return res[0];
+
+function getByService(args) {
+    return procedure(`spGetTrainerByService`, args).then((res) => {
+        return res[0][0];
     });
 }
 
@@ -32,7 +33,7 @@ export default {
     create,
     update,
     destroy,
-    get
+    getByService
   
    
 };
