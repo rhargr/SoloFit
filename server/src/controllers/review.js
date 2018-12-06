@@ -39,9 +39,16 @@ function all(req, res, next) {
     });
 }
 
-function getReviewByTrainer(req, res, next) {
+function getReviewsByTrainer(req, res, next) {
     let id = req.params.trainer_id;
     Reviews.read([id]).then(() => {
+        res.end();
+    });
+}
+
+function getReviewsByTrainee(req, res, next) {
+    let id = req.params.trainer_id;
+    Reviews.getReviewsByTrainee([id]).then(() => {
         res.end();
     });
 }
@@ -52,5 +59,6 @@ export default {
     create,
     read,
     all,
-    getReviewByTrainer,
+    getReviewsByTrainee,
+    getReviewsByTrainer
 };

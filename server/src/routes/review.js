@@ -10,7 +10,9 @@ router
     .get('/:id', Reviews.read)
     .post('/', Reviews.create)
     .put('/:id', Reviews.update)
-    .delete('/:id', Reviews.destroy);
+    .delete('/:id', Reviews.destroy)
+    .get('/review/:trainerId', Reviews.getReviewsByTrainer);
+    ;
 
 export default router;
 
