@@ -6,6 +6,7 @@ export default class ServiceRepository {
     }
 
     all() {
+        console.log(this.serviceRepo.all())
         return this.serviceRepo.all();
     }
 

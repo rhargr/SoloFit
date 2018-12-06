@@ -24,9 +24,7 @@ class New extends Component {
               state: "",
               zip: ""
             },
-            service: {
-              name: ""
-            }
+            service: []
           },
           services: []
           
@@ -146,18 +144,28 @@ class New extends Component {
      });
   };
 
-  handleChange10 = event => {
-    this.setState({ 
-      ...this.state,
-      user: {
-          ...this.state.user,
-        service: {
-          ...this.state.user.service,
-         name: event.target.value }
-      } 
+  // handleChange10 = event => {
+  //   this.setState({ 
+  //     ...this.state,
+  //     user: {
+  //         ...this.state.user,
+  //       service: [
+  //         ...this.state.user.service,
+  //        id = event.target.value ]
+  //     } 
       
-     });
-  };
+  //    });
+  // };
+
+  handleChange10 = id => {
+    if (this.state.user.service.includes(id)) {
+      return;
+    }
+  
+    this.setState({
+      service: [...this.state.user.service, id],
+    });
+  }
 
   submit = () => {
     let  newUser = {
@@ -165,16 +173,16 @@ class New extends Component {
       age: this.state.user.age,
       email: this.state.user.email,
       hash: this.state.user.hash,
-      address: {
-        street1: this.state.user.address.street1,
-              street2: this.state.user.address.street2,
-              city: this.state.user.address.city,
-              state: this.state.user.address.state,
-              zip: this.state.user.address.zip
-      },
-      servie: {
-        name: this.state.user.service.name
-      }
+      // address: {
+      //   street1: this.state.user.address.street1,
+      //   street2: this.state.user.address.street2,
+      //   city: this.state.user.address.city,
+      //   state: this.state.user.address.state,
+      //   zip: this.state.user.address.zip
+      // },
+      service: [
+        this.state.user.service.name
+      ]
     }
 
     fetch(`http://localhost:3000/api/user`, {
@@ -206,7 +214,7 @@ class New extends Component {
             </div>
             <div style={{display: 'flex', justifyContent: 'center'}}>
           
-            <div style={{display: 'flex', justifyContent: 'center', position: 'relative', top: '200px', flexDirection: 'column', maxWidth: '900px', top: '125px'}}>
+            <div style={{display: 'flex', justifyContent: 'center', position: 'relative', top: '200px', flexDirection: 'column', maxWidth: '900px', top: '125p'}}>
             <div>
             <ul className="nav nav-tabs">
                  <li className="nav-item">
@@ -347,7 +355,7 @@ class New extends Component {
     {this.state.services.map(service => {
       return (
         <div style={{marginLeft: '6px', marginRight: '6px'}}>
-        <input type="checkbox" value={this.state.user.service} onChange={this.handleChange10}></input>{service.name}
+    <input type="checkbox" value={service.id} onChange={() => {this.handleChange10(service.id)}}></input>{service.id}
         </div>
       )
     })}

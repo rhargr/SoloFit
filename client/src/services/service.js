@@ -2,6 +2,7 @@ import * as baseService from './base';
 
 export default class NewServices {    
     all() {
+        console.log(baseService.get('/api/service'))
         return baseService.get('/api/service');
     }
 
