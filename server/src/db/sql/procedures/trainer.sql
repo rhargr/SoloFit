@@ -3,32 +3,70 @@ delimiter $$
 create procedure spGetTrainers()
 begin
     select
-        t.id as trainer_id,
-        t.user_id,
+        t.*,
         u.name,
         u.age,
         u.email,
-        a.*
+        a.id as address_id,
+        a.street1,
+        a.street2,
+        a.city,
+        a.state,
+        a.zip,
+        a.latitude,
+        a.longitude
     from
         trainer t
-    left join
+    join
         address a
     on
-        a.id = t.user_id
-    join
-        user u
-    on
-        u.id = t.user_id;
+        a.user_id = t.user_id
+    join    
+		user u
+    on 
+		u.id = t.user_id;
 end $$
 delimiter ;
 
+drop procedure if exists spGetTrainer;
+delimiter $$
+create procedure spGetTrainer (in p_trainer_id int)
+begin
+    select
+        t.*,
+        u.name,
+        u.age,
+        u.email,
+        a.id as address_id,
+        a.street1,
+        a.street2,
+        a.city,
+        a.state,
+        a.zip,
+        a.latitude,
+        a.longitude
+    from
+        trainer t
+    join
+        address a
+    on
+        a.user_id = t.user_id
+    join    
+		user u
+    on 
+		u.id = t.user_id
+	where
+		t.id = p_trainer_id;
+end $$
+delimiter ;
+
+
 drop procedure if exists spGetTrainerByService;
 delimiter $$
-create procedure spGetTrainerByService (in service_id int)
+create procedure spGetTrainerByService (in p_service_id int)
 begin
     select 
-        ts.trainer_id as trainer_id,
-        u.id as user_id,
+        t.*,
         ts.description,
         u.name,
         u.age,
@@ -44,20 +82,20 @@ begin
     on
         u.id = t.user_id
 	where
-        ts.service_id = service_id;
+        ts.service_id = p_service_id;
 end $$
 delimiter ;
 
 drop procedure if exists spGetTrainerByRating;
 delimiter $$
-create procedure spGetTrainerByRating (in rating int)
+create procedure spGetTrainerByRating (in p_rating int)
 begin
     select
-        t.id as trainer_id,
-        t.user_id,
+        t.*,
         u.name,
         u.age,
         u.email,
+        r.id as review_id,
         r.rating,
         r.text
     from
@@ -71,28 +109,7 @@ begin
     on
         u.id = t.user_id
 	where
-        r.rating = rating;
-end $$
-delimiter ;
-
-drop procedure if exists spGetTrainer;
-delimiter $$
-create procedure spGetTrainer (in trainer_id int)
-begin
-    select
-        t.id as trainer_id,
-        t.user_id,
-        u.name,
-        u.age,
-        u.email
-    from
-        trainer t
-    join
-        user u
-    on
-        u.id = t.user_id
-	where
-		t.id = trainer_id;
+        r.rating = p_rating;
 end $$
 delimiter ;
 

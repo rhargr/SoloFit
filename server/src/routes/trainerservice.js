@@ -1,8 +1,19 @@
 import { Router } from 'express';
 import Table from '../table';
+import TrainerServices from '../controllers/trainerservice';
 
 let router = Router();
 let tsTable = new Table('trainerservice');
+
+// router 
+  
+//     .get('/:id', TrainerServices.read)
+//     .post('/', TrainerServices.create)
+//     .put('/:id', TrainerServices.update)
+//     .delete('/:id', TrainerServices.destroy);
+//   // .get('/', TrainerServices.getByService)
+// export default router;
+
 
 router.get('/', async (req, res) => {
     console.log(req.user);
