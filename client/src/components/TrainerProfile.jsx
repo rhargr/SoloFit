@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import * as classService from '../services/classes';
 import Reviews from './Reviews';
 import Rating from 'react-rating';
+import TrainerRepository from '../repositories/trainer';
 
 import profilePicture from '../images/profile-picture-placholder.png';
 import bgImage from '../images/jumbo.jpg';
@@ -11,11 +12,26 @@ class Profile extends Component {
 
     constructor(props) {
         super(props);
+        this.trainerRepo = new TrainerRepository();
         this.handleRatingClick = this.handleRatingClick.bind(this);
         this.state = {
-            initialRating: 3
+            initialRating: 3,
+            trainer: {
+
+            }
         };
-    }
+    };
+
+    componentDidMount() {
+       
+        this.trainerRepo.read(this.props.match.params.id).then((trainer) => {
+            console.log('hello');
+            console.log(trainer);
+            this.setState({
+                trainer,
+            });
+        });
+    };
 
     handleRatingClick(value) {
         console.log(value);
@@ -41,8 +57,8 @@ class Profile extends Component {
                                     <img src={profilePicture} className="img-rounded" alt="profile-picture" style={{ width: 'auto', height: '250px', border: '2px solid lightgrey', borderRadius: '3px' }} />
                                 </div>
                                 <div style={{ paddingLeft: '10px', textAlign: 'center' }}>
-                                    <h2>Trainer's Name</h2>
-                                    <p>Birmingham</p>
+                                    <h2>{this.state.trainer.name}</h2>
+                                    <p>{this.state.trainer.city}</p>
                                     <div className="social-media" style={{ display: 'flex', flexDirection: 'row', padding: '10px', fontSize: '35px', justifyContent: 'center' }}>
                                         <a href=""><i className="fa fa-facebook-square"></i></a>
                                         <a href="" style={{ paddingLeft: '10px', paddingRight: '10px' }}><i className="fa fa-twitter-square"></i></a>
@@ -103,6 +119,7 @@ class Profile extends Component {
                                 <div className="card border-dark mb-3" style={{ maxWidth: '35rem' }}>
                                     <div className="card-header">ABOUT</div>
                                     <div className="card-body text-dark">
+                                        <h5>Yoga * Strength * Weight Loss </h5>
                                         <p className="card-text">Our fitness is important and something we should all enjoy. My aim is to create a positive and fun experience for clients, as well as using the best of my knowledge and experience to help clients achieve their goals.Credentials: CSEP – Certified Personal Trainer First Aid and CPR Level – C</p>
                                     </div>
                                 </div>

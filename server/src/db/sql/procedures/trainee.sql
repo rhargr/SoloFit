@@ -3,52 +3,36 @@ delimiter $$
 create procedure spGetTrainees ()
 begin
     select
-        t.id as trainer_id,
-        t.user_id,
+        t.*,
         u.name,
         u.age,
-        u.email,
-        a.address,
-        a.latitude,
-        a.longitude
+        u.email
     from
         trainee t
-    join
-        address a
-    on 
-        a.user_id = t.user_id
     join    
-        user u
-    on
-        u.id = t.user_id;
+		user u
+    on 
+		u.id = t.user_id;
 end $$
 delimiter ;
 
 drop procedure if exists spGetTrainee;
 delimiter $$
-create procedure spGetTrainee (in trainee_id int)
+create procedure spGetTrainee (in p_trainee_id int)
 begin
     select
-        t.id as trainerId,
-        t.user_id as userId,
+        t.*,
         u.name,
         u.age,
-        u.email,
-        a.address,
-        a.latitude,
-        a.longitude
+        u.email
     from
         trainee t
-    join
-        address a
-    on 
-        a.user_id = t.user_id
     join    
 		user u
     on 
 		u.id = t.user_id
 	where
-		t.id = trainee_id;
+		t.id = p_trainee_id;
 end $$
 delimiter ;
 
