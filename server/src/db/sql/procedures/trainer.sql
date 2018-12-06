@@ -70,13 +70,25 @@ begin
         ts.description,
         u.name,
         u.age,
-        u.email
+        u.email,
+        a.id as address_id,
+        a.street1,
+        a.street2,
+        a.city,
+        a.state,
+        a.zip,
+        a.latitude,
+        a.longitude
     from
         trainerservice ts
     join 
         trainer t
     on 
         t.id = ts.trainer_id
+    join
+        address a
+    on
+        a.user_id = t.user_id
     join
         user u
     on
@@ -97,13 +109,25 @@ begin
         u.email,
         r.id as review_id,
         r.rating,
-        r.text
+        r.text,
+        a.id as address_id,
+        a.street1,
+        a.street2,
+        a.city,
+        a.state,
+        a.zip,
+        a.latitude,
+        a.longitude
     from
         review r
     join 
         trainer t
     on 
         t.id = r.trainer_id
+    join
+        address a
+    on
+        a.user_id = t.user_id
     join
         user u
     on

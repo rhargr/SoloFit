@@ -39,7 +39,7 @@ begin
 	on
 		u_tr.id = tr.user_id
     where
-        r.trainee_id = p_trainer_id;
+        r.trainer_id = p_trainer_id;
 end $$
 delimiter ;
 
