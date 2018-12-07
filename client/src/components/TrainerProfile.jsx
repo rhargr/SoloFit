@@ -7,6 +7,7 @@ import Rating from 'react-rating';
 import TrainerRepository from '../repositories/trainer';
 
 import profilePicture from '../images/profile-picture-placholder.png';
+import jumboPic from '../images/t-profile.jpg';
 import bgImage from '../images/jumbo.jpg';
 
 class Profile extends Component {
@@ -41,14 +42,14 @@ class Profile extends Component {
         return (
             <React.Fragment>
                 {/* JUMBOTRON */}
-                <div className="jumbotron jumbotron-fluid" id="trainerJumbo" style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '300px', marginBottom: '0' }}>
-                </div>
+                {/* <div className="jumbotron jumbotron-fluid" id="trainerJumbo" style={{ backgroundImage: `url(${jumboPic})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '400px', marginBottom: '0' }}>
+                </div> */}
                 {/* END JUMBOTRON */}
 
 
                 {/* PROFILE */}
-                <div className="container-fluid" style={{ minHeight: '100vh', backgroundColor: 'grey'}}>
-                    <div className="inner container" style={{ backgroundColor: 'lightgrey', padding: '20px', maxWidth: '960px' }}>
+                <div className="container-fluid" style={{ minHeight: '100vh', backgroundImage: `url(${bgImage})`}}>
+                    <div className="inner container" style={{ backgroundColor: 'grey', padding: '20px', maxWidth: '960px'}}>
 
                         <div className="top-div" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                             {/* PROFILE PICTURE */}
@@ -58,13 +59,13 @@ class Profile extends Component {
                                 </div>
                                 <div style={{ paddingLeft: '10px', textAlign: 'center' }}>
                                     <h2>{this.state.trainer.name}</h2>
-                                    <p>{this.state.trainer.city}</p>
+                                    <p>{this.state.trainer.city}, {this.state.trainer.state}</p>
                                     <div className="social-media" style={{ display: 'flex', flexDirection: 'row', padding: '10px', fontSize: '35px', justifyContent: 'center' }}>
                                         <a href=""><i className="fa fa-facebook-square"></i></a>
                                         <a href="" style={{ paddingLeft: '10px', paddingRight: '10px' }}><i className="fa fa-twitter-square"></i></a>
                                         <a href=""><i className="fa fa-instagram"></i></a>
                                     </div>
-                                    <button className="btn btn-primary" style={{marginBottom: '10px'}}><i className="fa fa-comment"></i> Message</button>
+                                    <button className="btn btn-success" style={{marginBottom: '10px'}}><i className="fa fa-comment"></i> Message</button>
                                     <br/>
                                     <Rating
                                     initialRating={this.state.initialRating}
@@ -91,7 +92,7 @@ class Profile extends Component {
                                     <div className="card-body">
                                         <h5 className="card-title">Book a Session Today!</h5>
                                         <p className="card-text">Starting Cost : $35</p>
-                                        <Link to="/Scheduling" className="btn btn-primary"><i className="fa fa-calendar"></i>Check Availability</Link>
+                                        <Link to="/Scheduling" className="btn btn-success"><i className="fa fa-calendar"></i>Check Availability</Link>
                                     </div>
                                 </div>
                             </div>

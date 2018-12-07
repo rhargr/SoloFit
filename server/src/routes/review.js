@@ -7,11 +7,12 @@ let reviewTable = new Table('Review');
 
 router 
     .get('/', Reviews.all)
+    .get('/trainer/:id', Reviews.getReviewsByTrainer)
     .get('/:id', Reviews.read)
     .post('/', Reviews.create)
     .put('/:id', Reviews.update)
     .delete('/:id', Reviews.destroy)
-    .get('/review/:id', Reviews.getReviewsByTrainer);
+    
     ;
 
 export default router;
