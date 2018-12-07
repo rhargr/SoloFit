@@ -66,6 +66,27 @@ class Schedule extends Component {
         });
     }
 
+    validateStartAndEnd = (start, end) => {
+        const mStart = moment(start);
+        const mEnd = moment(end);
+
+        if (mEnd.isBefore(mStart)) {
+            return new Error();
+        }
+
+        const isInvalid = this.state.events.some((event) => {
+            if (moment(event.start) <= mEnd && mStart <= moment(event.end)) {
+                return true;
+            }
+        });
+
+        if (isInvalid) {
+            return new Error();
+        }
+
+        return true;
+    };
+
     resetStateEvent = () => {
         const event = { ...this.state.event };
 
