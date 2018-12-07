@@ -75,7 +75,13 @@ class Schedule extends Component {
         }
 
         const isInvalid = this.state.events.some((event) => {
-            if (moment(event.start) <= mEnd || mStart <= moment(event.end)) {
+            if (
+                moment(event.start) <= mEnd ||
+                mStart <= moment(event.end) ||
+                ((moment(event.start).isAfter(mStart) &&
+                    moment(event.end).isBefore(mEnd)) ||
+                    (mStart.isAfter(moment.start) && mEnd.isBefore(moment.end)))
+            ) {
                 return true;
             }
         });
