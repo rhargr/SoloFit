@@ -60,14 +60,14 @@ class Homepage extends Component {
         </div>
         {/* carousel */}
         <div className="row">
-          <div className="col-8">
+          <div className="col-12">
             <div
               id="carouselExampleControls"
 
               className="carousel slide"
               data-ride="carousel"
             >
-              <div className="carousel-inner" style={{ maxHeight: '300px', minHeight: '300px' }}>
+              <div className="carousel-inner" style={{ maxHeight: '500px', minHeight: '500px' }}>
                 <div className="carousel-item active" >
                   <img
                     className="d-block w-100"
