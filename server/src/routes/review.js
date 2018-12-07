@@ -11,7 +11,7 @@ router
     .post('/', Reviews.create)
     .put('/:id', Reviews.update)
     .delete('/:id', Reviews.destroy)
-    .get('/review/:trainerId', Reviews.getReviewsByTrainer);
+    .get('/review/:id', Reviews.getReviewsByTrainer);
     ;
 
 export default router;

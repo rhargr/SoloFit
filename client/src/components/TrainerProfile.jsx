@@ -173,6 +173,7 @@ class Profile extends Component {
                             <h1 style={{paddingBottom: '10px'}}>Reviews</h1>
                               
                             <Reviews />
+                           
                               
                             </div>
                         </div>
