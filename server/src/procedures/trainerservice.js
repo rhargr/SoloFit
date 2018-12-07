@@ -1,9 +1,7 @@
 import { callProcedure as procedure } from '../config/db';
 
-
 function create(args) {
     return procedure(`spInsertTrainerService`, args).then((res) => {
-        console.log('insert res', res);
         return res[0][0];
     });
 }
@@ -20,16 +18,8 @@ function destroy(args) {
     });
 }
 
-
-
-
-
-
 export default {
     create,
     update,
     destroy,
-    
-  
-   
 };
