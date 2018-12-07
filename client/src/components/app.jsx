@@ -13,8 +13,8 @@ import Profile from './TrainerProfile';
 import Schedule from './Schedule';
 import Footer from './Footer';
 import Navbar from './Navbar';
-
 import SignUpTrainer from './SignUpTrainer';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 class Navigation extends Component {
     render() {

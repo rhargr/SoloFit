@@ -2,10 +2,11 @@ import { Router } from 'express';
 import serviceRouter from './service';
 import traineeRouter from './trainee';
 import trainerRouter from './trainer';
-import tsRouter from './trainerservice'
+import tsRouter from './trainerservice';
 import userRouter from './user';
 import reviewRouter from './review';
 import addressRouter from './address';
+import eventeRouter from './events';
 // import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
 let router = Router();
@@ -19,6 +20,7 @@ router.use('/review', reviewRouter);
 //     .delete(tokenMiddleware, isLoggedIn);
 
 router.use('/trainee', traineeRouter);
+router.use('/event', eventeRouter);
 router.use('/service', serviceRouter);
 router.use('/user', userRouter);
 router.use('/address', addressRouter);

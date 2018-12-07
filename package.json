@@ -27,16 +27,20 @@
         "babel-loader": "^8.0.2",
         "change-case": "^3.0.2",
         "express": "^4.16.3",
-        "file-loader": "^2.0.0",
         "isomorphic-fetch": "^2.2.1",
         "lodash": "^4.17.11",
+        "moment": "^2.22.2",
         "morgan": "^1.9.1",
         "mysql": "^2.16.0",
         "passport": "^0.4.0",
         "passport-http-bearer": "^1.0.1",
         "passport-local": "^1.0.0",
+        "rc-time-picker": "^3.4.0",
         "react": "^16.5.1",
+        "react-big-calendar": "^0.20.2",
+        "react-datetime": "^2.16.3",
         "react-dom": "^16.5.1",
+        "react-modal": "^3.6.1",
         "react-rating": "^1.6.0",
         "react-router-dom": "^4.3.1",
         "react-stripe-elements": "^2.0.1",
@@ -48,7 +52,10 @@
     },
     "devDependencies": {
         "concurrently": "^4.0.1",
+        "css-loader": "^1.0.1",
+        "file-loader": "^2.0.0",
         "nodemon": "^1.18.4",
+        "style-loader": "^0.23.1",
         "webpack-cli": "^3.1.0"
     }
 }

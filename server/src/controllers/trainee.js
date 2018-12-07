@@ -1,49 +1,49 @@
 import Trainees from '../procedures/trainee';
+import { allClient } from '../utils';
 
-function update(req, res, next){
+function update(req, res, next) {
     const { id, name, age, email } = req.body;
 
-    Trainees.update([id , name, age, email]).then(()=>{
+    Trainees.update([id, name, age, email]).then(() => {
         res.end();
-    })
+    });
 }
 
-function destroy(req, res, next){
+function destroy(req, res, next) {
     const id = req.body.id;
-    Trainees.destroy([id]). then(()=>{
-        res.end()
-    })
+    Trainees.destroy([id]).then(() => {
+        res.end();
+    });
 }
 
-function create(req, res, next){
-    const{name, age, email} = req.body;
+function create(req, res, next) {
+    const { name, age, email } = req.body;
 
-    Trainees.create([name, age, email]).then((id)=>{
-        res.json(id)
-    })
+    Trainees.create([name, age, email]).then((id) => {
+        res.json(id);
+    });
 }
 
-function read(req, res, next){
+function read(req, res, next) {
     const id = req.params.id;
 
-    Trainees.read([id]).then((trainee)=>{
-        res.json(trainee)
-    })
+    Trainees.read([id]).then((trainee) => {
+        res.json(trainee);
+    });
 }
 
 function all(req, res, next) {
-    Trainees.all().then((client)=>{
-        console.log(client)
-        res.json(client); 
-    })
+    Trainees.all().then((trainees) => {
+        res.json(allClient(trainees));
+    });
 }
 
-function getTrainee(req, res, next){
+function getTrainee(req, res, next) {
     const id = req.params.id;
 
-    Trainees.getTrainee([id]).then((ts)=>{
-        res.json(ts)
-    })
+    Trainees.getTrainee([id]).then((ts) => {
+        res.json(ts);
+    });
 }
 
-export default { all, create, destroy, update, read, getTrainee}
+export default { all, create, destroy, update, read, getTrainee };

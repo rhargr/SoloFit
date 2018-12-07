@@ -5,18 +5,9 @@ import Trainees from '../controllers/trainee';
 let router = Router();
 let traineeTable = new Table('Trainee');
 
-router.get('/', async (req, res) => {
-    console.log(req.user);
-    try {
-        let trainees = await traineeTable.getAll()
-        res.json(trainees);
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(500);
-    }
-});
+router.get('/', Trainees.all);
 
-    router.post('/', Trainees.create);
+router.post('/', Trainees.create);
 
 // router.post('/', async (req, res) => {
 //     try {
@@ -32,7 +23,6 @@ router.get('/', async (req, res) => {
 // });
 
 router.get('/:id', Trainees.getTrainee);
-
 
 // router.get('/:id', async (req, res) => {
 //     try {

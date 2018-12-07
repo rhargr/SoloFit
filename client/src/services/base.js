@@ -1,4 +1,5 @@
 import 'isomorphic-fetch';
+import _ from 'lodash';
 
 const AUTH_TOKEN_KEY = 'authtoken';
 let authToken = '';
@@ -26,6 +27,24 @@ function populateAuthToken() {
     }
 }
 
+function getQueryString(obj) {
+    const query = _.map((value, key) => {
+        if (!_.isUndefined(value)) {
+            return `${key}=${value}`;
+        }
+    }, obj)
+        .filter((value) => {
+            return !_.isUndefined(value);
+        })
+        .join('&');
+
+    if (!_.isEmpty(query)) {
+        query = '?' + query;
+    }
+
+    return query;
+}
+
 function makeFetch(url, info) {
     return fetch(url, info);
 }
@@ -36,14 +55,14 @@ async function json(url, method = 'GET', payload = {}) {
         body: JSON.stringify(payload),
         headers: new Headers({
             'Content-Type': 'application/json',
-            'Authorization': authToken
-        })
+            Authorization: authToken,
+        }),
     };
 
     if (method === 'GET') {
         delete data.body;
     }
-    
+
     let response = await makeFetch(url, data);
     if (response.ok) {
         let contentType = response.headers.get('Content-Type');
@@ -81,5 +100,6 @@ export {
     post,
     put,
     destroy,
-    makeFetch
+    makeFetch,
+    getQueryString,
 };

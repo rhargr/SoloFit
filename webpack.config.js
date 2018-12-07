@@ -1,5 +1,4 @@
 const path = require('path');
-
 const CLIENT_DEST = path.join(__dirname, './client/dist');
 
 module.exports = {
@@ -18,7 +17,11 @@ module.exports = {
                 },
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(png|jpg|gif|svg)$/,
                 use: {
                     loader: 'file-loader',
                     options: {

@@ -6,11 +6,9 @@ import caro2 from '../images/caro2.png';
 import caro3 from '../images/caro3.png';
 import maybe from '../images/maybe.png';
 
-
 class Homepage extends Component {
   constructor(props) {
     super(props);
-
   }
 
   componentDidMount() {
