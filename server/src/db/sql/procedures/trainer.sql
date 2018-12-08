@@ -17,7 +17,7 @@ begin
         a.longitude
     from
         trainer t
-    join
+    left outer join
         address a
     on
         a.user_id = t.user_id
@@ -47,7 +47,7 @@ begin
         a.longitude
     from
         trainer t
-    join
+    left outer join
         address a
     on
         a.user_id = t.user_id
@@ -85,7 +85,7 @@ begin
         trainer t
     on 
         t.id = ts.trainer_id
-    join
+    left outer join
         address a
     on
         a.user_id = t.user_id
@@ -124,7 +124,7 @@ begin
         trainer t
     on 
         t.id = r.trainer_id
-    join
+    left outer join
         address a
     on
         a.user_id = t.user_id

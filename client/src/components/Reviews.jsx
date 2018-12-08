@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Rating from 'react-rating';
 import ReviewRepository from '../repositories/review';
 
@@ -9,13 +9,27 @@ class Reviews extends Component {
         this.reviewRepo = new ReviewRepository();
 
         this.state = {
-            reviews: []
+            reviews: [],
         }
     }
 
     componentDidMount() {
-        this.reviewRepo.all().then((reviews) => {
+        console.log(this.props)
+        const id = this.props.match.params.id
+
+
+        this.reviewRepo.getReviewsByTrainer(id).then((reviews) => {
             console.log(reviews);
+            let total = 0;
+
+            reviews.forEach((review) => {
+                total += +review.rating;
+            });
+
+            console.log(this.props);
+
+            this.props.handleRating(total / reviews.length);
+
             this.setState({
                 reviews,
             });
@@ -50,4 +64,4 @@ class Reviews extends Component {
 
 }
 
-export default Reviews;
+export default withRouter(Reviews);

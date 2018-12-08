@@ -45,9 +45,66 @@ class New extends Component {
             this.setState({
                 services,
                 states,
+               
             });
         });
     }
+
+
+
+    isValid = () => {
+      let validateName = document.getElementById("inputName");
+      let validateAge = document.getElementById("inputAge");
+      let validateEmail = document.getElementById("inputEmail4");
+      let validateHash = document.getElementById("inputPassword4");
+      let validateSt1 = document.getElementById("inputStreet1");
+      let validateCity = document.getElementById("inputCity");
+      let validateState = document.getElementById("inputState");
+      let validateZip = document.getElementById("inputZip");
+      let validateService = document.getElementById("inputCheck")
+      console.log(validateName);
+      if (!validateName.value || !validateName.value.trim()) {
+        this.setState({
+          error: 'Name is a required field'
+        })
+        return false;
+      } else if (!validateAge.value || !validateAge.value.trim()) {
+        this.setState({
+          error: 'Age is a required field'
+        })
+        return false;
+      } else if (!validateEmail.value || !validateEmail.value.trim()) {
+        this.setState({
+          error: 'A valid email is a required field'
+        })
+        return false;
+      } else if (!validateHash.value || !validateHash.value.trim()) {
+        this.setState({
+          error: 'Password must contain 8 characters'
+        })
+        return false;
+      } else if (!validateSt1.value || !validateSt1.value.trim())  {
+        this.setState({
+          error: 'Street 1 is a required field'
+        })
+      }  else if (!validateCity.value || !validateCity.value.trim()) {
+        this.setState({
+          error: 'City is a required field'
+        })
+      } else if (!validateState.value || !validateState.value.trim()) {
+        this.setState({
+          error: 'Please choose a state'
+        })
+      } else if (!validateZip.value || !validateState.value.trim()) {
+        this.setState({
+          error: 'Please enter your zip code.'
+        })
+      } else if (validateService.value != 1 || validateService.value != 11 || validateService.value != 21 || validateService.value != 31 || validateService.value != 51) {
+        this.setState({
+          error: 'Please choose the services you wish to provide.'
+        })
+      } else return true;
+    };
 
     handleUserChange = (e) => {
         const inputName = e.target.name;
@@ -78,6 +135,8 @@ class New extends Component {
 
     handleServiceChange = (e) => {
         const serviceId = +e.target.value;
+        console.log(e.target)
+      
 
         if (this.state.user.services.includes(serviceId)) {
             return;
@@ -91,10 +150,20 @@ class New extends Component {
         });
     };
 
-    submit = () => {
+    submit = (e) => {
+      
+    //   e.preventDefault();
+    // if (!this.isValid()) {
+    //   return;
+    // }
+    // console.log("it was valid")
+
+
         const { user } = this.state;
 
-        this.trainerRepo.create(user).then((id) => {});
+        this.trainerRepo.create(user).then(({id}) => {
+            this.props.history.push(`/trainer/${id}`);
+        });
     };
 
     render() {
@@ -123,10 +192,10 @@ class New extends Component {
                             display: 'flex',
                             justifyContent: 'center',
                             position: 'relative',
-                            top: '200px',
+                            top: '0px',
                             flexDirection: 'column',
                             maxWidth: '900px',
-                            top: '125p',
+                            top: '-15px'
                         }}>
                         <div>
                             <ul className="nav nav-tabs">
@@ -207,7 +276,7 @@ class New extends Component {
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="inputAddress1"
+                                    id="inputStreet1"
                                     name="street1"
                                     placeholder="Street 1"
                                     onChange={this.handleAddressChange}
@@ -218,7 +287,7 @@ class New extends Component {
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="inputAddress2"
+                                    id="inputStreet2"
                                     name="street2"
                                     placeholder="Street 2"
                                     onChange={this.handleAddressChange}
@@ -299,6 +368,7 @@ class New extends Component {
                                                 className="col-md-4 col-sm-6"
                                                 key={service.id}>
                                                 <input
+                                                    id="inputCheck"
                                                     type="checkbox"
                                                     value={service.id}
                                                     onChange={
@@ -320,8 +390,17 @@ class New extends Component {
                                 Create Account
                             </button>
                         </div>
+                        {
+        this.state.error && (
+          <div class="alert alert-primary" role="alert">
+         {this.state.error}
+        </div>
+        )
+      }
                     </div>
+                   
                 </div>
+                
             </div>
         );
     }

@@ -71,6 +71,12 @@ function read(req, res, next) {
         .then((a) => {
             trainer.address = a;
 
+            return Services.allByTrainerId([trainer.id]);
+        })
+        .then((services) => {
+            console.log('services------------', services);
+            trainer.services = services;
+            console.log(trainer);
             res.json(trainer);
         });
 }

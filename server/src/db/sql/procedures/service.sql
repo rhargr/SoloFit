@@ -83,3 +83,24 @@ begin
         ts.trainer_id = p_trainer_id;
 end $$
 delimiter ;
+
+drop procedure if exists spGetServicesByTrainer;
+delimiter $$
+create procedure spGetServicesByTrainer (
+    in p_trainer_id int
+)
+
+begin
+
+    select 
+        s.*
+    from    
+        service s
+    join
+        trainerservice ts
+    on 
+        ts.service_id = s.id AND
+        ts.trainer_id = p_trainer_id;
+
+end $$
+delimiter ;

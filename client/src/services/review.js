@@ -20,4 +20,7 @@ export default class ReviewService {
     destroy(id) {
         return baseService.destroy(`/api/review/${id}`);
     }
+    getReviewsByTrainer(id) {
+        return baseService.get(`/api/review/trainer/${id}`)
+    }
 }

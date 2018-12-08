@@ -24,4 +24,8 @@ export default class ReviewRepository {
     destroy(id) {
         return this.reviewSvc.destroy(id);
     }
+
+    getReviewsByTrainer(id) {
+        return this.reviewSvc.getReviewsByTrainer(id);
+    }
 }

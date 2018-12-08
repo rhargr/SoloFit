@@ -51,23 +51,23 @@ class Homepage extends Component {
           }}
         >
           <div className="container" style={{ color: 'white' }}>
-            <h1 className="display-4">SoloFit</h1>
-            <p className="lead">
-              The App that enhances the opportunity for you to maximize your
-              full potential within your own boundaries.
+            <h1 className="display-4" style={{fontFamily: 'Vast Shadow, cursive', fontSize: '100px', textShadow: '2px 2px grey'}}>SoloFit</h1>
+            <p className="lead" style={{fontFamily: 'Josefin Sans, sans-serif', fontSize: '25px', textShadow: '2px 2px grey'}}>
+              We enhance the opportunity for you to maximize your
+              full potential within your own boundaries
             </p>
           </div>
         </div>
         {/* carousel */}
         <div className="row">
-          <div className="col-8">
+          <div className="col-12">
             <div
               id="carouselExampleControls"
 
               className="carousel slide"
               data-ride="carousel"
             >
-              <div className="carousel-inner" style={{ maxHeight: '300px', minHeight: '300px' }}>
+              <div className="carousel-inner" style={{ maxHeight: '500px', minHeight: '500px' }}>
                 <div className="carousel-item active" >
                   <img
                     className="d-block w-100"
@@ -158,7 +158,7 @@ class Homepage extends Component {
         >
           <div className="container" style={{}}>
             <div style={{ padding: '20px', color: 'white' }}>
-              <h1 className="display-4">Choose Your Fit</h1>
+              <h1 className="display-4" style={{fontFamily: 'Josefin Sans, sans-serif', fontSize: '60px', textShadow: '2px 2px grey'}}>Choose Your Fit</h1>
             </div>
 
 

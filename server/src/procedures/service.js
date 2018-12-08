@@ -31,10 +31,16 @@ function destroy(args) {
     });
 }
 
+function allByTrainerId(args) {
+    return callProcedure(`spGetServicesByTrainer`, args).then((res) => {
+        return res[0];
+    });
+}
 
 
 export default {
     all,
+    allByTrainerId,
     create,
     read,
     update,
