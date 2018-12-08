@@ -12,6 +12,12 @@ function create(args) {
     });
 }
 
+function read(args) {
+    return procedure(`spGetReview`, args).then((res) => {
+        return res[0][0];
+    });
+}
+
 function update(args) {
     return procedure(`spUpdateReview`, args).then((res) => {
         return true;
@@ -23,7 +29,7 @@ function destroy(args) {
         return true;
     });
 }
-function read(args) {
+function getReviewsByTrainer(args) {
     return procedure(`spGetReviewsByTrainer`, args).then((res) => {
         return res[0];
     });
@@ -40,5 +46,6 @@ export default {
     update,
     destroy,
     read,
+    getReviewsByTrainer,
     getReviewsByTrainee,
 };

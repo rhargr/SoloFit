@@ -17,8 +17,20 @@ class New extends Component {
         this.state = {
             services: [],
             states: [],
-        
-            error: ''
+            user: {
+                name: '',
+                age: '',
+                email: '',
+                hash: '',
+                address: {
+                    street1: '',
+                    street2: '',
+                    city: '',
+                    state: '',
+                    zip: '',
+                },
+                services: [],
+            },
         };
     }
 
@@ -140,34 +152,18 @@ class New extends Component {
 
     submit = (e) => {
       
-      e.preventDefault();
-    if (!this.isValid()) {
-      return;
-    }
-    console.log("it was valid");
-
-    this.setState({
-      user: {
-        name: '',
-        age: '',
-        email: '',
-        hash: '',
-        address: {
-            street1: '',
-            street2: '',
-            city: '',
-            state: '',
-            zip: '',
-        },
-        services: [],
-    },
-
-    })
+    //   e.preventDefault();
+    // if (!this.isValid()) {
+    //   return;
+    // }
+    // console.log("it was valid")
 
 
         const { user } = this.state;
 
-        this.trainerRepo.create(user).then((id) => {});
+        this.trainerRepo.create(user).then(({id}) => {
+            this.props.history.push(`/trainer/${id}`);
+        });
     };
 
     render() {

@@ -126,7 +126,7 @@ class Trainers extends Component {
                         </div>
 
                         <div style={{padding: '10px'}}>
-                        <p className="card-text">Age: {trainer.age}</p>
+                        <p className="card-text">{trainer.age}</p>
                         </div>
 
                         <div style={{padding: '10px'}}>

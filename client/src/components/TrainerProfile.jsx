@@ -5,7 +5,7 @@ import * as classService from '../services/classes';
 import Reviews from './Reviews';
 import Rating from 'react-rating';
 import TrainerRepository from '../repositories/trainer';
-
+import { upperFirst } from 'lodash';
 import profilePicture from '../images/profile-picture-placholder.png';
 import jumboPic from '../images/t-profile.jpg';
 import bgImage from '../images/jumbo.jpg';
@@ -17,20 +17,27 @@ class Profile extends Component {
         this.trainerRepo = new TrainerRepository();
         this.handleRatingClick = this.handleRatingClick.bind(this);
         this.state = {
+            avgRating: 0,
             initialRating: 3,
             trainer: {
-
+                services: []
             }
         };
     };
 
     componentDidMount() {
-       
         this.trainerRepo.read(this.props.match.params.id).then((trainer) => {
             console.log(trainer);
             this.setState({
                 trainer,
             });
+        });
+    };
+
+    handleAvgRating = (avgRating) => {
+        console.log('avgRating', avgRating);
+        this.setState({
+            avgRating
         });
     };
 
@@ -48,7 +55,7 @@ class Profile extends Component {
 
 
                 {/* PROFILE */}
-                <div className="container-fluid" style={{ minHeight: '100vh', backgroundImage: `url(${bgImage})`}}>
+                <div className="container-fluid py-5" style={{ minHeight: '100vh', backgroundImage: `url(${bgImage})`}}>
                     <div className="inner container" style={{ backgroundColor: 'grey', padding: '20px', maxWidth: '960px'}}>
 
                         <div className="top-div" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -57,9 +64,12 @@ class Profile extends Component {
                                 <div>
                                     <img src={profilePicture} className="img-rounded" alt="profile-picture" style={{ width: 'auto', height: '250px', border: '2px solid lightgrey', borderRadius: '3px' }} />
                                 </div>
-                                <div style={{ paddingLeft: '10px', textAlign: 'center' }}>
-                                    <h2>{this.state.trainer.name}</h2>
-                                    <p>{this.state.trainer.city}, {this.state.trainer.state}</p>
+                                <div>
+                                <div style={{ paddingLeft: '10px', textAlign: 'left' }}>
+                                    <h2 style={{fontFamily: 'Josefin Sans, sans-serif', fontSize: '35px'}}>{this.state.trainer.name}</h2>
+                                    <p style={{fontFamily: 'Josefin Sans, sans-serif', fontSize: '25px'}}>{this.state.trainer.city}, {this.state.trainer.state}</p>
+                                </div> 
+                                <div style={{textAlign: 'center' }}>
                                     <div className="social-media" style={{ display: 'flex', flexDirection: 'row', padding: '10px', fontSize: '35px', justifyContent: 'center' }}>
                                         <a href=""><i className="fa fa-facebook-square"></i></a>
                                         <a href="" style={{ paddingLeft: '10px', paddingRight: '10px' }}><i className="fa fa-twitter-square"></i></a>
@@ -68,13 +78,14 @@ class Profile extends Component {
                                     <button className="btn btn-success" style={{marginBottom: '10px'}}><i className="fa fa-comment"></i> Message</button>
                                     <br/>
                                     <Rating
-                                    initialRating={this.state.initialRating}
-                                    emptySymbol="fa fa-star-o fa-2x"
-                                    fullSymbol="fa fa-star fa-2x"
-                                    style={{ color: 'gold'}}
-                                    onClick={this.handleRatingClick}
+                                        initialRating={this.state.avgRating}
+                                        emptySymbol="fa fa-star-o fa-2x"
+                                        fullSymbol="fa fa-star fa-2x"
+                                        style={{ color: 'gold'}}
+                                        onClick={this.handleRatingClick}
                                     />
                                 </div>
+                                </div> 
                            
                             </div>
                             {/* END PROFILE PIC */}
@@ -120,7 +131,9 @@ class Profile extends Component {
                                 <div className="card border-dark mb-3" style={{ maxWidth: '35rem' }}>
                                     <div className="card-header">ABOUT</div>
                                     <div className="card-body text-dark">
-                                        <h5>Yoga * Strength * Weight Loss </h5>
+                                        {this.state.trainer.services.map((service) => {
+                                            return <h5 key={service.id}>{upperFirst(service.name)}</h5>; 
+                                        })}
                                         <p className="card-text">Our fitness is important and something we should all enjoy. My aim is to create a positive and fun experience for clients, as well as using the best of my knowledge and experience to help clients achieve their goals.Credentials: CSEP – Certified Personal Trainer First Aid and CPR Level – C</p>
                                     </div>
                                 </div>
@@ -173,7 +186,7 @@ class Profile extends Component {
 
                             <h1 style={{paddingBottom: '10px'}}>Reviews</h1>
                               
-                            <Reviews />
+                            <Reviews handleRating={this.handleAvgRating} />
                            
                               
                             </div>

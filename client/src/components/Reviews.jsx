@@ -9,7 +9,7 @@ class Reviews extends Component {
         this.reviewRepo = new ReviewRepository();
 
         this.state = {
-            reviews: []
+            reviews: [],
         }
     }
 
@@ -17,8 +17,19 @@ class Reviews extends Component {
         console.log(this.props)
         const id = this.props.match.params.id
 
+
         this.reviewRepo.getReviewsByTrainer(id).then((reviews) => {
             console.log(reviews);
+            let total = 0;
+
+            reviews.forEach((review) => {
+                total += +review.rating;
+            });
+
+            console.log(this.props);
+
+            this.props.handleRating(total / reviews.length);
+
             this.setState({
                 reviews,
             });

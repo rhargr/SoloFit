@@ -51,10 +51,10 @@ class Homepage extends Component {
           }}
         >
           <div className="container" style={{ color: 'white' }}>
-            <h1 className="display-4">SoloFit</h1>
-            <p className="lead">
-              The App that enhances the opportunity for you to maximize your
-              full potential within your own boundaries.
+            <h1 className="display-4" style={{fontFamily: 'Vast Shadow, cursive', fontSize: '100px', textShadow: '2px 2px grey'}}>SoloFit</h1>
+            <p className="lead" style={{fontFamily: 'Josefin Sans, sans-serif', fontSize: '25px', textShadow: '2px 2px grey'}}>
+              We enhance the opportunity for you to maximize your
+              full potential within your own boundaries
             </p>
           </div>
         </div>
@@ -158,7 +158,7 @@ class Homepage extends Component {
         >
           <div className="container" style={{}}>
             <div style={{ padding: '20px', color: 'white' }}>
-              <h1 className="display-4">Choose Your Fit</h1>
+              <h1 className="display-4" style={{fontFamily: 'Josefin Sans, sans-serif', fontSize: '60px', textShadow: '2px 2px grey'}}>Choose Your Fit</h1>
             </div>
 
 

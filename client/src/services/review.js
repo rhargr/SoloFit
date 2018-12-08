@@ -21,6 +21,6 @@ export default class ReviewService {
         return baseService.destroy(`/api/review/${id}`);
     }
     getReviewsByTrainer(id) {
-        return baseService.get(`api/review/trainer/${id}`)
+        return baseService.get(`/api/review/trainer/${id}`)
     }
 }
