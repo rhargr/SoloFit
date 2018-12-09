@@ -30,15 +30,14 @@ function create(req, res, next) {
         address: { street1, street2, city, state, zip },
         services,
     } = req.body;
-    let retId;
+    let idObj;
 
     Trainers.create([name, age, email, hash])
         .then((id) => {
-            const { id: trainerId } = id;
-            retId = id;
+            idObj = id;
 
             return Addresses.create([
-                trainerId,
+                idObj.id,
                 street1,
                 street2,
                 city,
@@ -48,13 +47,15 @@ function create(req, res, next) {
         })
         .then((addressId) => {
             const servicePromises = services.map((serviceId) => {
-                return TrainerServices.create([retId.id, serviceId, null]);
+                return TrainerServices.create([idObj.trainer_id, serviceId, null]);
             });
 
             return Promise.all(servicePromises);
         })
         .then(() => {
-            res.json(retId);
+            res.json({
+                id: idObj.trainer_id
+            });
         });
 }
 

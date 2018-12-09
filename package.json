@@ -26,6 +26,7 @@
         "@babel/preset-react": "^7.0.0",
         "babel-loader": "^8.0.2",
         "change-case": "^3.0.2",
+        "cors": "^2.8.5",
         "express": "^4.16.3",
         "isomorphic-fetch": "^2.2.1",
         "lodash": "^4.17.11",
