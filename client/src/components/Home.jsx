@@ -5,6 +5,8 @@ import last1 from '../images/last1.png';
 import caro2 from '../images/caro2.png';
 import caro3 from '../images/caro3.png';
 import maybe from '../images/maybe.png';
+import newCaro from '../images/newCaro1.jpg';
+import quote3 from '../images/newPic.png';
 
 class Homepage extends Component {
   constructor(props) {
@@ -77,7 +79,7 @@ class Homepage extends Component {
                 <div className="carousel-item">
                   <img
                     className="d-block w-100"
-                    src={caro3}
+                    src={quote3}
 
                     alt="Second slide"
                   />
@@ -86,7 +88,7 @@ class Homepage extends Component {
                   <img
 
                     className="d-block w-100"
-                    src={maybe}
+                    src={newCaro}
 
                     alt="Third slide"
                   />
