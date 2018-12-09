@@ -1,10 +1,8 @@
 import { Router } from 'express';
-import Table from '../table';
 import Users from '../controllers/User';
 // import { isLoggedIn, tokenMiddleware} from '../middleware/auth.mw';
 
 let router = Router();
-let userTable = new Table('user');
 
 
 router 
@@ -12,7 +10,8 @@ router
     .get('/:id', Users.read)
     .post('/', Users.create)
     .put('/:id', Users.update)
-    .delete('/:id', Users.destroy);
+    .delete('/:id', Users.destroy)
+    .get('/:id', Users.getUser);
 
 
 

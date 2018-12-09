@@ -1,9 +1,7 @@
 import { Router } from 'express';
-import Table from '../table';
 import Services from '../controllers/service'
 
 let router = Router();
-let serviceTable = new Table('Service');
 
 router 
     .get('/', Services.all)

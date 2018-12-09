@@ -2,24 +2,24 @@ import Trainees from '../procedures/trainee';
 import { allClient } from '../utils';
 
 function update(req, res, next) {
-    const { id, name, age, email } = req.body;
+    const { id, name, age, email, hash } = req.body;
 
-    Trainees.update([id, name, age, email]).then(() => {
+    Trainees.update([id, name, age, email, hash]).then(() => {
         res.end();
     });
 }
 
 function destroy(req, res, next) {
-    const id = req.body.id;
+    const id = req.params.id;
     Trainees.destroy([id]).then(() => {
         res.end();
     });
 }
 
 function create(req, res, next) {
-    const { name, age, email } = req.body;
+    const { name, age, email, hash } = req.body;
 
-    Trainees.create([name, age, email]).then((id) => {
+    Trainees.create([name, age, email, hash]).then((id) => {
         res.json(id);
     });
 }

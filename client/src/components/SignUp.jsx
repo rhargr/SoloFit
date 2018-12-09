@@ -164,8 +164,7 @@ class SignUp extends Component {
               position: "relative",
               top: "200px",
               flexDirection: "column",
-              maxWidth: "800px",
-              opacity: "0.8"
+              maxWidth: "800px"
             }}
           >
             <ul className="nav nav-tabs">
