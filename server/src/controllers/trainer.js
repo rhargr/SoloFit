@@ -15,7 +15,7 @@ function update(req, res, next) {
 }
 
 function destroy(req, res, next) {
-    const id = req.parmas.id;
+    const id = req.params.id;
     Trainers.destroy([id]).then(() => {
         res.end();
     });
