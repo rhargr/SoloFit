@@ -12,7 +12,8 @@ router
     .get('/:id', Users.read)
     .post('/', Users.create)
     .put('/:id', Users.update)
-    .delete('/:id', Users.destroy);
+    .delete('/:id', Users.destroy)
+    .get('/:id', Users.getUser);
 
 
 

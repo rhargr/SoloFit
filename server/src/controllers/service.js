@@ -38,19 +38,11 @@ function update(req, res, next) {
     });
 }
 
-// function getByService(req, res, next) {
-//     let serviceid = req.params.id;
-
-//     Services.getByService([serviceid]).then((service) => {
-//         res.json(service);
-//     });
-// }
-
 export default {
     all,
     create,
     read,
     update,
     destroy,
-    // getByService
+
 };

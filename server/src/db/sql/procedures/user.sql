@@ -50,11 +50,7 @@ delimiter ;
 drop procedure if exists spInsertUser;
 
 delimiter $$
-<<<<<<< HEAD:server/src/db/sql/procedures/user.sql
 create procedure spInsertUser (in _name varchar (60), in _age tinyint, in _email varchar (60), in _hash varchar(60))
-=======
-create procedure spInsertUser (in _name varchar (60), in _age tinyint, in _email varchar (60), _hash varchar (60))
->>>>>>> frontend-dev:server/src/db/sql/user.sql
 begin
     insert into user (
         name,
@@ -82,16 +78,9 @@ begin
     update
        user
     set
-<<<<<<< HEAD:server/src/db/sql/procedures/user.sql
 		user.name = coalesce(_name, user.name),
         user.age = coalesce(_age, user.age),
         user.email = coalesce(_email, user.email)
-=======
-		user.name = _name,
-        user.age = _age,
-        user.email = _email
-        user.hash = _hash
->>>>>>> frontend-dev:server/src/db/sql/user.sql
    where
        id = user_id
    limit 1;

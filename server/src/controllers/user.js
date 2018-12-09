@@ -9,7 +9,7 @@ function update(req, res, next){
 }
 
 function destroy(req, res, next){
-    const id = req.body.id;
+    const id = req.params.id;
     Users.destroy([id]). then(()=>{
         res.end()
     })
@@ -26,7 +26,7 @@ function create(req, res, next){
 function read(req, res, next){
     const id = req.params.id;
 
-    Users.read([id]).then((user)=>{
+    Users.getUser([id]).then((user)=>{
         res.json(user)
     })
 }
