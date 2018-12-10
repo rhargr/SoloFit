@@ -3,6 +3,7 @@ import Services from '../controllers/service'
 
 let router = Router();
 
+
 router 
     .get('/', Services.all)
     .get('/:id', Services.read)

@@ -27,12 +27,14 @@ function create(req, res, next) {
         age,
         email,
         hash,
+        about_me,
         address: { street1, street2, city, state, zip },
         services,
     } = req.body;
+    console.log(req.body)
     let idObj;
 
-    Trainers.create([name, age, email, hash])
+    Trainers.create([name, age, email, about_me, hash])
         .then((id) => {
             idObj = id;
 
