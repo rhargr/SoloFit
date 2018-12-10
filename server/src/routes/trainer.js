@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import Table from '../table';
+
 import Trainers from '../controllers/trainer';
 
 let router = Router();

@@ -7,7 +7,7 @@ import stateRouting from './middleware/routing.mw';
 import socketIo from 'socket.io';
 import http from 'http';
 
-// import configurePassport from './config/passport';
+import configurePassport from './config/passport';
 const CLIENT_PATH = join(__dirname, '../../client');
 
 let app = express();
@@ -23,7 +23,7 @@ app.use(morgan('dev'));
 app.use(express.static(CLIENT_PATH));
 app.use(express.json());
 
-// configurePassport(app);
+configurePassport(app);
 
 app.use('/api', routes);
 
