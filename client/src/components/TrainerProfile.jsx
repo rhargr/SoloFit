@@ -134,7 +134,7 @@ class Profile extends Component {
                                         {this.state.trainer.services.map((service) => {
                                             return <h5 key={service.id}>{upperFirst(service.name)}</h5>; 
                                         })}
-                                        <p className="card-text">Our fitness is important and something we should all enjoy. My aim is to create a positive and fun experience for clients, as well as using the best of my knowledge and experience to help clients achieve their goals.Credentials: CSEP – Certified Personal Trainer First Aid and CPR Level – C</p>
+                                        <p className="card-text">{this.state.trainer.aboutMe}</p>
                                     </div>
                                 </div>
                             </div>
