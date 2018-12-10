@@ -10,6 +10,10 @@ import eventeRouter from './events';
 import authRouter from './auth'
 // import usersRouter from './users'
 import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
+import roomsRouter from './rooms';
+import messagesRouter from './messages';
+
+// import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
 let router = Router();
 
@@ -31,5 +35,7 @@ router.use('/service', serviceRouter);
 router.use('/user', userRouter);
 router.use('/address', addressRouter);
 router.use('/trainerservice', tsRouter);
+router.use('/rooms', roomsRouter);
+router.use('/messages', messagesRouter);
 
 export default router;

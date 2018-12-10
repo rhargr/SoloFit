@@ -159,7 +159,7 @@ begin
     insert into trainer (user_id) values (@user_id);
 
     select
-        last_insert_id() as id;
+        @user_id id;
 end $$
 delimiter ;
 

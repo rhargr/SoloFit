@@ -47,6 +47,7 @@ class New extends Component {
                 states,
                
             });
+            console.log(this.state.user.services.id)
         });
     }
 
@@ -61,7 +62,7 @@ class New extends Component {
       let validateCity = document.getElementById("inputCity");
       let validateState = document.getElementById("inputState");
       let validateZip = document.getElementById("inputZip");
-      let validateService = document.getElementById("inputCheck")
+      let validatecheckbox = document.getElementById("inputCheck").checked;
       console.log(validateName);
       if (!validateName.value || !validateName.value.trim()) {
         this.setState({
@@ -99,7 +100,7 @@ class New extends Component {
         this.setState({
           error: 'Please enter your zip code.'
         })
-      } else if (validateService.value != 1 || validateService.value != 11 || validateService.value != 21 || validateService.value != 31 || validateService.value != 51) {
+      } else if (validatecheckbox === false) {
         this.setState({
           error: 'Please choose the services you wish to provide.'
         })
@@ -152,11 +153,11 @@ class New extends Component {
 
     submit = (e) => {
       
-    //   e.preventDefault();
-    // if (!this.isValid()) {
-    //   return;
-    // }
-    // console.log("it was valid")
+      e.preventDefault();
+    if (!this.isValid()) {
+      return;
+    }
+    console.log("it was valid")
 
 
         const { user } = this.state;
@@ -370,6 +371,7 @@ class New extends Component {
                                                 <input
                                                     id="inputCheck"
                                                     type="checkbox"
+                                                    name="checkbox"
                                                     value={service.id}
                                                     onChange={
                                                         this.handleServiceChange
