@@ -23,6 +23,7 @@ router.use('/trainer', trainerRouter);
 
 router
     .route('*')
+    .get(tokenMiddleware, isLoggedIn)
     .post(tokenMiddleware, isLoggedIn)
     .put(tokenMiddleware, isLoggedIn)
     .delete(tokenMiddleware, isLoggedIn);

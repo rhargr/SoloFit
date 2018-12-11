@@ -16,6 +16,9 @@ class Room extends Component {
             response: '',
             endpoint: 'http://localhost:3000',
             messages: [],
+            me: {
+                id: ''
+            }
         };
 
         this.socket = socketIOClient(this.state.endpoint);
@@ -25,6 +28,9 @@ class Room extends Component {
     componentDidMount() {
         this.userRepo.me().then((me) => {
             console.log(me);
+            this.setState({
+                me
+            });
         });
 
         this.socket.on('message', (messagePacket) => {
@@ -54,7 +60,7 @@ class Room extends Component {
     handleMessageSubmission = () => {
         this.socket.emit('clientMessage', {
             message: this.state.response,
-            senderId: 1971,
+            senderId: this.state.me.id,
             roomId: 1,
         });
     };
@@ -93,7 +99,7 @@ class Room extends Component {
                         className="discussion"
                         style={{ height: '300px', overflowY: 'scroll' }}>
                         {this.state.messages.map((message) => {
-                            if (message.sender_id === 1971) {
+                            if (message.sender_id === this.state.me.id) {
                                 return (
                                     <li className="self" key={message.id}>
                                         <div className="messages">

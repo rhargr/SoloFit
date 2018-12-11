@@ -4,10 +4,9 @@ import TrainerServices from '../controllers/trainerservice';
 
 let router = Router();
 
-
-
-    router.post('/', TrainerServices.create)
-    router.put('/:id', TrainerServices.update)
-    router.delete('/:id', TrainerServices.destroy);
+router
+    .post('/', TrainerServices.create)
+    .put('/:id', TrainerServices.update)
+    .delete('/:id', TrainerServices.destroy);
 
 export default router;

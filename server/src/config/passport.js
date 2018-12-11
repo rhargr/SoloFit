@@ -42,13 +42,17 @@ function configurePassport(app) {
 
     passport.use(
         new BearerStrategy(async (token, done) => {
+            console.log('')
+            console.log('this is the fucking token', token);
             let tokenId = decode(token);
             if (!tokenId) {
                 return done(null, false, { message: 'Invalid token' });
             }
             try {
+                console.log(tokenId);
                 let tokenRecord = await tokensTable.getOne(tokenId);
-                let user = await usersTable.getOne(tokenRecord.userid);
+                console.log('token record', tokenRecord);
+                let user = await usersTable.getOne(tokenRecord.user_id);
                 if (user) {
                     delete user.hash;
                     return done(null, user);

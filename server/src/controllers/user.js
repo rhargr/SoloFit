@@ -16,8 +16,8 @@ function destroy(req, res, next) {
 }
 
 function me(req, res, next) {
-    console.log(req.user);
-    res.json(res.user);
+    console.log('req.user', req.user);
+    res.json(req.user);
 }
 
 function create(req, res, next) {

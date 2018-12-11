@@ -50,6 +50,11 @@ function makeFetch(url, info) {
 }
 
 async function json(url, method = 'GET', payload = {}) {
+    if (!authToken) {
+        populateAuthToken();
+    }
+    
+    console.log('im sending the request with tbis auth token', authToken);
     let data = {
         method,
         body: JSON.stringify(payload),

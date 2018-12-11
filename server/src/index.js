@@ -29,7 +29,8 @@ io.on('connection', (socket) => {
     socket.on('clientMessage', (packet) => {
         Messages.create([packet.roomId, packet.senderId, packet.message]).then(
             (message) => {
-                socket.broadcast('message', message);
+                console.log('im about to broadcasr msg', message);
+                io.emit('message', message);
             },
         );
     });
