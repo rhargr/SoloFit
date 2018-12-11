@@ -174,12 +174,12 @@ class New extends Component {
             }}>
             <div>
               <ul className="nav nav-tabs">
-                <li className="nav-item">
+                <li className="nav-item" style={{ paddingBottom: '0' }}>
                   <a className="nav-link" href="/Sign-Up">
                     Client
                                     </a>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" style={{ paddingBottom: '0' }}>
                   <a
                     className="nav-link active"
                     href="/Sign-Up-Trainer">
@@ -336,13 +336,15 @@ class New extends Component {
                 <div className="form-group" />
               </div>
               <div>
-                <h5>Select Services Offered</h5>
+                <h5 className="mb-4">Select Services Offered</h5>
                 <div className="row">
                   {this.state.services.map((service) => {
                     return (
                       <div
-                        className="col-md-4 col-sm-6"
-                        key={service.id}>
+                        className="col-md-4 col-sm-6 mb-2"
+                        key={service.id}
+                        style={{display:'flex', justifyContent: 'center', alignItems: 'center' }}
+                      >
                         <input
                           id="inputCheck"
                           type="checkbox"
@@ -352,7 +354,7 @@ class New extends Component {
                             this.handleServiceChange
                           }
                         />
-                        <span>
+                        <span style={{ marginLeft: '5px' }}>
                           {upperFirst(service.name)}
                         </span>
                       </div>

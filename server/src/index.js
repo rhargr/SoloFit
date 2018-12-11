@@ -7,8 +7,9 @@ import stateRouting from './middleware/routing.mw';
 import socketIo from 'socket.io';
 import http from 'http';
 import cors from 'cors';
-
+import Messages from './procedures/messages';
 import configurePassport from './config/passport';
+
 const CLIENT_PATH = join(__dirname, '../../client');
 
 let app = express();
@@ -25,7 +26,15 @@ const getApiAndEmit = async socket => {
 };
 
 io.on("connection", socket => {
-    getApiAndEmit(socket); 
+    socket.on('clientMessage', (packet) => {
+        Messages.create([
+            packet.roomId,
+            packet.senderId,
+            packet.message,
+        ]).then((message) => {
+            socket.emit('message', message);
+        });
+    });
     socket.on("disconnect", () => console.log("Client disconnected"));
 });
 

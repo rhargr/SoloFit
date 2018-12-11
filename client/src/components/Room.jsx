@@ -12,51 +12,58 @@ class Room extends Component {
     this.messagesRepo = new MessagesRepository();
 
     this.state = {
-      response: false,
+      response: "",
       endpoint: "http://localhost:3000",
       messages: []
     };
 
+    this.socket = socketIOClient(this.state.endpoint);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {
-    this.messagesRepo.all(roomId).then(messages => {
-      console.log(messages);
-      this.setState({
-        messages
-      });
+    this.socket.on('message', (messagePacket) => {
+        this.setState({
+            messages: [...this.state.messages, messagePacket],
+        });
     });
+    
+    this.messagesRepo
+      .all({
+        roomId: 1
+      })
+      .then(messages => {
+        this.setState({
+          messages
+        });
+      });
+
+    // this.roomsRepo.all().then(rooms => {
+    //     console.log(rooms);
+    //     this.setState({
+    //       rooms
+    //     });
+    //   });
   }
 
-  componentDidMount() {
-    this.roomsRepo.all().then(rooms => {
-      console.log(rooms);
-      this.setState({
-        rooms
-      });
+  handleMessageSubmission = () => {
+    this.socket.emit("clientMessage", {
+      message: this.state.response,
+      senderId: 1971,
+      roomId: 1
     });
-  }
+  };
 
   handleInputChange(event) {
-    console.log("handle input change");
-    this.setState = {
-      response: "new state: " + event.target.value
-    };
-    console.log( event.target.value);
-  }
-
-  componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.on("FromAPI", data => this.setState({ response: data }));
+    this.setState({
+      response: event.target.value
+    });
   }
 
   render() {
     const { response } = this.state;
-    // return this.state.rooms.map(room => {
+
     return (
-        
       <React.Fragment>
         <section className="module">
           <header className="top-bar">
@@ -74,24 +81,27 @@ class Room extends Component {
             </div>
           </header>
 
-          <ol className="discussion">
+          <ol className="discussion" style={{ height: '300px', overflowY: 'scroll' }}>
             {this.state.messages.map(message => {
-              return (
-                // <React.Fragment>
+              if (message.sender_id === 1971) {
+                return (
+                  <li className="self" key={message.id}>
+                    <div className="messages">
+                      <p>{message.message}</p>
+                      <time dateTime={message.date}>37 mins</time>
+                    </div>
+                  </li>
+                );
+              } else {
+                return (
                   <li className="other" key={message.id}>
                     <div className="messages">
                       <p>{message.message}</p>
-                      <time dateTime="2009-11-13T20:00">Timothy • 51 min</time>
+                      <time dateTime={message.date}>Timothy • 51 min</time>
                     </div>
                   </li>
-                //   <li className="self">
-                //     <div className="messages">
-                //       <p>{response}</p>
-                //       <time dateTime="2009-11-13T20:14">37 mins</time>
-                //     </div>
-                //   </li>
-                // </React.Fragment>
-              );
+                );
+              }
             })}
           </ol>
 
@@ -107,6 +117,7 @@ class Room extends Component {
             />
             <div className="input-group-append">
               <button
+                onClick={this.handleMessageSubmission}
                 className="btn btn-outline-secondary"
                 type="button"
                 id="button-addon2"
@@ -120,10 +131,10 @@ class Room extends Component {
         <div style={{ textAlign: "center" }}>
           {response ? <p>{response}</p> : <p>Loading...</p>}
         </div>
-        </React.Fragment>
-    )
-// })
-}
+      </React.Fragment>
+    );
+    // })
+  }
 }
 
 export default Room;

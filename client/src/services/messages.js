@@ -1,8 +1,8 @@
 import * as baseService from './base';
 
 export default class MessagesService {    
-    all() {
-        return baseService.get('/api/messages');
+    all(query) {
+        return baseService.get(`/api/messages${baseService.getQueryString(query)}`);
     }
 
     create(model) {
