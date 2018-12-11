@@ -15,6 +15,10 @@ function destroy(req, res, next){
     })
 }
 
+function me(req, res, next) {
+
+}
+
 function create(req, res, next){
     const{name, age, email, hash} = req.body;
 

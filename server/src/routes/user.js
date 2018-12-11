@@ -9,6 +9,7 @@ let router = Router();
 
 router 
     .get('/', Users.all)
+    .get('/me', Users.me)
     .get('/:id', Users.read)
     .post('/', Users.create)
     .put('/:id', Users.update)
