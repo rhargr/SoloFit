@@ -28,11 +28,11 @@ function populateAuthToken() {
 }
 
 function getQueryString(obj) {
-    const query = _.map((value, key) => {
+    let query = _.map(obj, (value, key) => {
         if (!_.isUndefined(value)) {
             return `${key}=${value}`;
         }
-    }, obj)
+    })
         .filter((value) => {
             return !_.isUndefined(value);
         })

@@ -3,6 +3,9 @@ import { render } from "react-dom";
 import { Link } from "react-router-dom";
 import TrainerRepository from "../repositories/trainer";
 import Rating from "react-rating";
+import { upperFirst } from 'lodash';
+import qs from 'query-string';
+import ServiceRepository from '../repositories/service';
 
 import caro2 from "../images/caro2.png";
 import jumbo1 from "../images/jumbo.jpg";
@@ -11,20 +14,44 @@ class Trainers extends Component {
   constructor(props) {
     super(props);
     this.trainerRepo = new TrainerRepository();
+    this.serviceRepo = new ServiceRepository();
+   
     this.state = {
       initialRating: 3,
-      trainers: []
+      trainers: [],
+      services: [],
     };
   }
 
   componentDidMount() {
-    this.trainerRepo.all().then(trainers => {
+    const query = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
+
+    this.trainerRepo.all({
+      serviceId: query.service
+    }).then(trainers => {
       console.log(trainers);
       this.setState({
         trainers
       });
+
+      return this.serviceRepo.all();
+    })
+    .then((services) => {
+      this.setState({
+        services
+      })
     });
   }
+
+  handleTrainerSort = (serviceId) => {
+    this.trainerRepo.all({
+      serviceId
+    }).then((trainers) => {
+      this.setState({
+        trainers
+      })
+    });
+  };
 
   render() {
     return (
@@ -34,36 +61,13 @@ class Trainers extends Component {
 
         {/* NAV SHIZ */}
         <ul className="nav justify-content-center" style={{paddingTop: '70px'}}>
-          <li className="nav-item" style={{ borderRight: "2px solid lightgrey" }}>
-            <a className="nav-link active" href="#">
-              All
-            </a>
-          </li>
-          <li className="nav-item" style={{ borderRight: "2px solid lightgrey" }}>
-            <a className="nav-link" href="#">
-              Endurance
-            </a>
-          </li>
-          <li className="nav-item" style={{ borderRight: "2px solid lightgrey" }}>
-            <a className="nav-link" href="#">
-              Strength Training
-            </a>
-          </li>
-          <li className="nav-item" style={{ borderRight: "2px solid lightgrey" }}>
-            <a className="nav-link" href="#">
-              Yoga
-            </a>
-          </li>
-          <li className="nav-item" style={{ borderRight: "2px solid lightgrey" }}>
-            <a className="nav-link" href="#">
-              Weight Loss
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              Pilates
-            </a>
-          </li>
+          {this.state.services.map((service) => {
+            return <li onClick={() => { this.handleTrainerSort(service.id) }} className="nav-item" key={service.id} style={{ borderRight: "2px solid lightgrey" }}>
+              <a className="nav-link active" href="#">
+                {upperFirst(service.name)}
+              </a>
+            </li>;
+          })}
         </ul>
         {/* END NAV SHIZ */}
 
@@ -110,7 +114,7 @@ class Trainers extends Component {
                             float: "left"
                           }}
                           className="proPic"
-                          src={caro2}
+                          src={trainer.profilePic}
                           alt="Profile Picture"
                         />
                       </div>

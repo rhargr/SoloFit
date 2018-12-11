@@ -1,8 +1,8 @@
 import * as baseService from './base';
 
 export default class TrainerService {    
-    all() {
-        return baseService.get('/api/trainer');
+    all(query) {
+        return baseService.get(`/api/trainer${baseService.getQueryString(query)}`);
     }
 
     create(model) {

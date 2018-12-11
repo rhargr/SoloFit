@@ -105,7 +105,9 @@ function getByService(req, res, next) {
 }
 
 function all(req, res, next) {
-    Trainers.all().then((trainers) => {
+    const serviceId = req.query.serviceId || null;
+console.log(serviceId)
+    Trainers.all([serviceId]).then((trainers) => {
         res.json(allClient(trainers));
     });
 }

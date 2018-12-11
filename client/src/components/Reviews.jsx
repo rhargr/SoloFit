@@ -37,6 +37,10 @@ class Reviews extends Component {
     };
 
     render() {
+        if (this.state.reviews.length === 0) {
+            return <h3>This trainer currently has no reviews.</h3>;
+        }
+
         return this.state.reviews.map(review => {
             return (
                 <div className="review-card" style={{ paddingBottom: '20px' }} key={review.id}>

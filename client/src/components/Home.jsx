@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import { Link } from 'react-router-dom';
 import jumbo1 from '../images/jumbo.jpg';
 import last1 from '../images/last1.png';
 import caro2 from '../images/caro2.png';
@@ -168,27 +169,34 @@ class Homepage extends Component {
             <div className="row" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
 
               <div className="card text-white bg-success mb-3 col-3">
+              <Link to={'/trainers?service=11'}>
                 <div className="card-header">Strength</div>
                 <div className="card-body">
                   <p className="card-text">A method of improving muscular strength by gradually increasing the ability to resist force through the use of free weights and machines.</p>
                 </div>
+                </ Link>
               </div>
+             
 
 
               <div className="card text-white bg-success mb-3 col-3">
+              <Link to={'/trainers?service=1'}>
                 <div className="card-header">Yoga</div>
                 <div className="card-body">
                   <p className="card-text">Combines physical exercises, mental meditation, and breathing techniques to strengthen the muscles and relieve stress.</p>
 
                 </div>
+                </Link>
               </div>
 
               <div className="card text-white bg-success mb-3 col-3">
+              <Link to={'/trainers?service=51'}>
                 <div className="card-header">Endurance</div>
                 <div className="card-body">
                   <p className="card-text">Training for athletic events requiring prolonged effort, such as running a marathon, swimming a long distance, or climbing mountains.</p>
 
                 </div>
+                </Link>
               </div>
             </div>
 

@@ -15,7 +15,7 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 import SignUpTrainer from './SignUpTrainer';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import Messages from './Messages'
+import Room from './Room'
 
 class Navigation extends Component {
     render() {
@@ -24,7 +24,7 @@ class Navigation extends Component {
                 <Fragment>
                     <Navbar />
                     <Switch>
-                        <Route exact path="/messages" component={Messages} />
+                        <Route exact path="/room" component={Room} />
                         <Route exact path="/" component={Homepage} />
                         <Route exact path="/Sign-Up" component={SignUp} />
                         <Route

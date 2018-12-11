@@ -5,8 +5,8 @@ export default class TrainerRepository {
         this.trainerSvc = new TrainerService();
     }
 
-    all() {
-        return this.trainerSvc.all();
+    all(query) {
+        return this.trainerSvc.all(query);
     }
 
     create(model) {

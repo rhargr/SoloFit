@@ -25,7 +25,7 @@ const getApiAndEmit = async socket => {
 };
 
 io.on("connection", socket => {
-    getApiAndEmit(socket);
+    getApiAndEmit(socket); 
     socket.on("disconnect", () => console.log("Client disconnected"));
 });
 

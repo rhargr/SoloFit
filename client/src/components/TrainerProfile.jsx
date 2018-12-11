@@ -62,7 +62,7 @@ class Profile extends Component {
                             {/* PROFILE PICTURE */}
                             <div className="profile-picture-container" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                                 <div>
-                                    <img src={profilePicture} className="img-rounded" alt="profile-picture" style={{ width: 'auto', height: '250px', border: '2px solid lightgrey', borderRadius: '3px' }} />
+                                    <img src={this.state.trainer.profile_pic} className="img-rounded" alt="profile-picture" style={{ width: 'auto', height: '250px', border: '2px solid lightgrey', borderRadius: '3px' }} />
                                 </div>
                                 <div>
                                 <div style={{ paddingLeft: '10px', textAlign: 'left' }}>
@@ -70,11 +70,6 @@ class Profile extends Component {
                                     <p style={{fontFamily: 'Josefin Sans, sans-serif', fontSize: '25px'}}>{this.state.trainer.city}, {this.state.trainer.state}</p>
                                 </div> 
                                 <div style={{textAlign: 'center' }}>
-                                    <div className="social-media" style={{ display: 'flex', flexDirection: 'row', padding: '10px', fontSize: '35px', justifyContent: 'center' }}>
-                                        <a href=""><i className="fa fa-facebook-square"></i></a>
-                                        <a href="" style={{ paddingLeft: '10px', paddingRight: '10px' }}><i className="fa fa-twitter-square"></i></a>
-                                        <a href=""><i className="fa fa-instagram"></i></a>
-                                    </div>
                                     <button className="btn btn-success" style={{marginBottom: '10px'}}><i className="fa fa-comment"></i> Message</button>
                                     <br/>
                                     <Rating
@@ -109,26 +104,12 @@ class Profile extends Component {
                             </div>
 
                         </div>
-                        {/* END CHECK AVAIL */}
-
-
-                        {/* NAV TRAINER PROFILE */}
-                        <div style={{ paddingTop: '10px' }}>
-                            <nav aria-label="breadcrumb">
-                                <ol className="breadcrumb">
-                                    <li className="breadcrumb-item"><a href="#">About</a></li>
-                                    <li className="breadcrumb-item active"><a href="#">Reviews</a></li>
-                                    <li className="breadcrumb-item"><a href="#">FAQ</a></li>
-                                </ol>
-                            </nav>
-                        </div>
-                        {/* END NAV */}
 
 
                         {/* ABOUT ME AND HOURS */}
                         <div className="about-me-container-hours" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                             <div className="about-me">
-                                <div className="card border-dark mb-3" style={{ maxWidth: '35rem' }}>
+                                <div className="card border-dark mb-3">
                                     <div className="card-header">ABOUT</div>
                                     <div className="card-body text-dark">
                                         {this.state.trainer.services.map((service) => {
@@ -137,46 +118,7 @@ class Profile extends Component {
                                         <p className="card-text">Our fitness is important and something we should all enjoy. My aim is to create a positive and fun experience for clients, as well as using the best of my knowledge and experience to help clients achieve their goals.Credentials: CSEP – Certified Personal Trainer First Aid and CPR Level – C</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="hours" >
-                                <div>
-                                    <div className="table-hours" style={{ paddingRight: '35px' }}>
-                                        <h3>Training Hours</h3>
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td style={{ paddingRight: '30px', float: 'left' }}>Sunday</td>
-                                                    <td style={{ float: 'right' }}>1:00 PM to 8:00 PM</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style={{ paddingRight: '30px', float: 'left' }}>Monday</td>
-                                                    <td style={{ float: 'right' }}>8:00 AM to 8:00 PM</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style={{ paddingRight: '30px', float: 'left' }}>Tueday</td>
-                                                    <td style={{ float: 'right' }}>9:00 AM to 9:00 PM</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style={{ paddingRight: '30px', float: 'left' }}>Wednesday</td>
-                                                    <td style={{ float: 'right' }}>8:00 AM to 8:00 PM</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style={{ paddingRight: '30px', float: 'left' }}>Thursday</td>
-                                                    <td style={{ float: 'right' }}>9:00 AM to 9:00 PM</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style={{ paddingRight: '30px', float: 'left' }}>Friday</td>
-                                                    <td style={{ float: 'right' }}>1:00 PM to 8:00 PM</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style={{ paddingRight: '30px', float: 'left' }}>Saturday</td>
-                                                    <td style={{ float: 'right' }}>10:00 AM to 10:00 PM</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>                        
+                            </div>                     
                         </div>
                         {/* END ABOUT ME */}
 

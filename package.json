@@ -36,6 +36,7 @@
         "passport": "^0.4.0",
         "passport-http-bearer": "^1.0.1",
         "passport-local": "^1.0.0",
+        "query-string": "^6.2.0",
         "rc-time-picker": "^3.4.0",
         "react": "^16.5.1",
         "react-big-calendar": "^0.20.2",
