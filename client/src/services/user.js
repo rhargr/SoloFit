@@ -26,8 +26,8 @@ async function login(email, password) {
         method: 'POST',
         body: JSON.stringify({ email, password }),
         headers: new Headers({
-            'Content-Type': 'application/json'
-        })
+            'Content-Type': 'application/json',
+        }),
     });
     if (response.ok) {
         let json = await response.json();
@@ -45,7 +45,7 @@ function logout() {
 }
 
 function me() {
-    return baseService.get('/api/users/me');
+    return baseService.get('/api/user/me');
 }
 
-export { isLoggedIn, checkLogin, login, logout };
+export { isLoggedIn, checkLogin, login, logout, me };

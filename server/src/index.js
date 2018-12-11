@@ -21,21 +21,19 @@ const io = socketIo(server);
 
 io.origins('*:*');
 
-const getApiAndEmit = async socket => {
-    socket.emit("FromAPI", 'hey there');
+const getApiAndEmit = async (socket) => {
+    socket.emit('FromAPI', 'hey there');
 };
 
-io.on("connection", socket => {
+io.on('connection', (socket) => {
     socket.on('clientMessage', (packet) => {
-        Messages.create([
-            packet.roomId,
-            packet.senderId,
-            packet.message,
-        ]).then((message) => {
-            socket.emit('message', message);
-        });
+        Messages.create([packet.roomId, packet.senderId, packet.message]).then(
+            (message) => {
+                socket.broadcast('message', message);
+            },
+        );
     });
-    socket.on("disconnect", () => console.log("Client disconnected"));
+    socket.on('disconnect', () => console.log('Client disconnected'));
 });
 
 app.use(morgan('dev'));

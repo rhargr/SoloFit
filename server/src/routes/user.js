@@ -5,9 +5,7 @@ import Users from '../controllers/User';
 
 let router = Router();
 
-
-
-router 
+router
     .get('/', Users.all)
     .get('/me', Users.me)
     .get('/:id', Users.read)
@@ -15,8 +13,6 @@ router
     .put('/:id', Users.update)
     .delete('/:id', Users.destroy)
     .get('/:id', Users.getUser);
-
-
 
 // router.get('/', async (req, res) => {
 //     console.log(req.user);
