@@ -9,6 +9,7 @@ import UserRepository from '../repositories/user';
 import RoomsRepository from '../repositories/rooms';
 import { upperFirst } from 'lodash';
 import jumPic from '../images/trainer-profile.jpg';
+import Nav1 from './Nav1';
 
 
 class Profile extends Component {
