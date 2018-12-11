@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import { Link } from 'react-router-dom';
 import jumbo1 from '../images/jumbo.jpg';
-import last1 from '../images/last1.png';
+import caro10 from '../images/caro10.jpg';
 import caro2 from '../images/caro2.png';
 import caro3 from '../images/caro3.png';
 import maybe from '../images/maybe.png';
 import newCaro from '../images/newCaro1.jpg';
 import quote3 from '../images/newPic.png';
+import quote from '../images/thing.png'
+import jumbo from '../images/fuck.jpg';
 
 class Homepage extends Component {
   constructor(props) {
@@ -47,22 +49,38 @@ class Homepage extends Component {
         <div className="jumbotron jumbotron-fluid"
           style={{
             margin: "0px",
-            borderBottom: "1px solid black",
-            height: "300px",
-            backgroundImage: `url(${jumbo1})`
+            height: "700px",
+            backgroundImage: `url(${jumbo})`
             
           }}
         >
-          <div className="container" style={{ color: 'white' }}>
-            <h1 className="display-4" style={{fontFamily: 'Vast Shadow, cursive', fontSize: '100px', textShadow: '2px 2px grey'}}>SoloFit</h1>
-            <p className="lead" style={{fontFamily: 'Josefin Sans, sans-serif', fontSize: '25px', textShadow: '2px 2px grey'}}>
-              We enhance the opportunity for you to maximize your
-              full potential within your own boundaries
-            </p>
+          <div className="container" style={{ color: 'white', display: 'flex', justifyContent: 'flex-start', position: 'absolute', left: '25px', top: '130px'}}>
+            <h1 className="display-4" style={{fontFamily: 'Helvetica', fontSize: '175px', textShadow: '2px 2px grey', color: 'white', fontWeight: 'bold', right: '400px'}}>SoloFit</h1>
+            </div>
+           <div style={{position: 'absolute', right: '45px', top: '250px'}}>
+           <div>
+            <h1 className="lead" style={{fontFamily: 'Josefin Sans, sans-serif',fontSize: '55px', color: 'white'}}>
+              We enhance the opportunity for you
+              </h1>
+              </div>
+              <div>
+              <h1 style={{fontFamily: 'Josefin Sans, sans-serif',fontSize: '55px', }}>
+              to maximize your full potential 
+              </h1>
+              </div>
+              <div>
+              <h1 style={{fontFamily: 'Josefin Sans, sans-serif',fontSize: '55px', }}>
+              within your own boundaries
+            </h1>
           </div>
+
+           </div>
+            
+            
+            
         </div>
         {/* carousel */}
-        <div className="row">
+        {/* <div className="row">
           <div className="col-12">
             <div
               id="carouselExampleControls"
@@ -74,7 +92,7 @@ class Homepage extends Component {
                 <div className="carousel-item active" >
                   <img
                     className="d-block w-100"
-                    src={caro2}
+                    src={quote}
                     alt="First slide" />
                 </div>
                 <div className="carousel-item">
@@ -89,7 +107,7 @@ class Homepage extends Component {
                   <img
 
                     className="d-block w-100"
-                    src={newCaro}
+                    src={caro10}
 
                     alt="Third slide"
                   />
@@ -120,13 +138,70 @@ class Homepage extends Component {
             </div>
           </div>
 
-          {/* login form  */}
+        
 
          
-        </div>
+        </div> */}
+
+
+        <div
+
+className="jumbotron jumbotron-fluid"
+style={{ height: "410px", padding: '0px', marginBottom: '0', backgroundColor: 'white' }}
+>
+<div className="container" style={{marginBottom: '50px'}}>
+  <div style={{ padding: '20px', color: 'white' }}>
+    <h1 className="display-4" style={{fontFamily: 'Josefin Sans, sans-serif', fontSize: '60px', textShadow: '2px 2px grey' ,color: 'black', marginBottom: '30px', marginTop: '30px'}}><strong>Choose Your Fit</strong></h1>
+  </div>
 
 
 
+  <div className="row" style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', justifyContent: 'center'}}>
+
+    <div className="card text-white bg-dark mb-3 col-3" style={{marginLeft: '15px', marginRight: '15px'}}>
+      <div className="card-header"><strong>Strength</strong></div>
+      <div className="card-body">
+        <p className="card-text">A method of improving muscular strength by gradually increasing the ability to resist force through the use of free weights and machines.</p>
+      </div>
+    </div>
+
+
+    <div className="card text-white bg-dark mb-3 col-3" style={{marginLeft: '10px', marginRight: '10px'}}>
+      <div className="card-header"><strong>Yoga</strong></div>
+      <div className="card-body">
+        <p className="card-text">Combines physical exercises, mental meditation, and breathing techniques to strengthen the muscles and relieve stress.</p>
+
+      </div>
+    </div>
+
+    <div className="card text-white bg-dark mb-3 col-3" style={{marginLeft: '10px', marginRight: '10px'}}>
+      <div className="card-header"><strong>Endurance</strong></div>
+      <div className="card-body">
+        <p className="card-text">Training for athletic events requiring prolonged effort, such as running a marathon, swimming a long distance, or climbing mountains.</p>
+
+      </div>
+      
+    </div>
+    <div className="card text-white bg-dark mb-3 col-3" style={{marginLeft: '10px', marginRight: '10px'}}>
+      <div className="card-header"><strong>Pilates</strong></div>
+      <div className="card-body">
+        <p className="card-text">A system of exercises using special apparatus, designed to improve physical strength, flexibility, and posture, and enhance mental awareness.</p>
+
+      </div>
+      
+    </div>
+    <div className="card text-white bg-dark mb-3 col-3" style={{marginLeft: '10px', marginRight: '10px'}}>
+      <div className="card-header"><strong>Weight-Loss</strong></div>
+      <div className="card-body">
+        <p className="card-text">Combines diet along with exercise to burn calories and improve overall health as well as lose body mass.</p>
+
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+</div>
 
 
 
@@ -140,12 +215,16 @@ class Homepage extends Component {
 
           style={{
             height: "650px",
-            borderBottom: "1px solid black",
             margin: "0px",
-            backgroundImage: `url(${jumbo1})`
+            backgroundColor: 'white',
+            padding: '0px',
+            marginTop: '50px'
           }}
         >
+<div style={{marginBottom: '35px'}}>
 
+  <h1><strong>Find a trainers location that suits you best</strong></h1>
+</div>
           <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
             <div id="map" style={{ height: '500px', width: '1200px' }}></div>
 

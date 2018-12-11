@@ -1,4 +1,5 @@
 import { Router } from 'express';
+
 import Trainers from '../controllers/trainer';
 
 let router = Router();

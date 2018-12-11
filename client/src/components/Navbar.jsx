@@ -16,7 +16,7 @@ class Navbar extends Component {
     render() {
         return (
         <React.Fragment>
-            <header className="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar bg-warning" style={{alignItems: 'baseline'}}>
+            <header className="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar bg-info" style={{alignItems: 'baseline'}}>
                 <Link to="/" className="navbar-brand navbar-left"><img src={Logo} width="100px" style={{marginleft: '10px'}} alt="logo"/></Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -55,11 +55,11 @@ class Navbar extends Component {
                 <div className="navbar-right" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link to="/Trainers" className="nav-link nav-right" > Locate Trainer </Link>
+                            <Link to="/Trainers" className="nav-link nav-right" style={{color: 'black'}} > Locate Trainer </Link>
                         </li>
                         <li className="nav-item">
                         <Link to="/Sign-up" className="nav-link nav-right" > 
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="button">Sign Up</button>
+                        <button className="btn btn-outline-dark my-2 my-sm-0" type="button">Sign Up</button>
                         </Link>
                         </li>
                     </ul>
@@ -67,7 +67,7 @@ class Navbar extends Component {
             </header>
         </React.Fragment>
         );
-    }riw
+    }
 }
 
 export default Navbar;

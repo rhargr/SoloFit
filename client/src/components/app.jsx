@@ -16,6 +16,7 @@ import Navbar from './Navbar';
 import SignUpTrainer from './SignUpTrainer';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Room from './Room'
+import ViewProfile from './ViewTrainProfile';
 
 class Navigation extends Component {
     render() {
@@ -39,6 +40,7 @@ class Navigation extends Component {
                         <Route exact path="/donate" component={Donate} />
                         <Route exact path="/goodbye" component={GoodbyeWorld} />
                         <Route exact path="/trainer/:id" component={Profile} />
+                        <Route exact path="/trainer/profile/:id" component={ViewProfile} />
                     </Switch>
                     <Footer />
                 </Fragment>
