@@ -5,6 +5,7 @@ import BGPic from '../images/BG.png';
 import DataInjectable from '../injectables/data';
 import ServiceRepository from '../repositories/service';
 import TrainerRepository from '../repositories/trainer';
+import Nav1 from "./Nav1";
 import { upperFirst, isEmpty, isObject, flattenDeep, isNil } from 'lodash';
 
 class New extends Component {
@@ -145,6 +146,9 @@ class New extends Component {
 
     render() {
         return (
+          
+       <div>
+         <Nav1 />
             <div
                 style={{
                     minHeight: '100vh',
@@ -152,6 +156,8 @@ class New extends Component {
                     backgroundSize: 'cover',
                     padding: '4em 5em',
                 }}>
+                
+              
                 <div
                     style={{
                         color: 'white',
@@ -388,7 +394,11 @@ class New extends Component {
                     </div>
                 </div>
             </div>
-        );
+</div>
+
+
+          
+                    );
     }
 }
 

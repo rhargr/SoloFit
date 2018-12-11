@@ -6,9 +6,10 @@ import Reviews from './Reviews';
 import Rating from 'react-rating';
 import TrainerRepository from '../repositories/trainer';
 import { upperFirst } from 'lodash';
-import profilePicture from '../images/profile-picture-placholder.png';
-import jumboPic from '../images/t-profile.jpg';
-import bgImage from '../images/jumbo.jpg';
+
+
+
+import Nav1 from "./Nav1"
 
 class Profile extends Component {
 
@@ -48,6 +49,7 @@ class Profile extends Component {
     render() {
         return (
             <React.Fragment>
+                <Nav1 />
                 {/* JUMBOTRON */}
                 {/* <div className="jumbotron jumbotron-fluid" id="trainerJumbo" style={{ backgroundImage: `url(${jumboPic})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '400px', marginBottom: '0' }}>
                 </div> */}
@@ -55,7 +57,7 @@ class Profile extends Component {
 
 
                 {/* PROFILE */}
-                <div className="container-fluid py-5" style={{ minHeight: '100vh', backgroundImage: `url(${bgImage})`}}>
+                <div className="container-fluid py-5" style={{ minHeight: '100vh'}}>
                     <div className="inner container" style={{ backgroundColor: 'grey', padding: '20px', maxWidth: '960px'}}>
 
                         <div className="top-div" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>

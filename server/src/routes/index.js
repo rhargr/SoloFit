@@ -21,10 +21,12 @@ let router = Router();
 router.use('/auth', authRouter);
 router.use('/trainer', trainerRouter);
 
+
+
 router
     .route('*')
-    .get(tokenMiddleware, isLoggedIn)
-    .post(tokenMiddleware, isLoggedIn)
+    .get()
+    .post()
     .put(tokenMiddleware, isLoggedIn)
     .delete(tokenMiddleware, isLoggedIn);
 

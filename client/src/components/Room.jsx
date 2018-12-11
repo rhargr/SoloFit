@@ -3,6 +3,7 @@ import socketIOClient from 'socket.io-client';
 import RoomsRepository from '../repositories/rooms';
 import MessagesRepository from '../repositories/messages';
 import UserRepository from '../repositories/user';
+import Nav1 from './Nav1';
 
 class Room extends Component {
     constructor(props) {
@@ -76,6 +77,7 @@ class Room extends Component {
 
         return (
             <React.Fragment>
+                <Nav1 />
                 <section className="module">
                     <header className="top-bar">
                         <div className="left">
