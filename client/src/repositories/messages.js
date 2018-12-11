@@ -5,8 +5,8 @@ export default class MessagesRepository {
         this.messagesSvc = new MessagesService();
     }
 
-    all() {
-        return this.messagesSvc.all();
+    all(query) {
+        return this.messagesSvc.all(query);
     }
 
     create(model) {

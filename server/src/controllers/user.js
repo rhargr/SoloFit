@@ -1,49 +1,54 @@
 import Users from '../procedures/user';
 
-function update(req, res, next){
+function update(req, res, next) {
     const { id, name, age, email, hash } = req.body;
 
-    Users.update([id , name, age, email, hash]).then(()=>{
+    Users.update([id, name, age, email, hash]).then(() => {
         res.end();
-    })
+    });
 }
 
-function destroy(req, res, next){
+function destroy(req, res, next) {
     const id = req.params.id;
-    Users.destroy([id]). then(()=>{
-        res.end()
-    })
+    Users.destroy([id]).then(() => {
+        res.end();
+    });
 }
 
-function create(req, res, next){
-    const{name, age, email, hash} = req.body;
-
-    Users.create([name, age, email, hash]).then((id)=>{
-        res.json(id)
-    })
+function me(req, res, next) {
+    console.log('req.user', req.user);
+    res.json(req.user);
 }
 
-function read(req, res, next){
+function create(req, res, next) {
+    const { name, age, email, hash } = req.body;
+
+    Users.create([name, age, email, hash]).then((id) => {
+        res.json(id);
+    });
+}
+
+function read(req, res, next) {
     const id = req.params.id;
 
-    Users.getUser([id]).then((user)=>{
-        res.json(user)
-    })
+    Users.getUser([id]).then((user) => {
+        res.json(user);
+    });
 }
 
 function all(req, res, next) {
-    Users.all().then((user)=>{
-        console.log(user)
-        res.json(user); 
-    })
+    Users.all().then((user) => {
+        console.log(user);
+        res.json(user);
+    });
 }
 
-function getUser(req, res, next){
+function getUser(req, res, next) {
     const id = req.params.id;
 
-    Users.getUser([id]).then((ts)=>{
-        res.json(ts)
-    })
+    Users.getUser([id]).then((ts) => {
+        res.json(ts);
+    });
 }
 
-export default { all, create, destroy, update, read, getUser}
+export default { all, create, destroy, update, read, getUser, me };

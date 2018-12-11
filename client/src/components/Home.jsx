@@ -70,6 +70,8 @@ class Homepage extends Component {
             >
               SoloFit
             </h1>
+            </div>
+
           </div>
           <div style={{ position: "absolute", right: "45px", top: "250px" }}>
             <div>
@@ -105,7 +107,78 @@ class Homepage extends Component {
               </h1>
             </div>
           </div>
+
+        
+
+         
+        </div> 
+
+
+        <div
+
+          className="jumbotron jumbotron-fluid"
+          style={{ height: "410px", padding: '0px', marginBottom: '0', backgroundColor: 'white' }}
+        >
+          <div className="container" style={{ marginBottom: '50px' }}>
+            <div style={{ padding: '20px', color: 'white' }}>
+              <h1 className="display-4" style={{ fontFamily: 'Josefin Sans, sans-serif', fontSize: '60px', textShadow: '2px 2px grey', color: 'black', marginBottom: '30px', marginTop: '30px' }}><strong>Choose Your Fit</strong></h1>
+            </div>
+
+
+
+            <div className="row" style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', justifyContent: 'center' }}>
+
+              <div className="card text-white bg-dark mb-3 col-3" style={{ marginLeft: '15px', marginRight: '15px' }}>
+                <div className="card-header"><strong>Strength</strong></div>
+                <div className="card-body">
+                  <p className="card-text">A method of improving muscular strength by gradually increasing the ability to resist force through the use of free weights and machines.</p>
+                </div>
+              </div>
+
+
+              <div className="card text-white bg-dark mb-3 col-3" style={{ marginLeft: '10px', marginRight: '10px' }}>
+                <div className="card-header"><strong>Yoga</strong></div>
+                <div className="card-body">
+                  <p className="card-text">Combines physical exercises, mental meditation, and breathing techniques to strengthen the muscles and relieve stress.</p>
+
+                </div>
+              </div>
+
+              <div className="card text-white bg-dark mb-3 col-3" style={{ marginLeft: '10px', marginRight: '10px' }}>
+                <div className="card-header"><strong>Endurance</strong></div>
+                <div className="card-body">
+                  <p className="card-text">Training for athletic events requiring prolonged effort, such as running a marathon, swimming a long distance, or climbing mountains.</p>
+
+                </div>
+
+              </div>
+              <div className="card text-white bg-dark mb-3 col-3" style={{ marginLeft: '10px', marginRight: '10px' }}>
+                <div className="card-header"><strong>Pilates</strong></div>
+                <div className="card-body">
+                  <p className="card-text">A system of exercises using special apparatus, designed to improve physical strength, flexibility, and posture, and enhance mental awareness.</p>
+
+                </div>
+
+              </div>
+              <div className="card text-white bg-dark mb-3 col-3" style={{ marginLeft: '10px', marginRight: '10px' }}>
+                <div className="card-header"><strong>Weight-Loss</strong></div>
+                <div className="card-body">
+                  <p className="card-text">Combines diet along with exercise to burn calories and improve overall health as well as lose body mass.</p>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
         </div>
+
+
+
+
+
+        {/* 2nd jumbotron */}
+
         <div
           className="jumbotron jumbotron-fluid"
           style={{

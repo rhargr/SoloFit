@@ -10,6 +10,4 @@ let router = Router();
     router.put('/:id', Reviews.update)
     router.delete('/:id', Reviews.destroy);
     
-    
-
 export default router;
