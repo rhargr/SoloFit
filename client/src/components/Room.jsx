@@ -49,13 +49,6 @@ class Room extends Component {
                     messages,
                 });
             });
-
-        // this.roomsRepo.all().then(rooms => {
-        //     console.log(rooms);
-        //     this.setState({
-        //       rooms
-        //     });
-        //   });
     }
 
     handleMessageSubmission = () => {
@@ -82,7 +75,7 @@ class Room extends Component {
                     <header className="top-bar">
                         <div className="left">
                             <i className="fa fa-comment" />
-                            <h1 className="chat-header">Hangouts</h1>
+                            <h1 className="chat-header"></h1>
                         </div>
 
                         <div className="right">
@@ -106,9 +99,7 @@ class Room extends Component {
                                     <li className="self" key={message.id}>
                                         <div className="messages">
                                             <p>{message.message}</p>
-                                            <time dateTime={message.date}>
-                                                37 mins
-                                            </time>
+                                            {/* <time dateTime={message.date}>{message.date}</time> */}
                                         </div>
                                     </li>
                                 );
@@ -117,9 +108,7 @@ class Room extends Component {
                                     <li className="other" key={message.id}>
                                         <div className="messages">
                                             <p>{message.message}</p>
-                                            <time dateTime={message.date}>
-                                                Timothy • 51 min
-                                            </time>
+                                            {/* <time dateTime={message.date}>{message.date}</time> */}
                                         </div>
                                     </li>
                                 );
@@ -148,10 +137,6 @@ class Room extends Component {
                         </div>
                     </div>
                 </section>
-
-                <div style={{ textAlign: 'center' }}>
-                    {response ? <p>{response}</p> : <p>Loading...</p>}
-                </div>
             </React.Fragment>
         );
         // })

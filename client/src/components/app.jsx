@@ -35,11 +35,12 @@ class Navigation extends Component {
                         />
                         <Route exact path="/Trainers" component={Trainers} />
                         <Route exact path="/login" component={Login} />
-                        <Route exact path="/Scheduling" component={Schedule} />
+                        <Route exact path="/trainer/:trainerId/schedule" component={Schedule} />
                         <Route exact path="/logout" component={Logout} />
                         <Route exact path="/donate" component={Donate} />
                         <Route exact path="/goodbye" component={GoodbyeWorld} />
                         <Route exact path="/trainer/:id" component={Profile} />
+                   
                     </Switch>
                     <Footer />
                 </Fragment>

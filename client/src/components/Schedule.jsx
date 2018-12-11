@@ -4,19 +4,21 @@ import BigCalendar from 'react-big-calendar';
 import EventRepository from '../repositories/event';
 import TraineesRepository from '../repositories/trainee';
 import ServiceRespoitory from '../repositories/service';
+import UserRepository from '../repositories/user';
 import { upperFirst, forEach } from 'lodash';
 import TimePicker from 'rc-time-picker';
 import moment from 'moment';
 import Nav1 from './Nav1';
 
-const localizer = BigCalendar.momentLocalizer(moment);
+const localizer = BigCalendar.momentLocalizer( moment );
 
 class Schedule extends Component {
-    constructor(props) {
-        super(props);
+    constructor ( props ) {
+        super( props );
         this.eventRepo = new EventRepository();
         this.traineesRepo = new TraineesRepository();
         this.serviceRepo = new ServiceRespoitory();
+        this.userRepo = new UserRepository();
 
         this.state = {
             events: [],
@@ -28,27 +30,28 @@ class Schedule extends Component {
                 description: null,
                 start: null,
                 end: null,
-                trainerId: null,
+                trainerId: this.props.match.params.trainerId,
                 traineeId: null,
                 title: null,
             },
         };
     }
 
-    componentDidMount() {
-        Promise.all([
-            this.eventRepo.all({
-                trainerId: 161,
-            }),
+    componentDidMount () {
+        console.log( 'SCHEDULE -- componentDidMount' );
+        Promise.all( [
+            this.eventRepo.all( {
+                trainerId: this.props.match.params.trainerId,
+            } ),
             this.traineesRepo.all(),
             this.serviceRepo.all(),
-        ]).then(([events, trainees, services]) => {
-            this.setState({
-                events: events.map((event) => {
-                    event.start = moment(event.start).toDate();
-                    event.end = moment(event.end).toDate();
+        ] ).then( ( [ events, trainees, services ] ) => {
+            this.setState( {
+                events: events.map( ( event ) => {
+                    event.start = moment( event.start ).toDate();
+                    event.end = moment( event.end ).toDate();
                     return event;
-                }),
+                } ),
                 trainees: [
                     {
                         id: '',
@@ -63,31 +66,32 @@ class Schedule extends Component {
                     },
                     ...services,
                 ],
-            });
-        });
+            } );
+        } );
     }
 
-    validateStartAndEnd = (start, end) => {
-        const mStart = moment(start);
-        const mEnd = moment(end);
+    validateStartAndEnd = ( start, end ) => {
+        console.log( 'SCHEDULE -- validateStartAndEnd' );
+        const mStart = moment( start );
+        const mEnd = moment( end );
 
-        if (mEnd.isBefore(mStart)) {
+        if ( mEnd.isBefore( mStart ) ) {
             return new Error();
         }
 
-        const isInvalid = this.state.events.some((event) => {
+        const isInvalid = this.state.events.some( ( event ) => {
             if (
-                moment(event.start) <= mEnd ||
-                mStart <= moment(event.end) ||
-                ((moment(event.start).isAfter(mStart) &&
-                    moment(event.end).isBefore(mEnd)) ||
-                    (mStart.isAfter(moment.start) && mEnd.isBefore(moment.end)))
+                moment( event.start ) <= mEnd ||
+                mStart <= moment( event.end ) ||
+                ( ( moment( event.start ).isAfter( mStart ) &&
+                    moment( event.end ).isBefore( mEnd ) ) ||
+                    ( mStart.isAfter( moment( event.start ) ) && mEnd.isBefore( moment( event.end ) ) ) )
             ) {
                 return true;
             }
-        });
+        } );
 
-        if (isInvalid) {
+        if ( isInvalid ) {
             return new Error();
         }
 
@@ -95,94 +99,104 @@ class Schedule extends Component {
     };
 
     resetStateEvent = () => {
+        console.log( 'SCHEDULE -- resetStateEvent' );
         const event = { ...this.state.event };
 
-        forEach(event, (value, key) => {
-            event[key] = null;
-        });
+        forEach( event, ( value, key ) => {
+            event[ key ] = null;
+        } );
 
-        this.setState({
+        this.setState( {
             event,
             selectedDate: '',
-        });
+        } );
     };
 
-    handleEventSelect = () => {
-        this.setState({
+    handleEventSelect = ( start ) => {
+        console.log( 'SCHEDULE -- handleEventSelect' );
+        this.setState( {
             eventType: 'event',
-            selectedDate: moment(start).format('YYYY-MM-DD'),
-        });
+            selectedDate: moment( start ).format( 'YYYY-MM-DD' ),
+        } );
         this.handleModalVisibility();
-        console.log('inside event select');
+        console.log( 'inside event select' );
     };
 
-    handleSlotSelect = ({ start, end, slots }) => {
-        this.setState({
+    handleSlotSelect = ( { start, end, slots } ) => {
+        console.log( 'SCHEDULE -- handleSlotSelect' );
+        this.setState( {
             eventType: 'slot',
-            selectedDate: moment(start).format('YYYY-MM-DD'),
-        });
+            selectedDate: moment( start ).format( 'YYYY-MM-DD' ),
+        } );
         this.handleModalVisibility();
     };
 
     handleModalVisibility = () => {
-        this.resetStateEvent();
-        this.setState({
+        console.log( 'SCHEDULE -- handleModalVisibility' );
+        this.setState( {
             isOpen: !this.state.isOpen,
-        });
+        } );
     };
 
-    handleEventChange = (e) => {
+    handleEventChange = ( e ) => {
+        console.log( 'SCHEDULE -- handleEventChange' );
         const name = e.target.name;
         const value = e.target.value;
-        this.setState({
+        this.setState( {
             event: {
                 ...this.state.event,
-                [name]: value,
+                [ name ]: value,
             },
-        });
+        } );
     };
 
-    handleEventStartChange = (momentObj) => {
-        this.setState({
+    handleEventStartChange = ( momentObj ) => {
+        console.log( 'SCHEDULE -- handleEventStartChange' );
+        console.log( 'handleEventStartChange', momentObj.format( 'HH:mm:ss' ) );
+        this.setState( {
             event: {
                 ...this.state.event,
-                start: momentObj.format('HH:mm:ss'),
+                start: momentObj.format( 'HH:mm:ss' ),
             },
-        });
+        } );
     };
 
-    handleEventEndChange = (momentObj) => {
-        this.setState({
+    handleEventEndChange = ( momentObj ) => {
+        console.log( 'SCHEDULE -- handleEventEndChange' );
+        console.log( 'handleEventEndChange', momentObj.format( 'HH:mm:ss' ) );
+        this.setState( {
             event: {
                 ...this.state.event,
-                end: momentObj.format('HH:mm:ss'),
+                end: momentObj.format( 'HH:mm:ss' ),
             },
-        });
+        } );
     };
 
     handleEventSubmit = () => {
+        console.log( 'SCHEDULE -- handleEventSubmit' );
         const event = {
             ...this.state.event,
-            trainerId: 161,
         };
+        console.log( 'handleEventSubmit', { selectedDate: this.state.selectedDate } );
 
         event.start = moment(
-            `${this.state.selectedDate} ${event.start}`,
-        ).format('YYYY-MM-DD HH:mm:ss');
-        event.end = moment(`${this.state.selectedDate} ${event.end}`).format(
+            `${ this.state.selectedDate } ${ event.start }`,
+        ).format( 'YYYY-MM-DD HH:mm:ss' );
+        event.end = moment( `${ this.state.selectedDate } ${ event.end }` ).format(
             'YYYY-MM-DD HH:mm:ss',
         );
 
-        this.eventRepo.create(event).then((id) => {
-            this.setState({
-                events: [...this.state.events, { ...event, id }],
-            });
+        this.eventRepo.create( event ).then( ( id ) => {
+            this.setState( {
+                events: [ ...this.state.events, { ...event, id } ],
+            } );
 
             this.handleModalVisibility();
-        });
+            this.resetStateEvent();
+        } );
     };
 
-    renderEditEvent = () => {};
+    renderEditEvent = () => { };
 
     renderCreateSlot = () => {
         return (
@@ -223,13 +237,13 @@ class Schedule extends Component {
                         className="form-control"
                         name="traineeId"
                         onChange={this.handleEventChange}>
-                        {this.state.trainees.map((trainee) => {
+                        {this.state.trainees.map( ( trainee ) => {
                             return (
                                 <option key={trainee.id} value={trainee.id}>
                                     {trainee.name}
                                 </option>
                             );
-                        })}
+                        } )}
                     </select>
                 </div>
                 <div className="form-group">
@@ -237,13 +251,13 @@ class Schedule extends Component {
                         className="form-control"
                         name="serviceId"
                         onChange={this.handleEventChange}>
-                        {this.state.services.map((service) => {
+                        {this.state.services.map( ( service ) => {
                             return (
                                 <option key={service.id} value={service.id}>
-                                    {upperFirst(service.name)}
+                                    {upperFirst( service.name )}
                                 </option>
                             );
-                        })}
+                        } )}
                     </select>
                 </div>
                 <div className="form-group">
@@ -277,13 +291,13 @@ class Schedule extends Component {
         );
     };
 
-    render() {
+    render () {
         const modalBody =
             this.state.eventType === 'event'
                 ? this.renderEditEvent()
                 : this.state.eventType === 'slot'
-                ? this.renderCreateSlot()
-                : '';
+                    ? this.renderCreateSlot()
+                    : '';
 
         return (
             <div
