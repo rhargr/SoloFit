@@ -1,171 +1,171 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
-import { Link } from "react-router-dom";
-import TrainerRepository from "../repositories/trainer";
-import Rating from "react-rating";
-import { upperFirst } from 'lodash';
-import qs from 'query-string';
-import ServiceRepository from '../repositories/service';
+// import React, { Component } from "react";
+// import { render } from "react-dom";
+// import { Link } from "react-router-dom";
+// import TrainerRepository from "../repositories/trainer";
+// import Rating from "react-rating";
+// import { upperFirst } from 'lodash';
+// import qs from 'query-string';
+// import ServiceRepository from '../repositories/service';
 
-import caro2 from "../images/caro2.png";
-import jumbo1 from "../images/jumbo.jpg";
+// import caro2 from "../images/caro2.png";
+// import jumbo1 from "../images/jumbo.jpg";
 
-class Trainers extends Component {
-  constructor(props) {
-    super(props);
-    this.trainerRepo = new TrainerRepository();
-    this.serviceRepo = new ServiceRepository();
+// class Trainers extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.trainerRepo = new TrainerRepository();
+//     this.serviceRepo = new ServiceRepository();
    
-    this.state = {
-      initialRating: 3,
-      trainers: [],
-      services: [],
-    };
-  }
+//     this.state = {
+//       initialRating: 3,
+//       trainers: [],
+//       services: [],
+//     };
+//   }
 
-  componentDidMount() {
-    const query = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
+//   componentDidMount() {
+//     const query = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
 
-    this.trainerRepo.all({
-      serviceId: query.service
-    }).then(trainers => {
-      console.log(trainers);
-      this.setState({
-        trainers
-      });
+//     this.trainerRepo.all({
+//       serviceId: query.service
+//     }).then(trainers => {
+//       console.log(trainers);
+//       this.setState({
+//         trainers
+//       });
 
-      return this.serviceRepo.all();
-    })
-    .then((services) => {
-      this.setState({
-        services
-      })
-    });
-  }
+//       return this.serviceRepo.all();
+//     })
+//     .then((services) => {
+//       this.setState({
+//         services
+//       })
+//     });
+//   }
 
-  handleTrainerSort = (serviceId) => {
-    this.trainerRepo.all({
-      serviceId
-    }).then((trainers) => {
-      this.setState({
-        trainers
-      })
-    });
-  };
+//   handleTrainerSort = (serviceId) => {
+//     this.trainerRepo.all({
+//       serviceId
+//     }).then((trainers) => {
+//       this.setState({
+//         trainers
+//       })
+//     });
+//   };
 
-  render() {
-    return (
-      <React.Fragment>
+//   render() {
+//     return (
+//       <React.Fragment>
 
-        <div style={{backgroundImage: `url(${jumbo1})`}}>
+//         <div style={{backgroundImage: `url(${jumbo1})`}}>
 
-        {/* NAV SHIZ */}
-        <ul className="nav justify-content-center" style={{paddingTop: '70px'}}>
-          {this.state.services.map((service) => {
-            return <li onClick={() => { this.handleTrainerSort(service.id) }} className="nav-item" key={service.id} style={{ borderRight: "2px solid lightgrey" }}>
-              <a className="nav-link active" href="#">
-                {upperFirst(service.name)}
-              </a>
-            </li>;
-          })}
-        </ul>
-        {/* END NAV SHIZ */}
+//         {/* NAV SHIZ */}
+//         <ul className="nav justify-content-center" style={{paddingTop: '70px'}}>
+//           {this.state.services.map((service) => {
+//             return <li onClick={() => { this.handleTrainerSort(service.id) }} className="nav-item" key={service.id} style={{ borderRight: "2px solid lightgrey" }}>
+//               <a className="nav-link active" href="#">
+//                 {upperFirst(service.name)}
+//               </a>
+//             </li>;
+//           })}
+//         </ul>
+//         {/* END NAV SHIZ */}
 
-        <div
-          style={{
-            minHeight: "100vh",
-            display: "flex",
-            justifyContent: "space-around",
-          }}
-        >
-          <div className="row" 
-                style={{
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  flexDirection: 'row', 
-                  justifyContent: 'center', 
-                  marginLeft: '200px', 
-                  marginRight: '200px', 
-                  marginBottom: '300px'}}>
+//         <div
+//           style={{
+//             minHeight: "100vh",
+//             display: "flex",
+//             justifyContent: "space-around",
+//           }}
+//         >
+//           <div className="row" 
+//                 style={{
+//                   display: 'flex', 
+//                   alignItems: 'center', 
+//                   flexDirection: 'row', 
+//                   justifyContent: 'center', 
+//                   marginLeft: '200px', 
+//                   marginRight: '200px', 
+//                   marginBottom: '300px'}}>
 
-            {this.state.trainers.map(trainer => {
-              return (
-                <div key={trainer.id} 
-                      className="col-sm-6" 
-                      style={{
-                        maxWidth: '40%'}}>
+//             {this.state.trainers.map(trainer => {
+//               return (
+//                 <div key={trainer.id} 
+//                       className="col-sm-6" 
+//                       style={{
+//                         maxWidth: '40%'}}>
 
-                  <div
-                    className="card"
-                    style={{
-                      marginTop: "20px",
-                      backgroundColor: "grey",
-                      top: "50px"
-                    }}
-                  >
-                    <h5 className="card-header">{trainer.name}</h5>
-                    <div className="card-body">
-                      <div>
-                        <img
-                          style={{
-                            borderRadius: "50%",
-                            height: "200px",
-                            width: "200px",
-                            float: "left"
-                          }}
-                          className="proPic"
-                          src={trainer.profilePic}
-                          alt="Profile Picture"
-                        />
-                      </div>
+//                   <div
+//                     className="card"
+//                     style={{
+//                       marginTop: "20px",
+//                       backgroundColor: "grey",
+//                       top: "50px"
+//                     }}
+//                   >
+//                     <h5 className="card-header">{trainer.name}</h5>
+//                     <div className="card-body">
+//                       <div>
+//                         <img
+//                           style={{
+//                             borderRadius: "50%",
+//                             height: "200px",
+//                             width: "200px",
+//                             float: "left"
+//                           }}
+//                           className="proPic"
+//                           src={trainer.profilePic}
+//                           alt="Profile Picture"
+//                         />
+//                       </div>
 
-                      <div className="info-div" 
-                          style={{
-                            display: 'flex', 
-                            flexDirection: 'column', 
-                            justifyContent: 'center',
-                            }}>
-                        <div style={{padding: '10px'}}>
-                        <h5 className="card-title">{trainer.city}, {trainer.state}</h5>
-                        </div>
+//                       <div className="info-div" 
+//                           style={{
+//                             display: 'flex', 
+//                             flexDirection: 'column', 
+//                             justifyContent: 'center',
+//                             }}>
+//                         <div style={{padding: '10px'}}>
+//                         <h5 className="card-title">{trainer.city}, {trainer.state}</h5>
+//                         </div>
 
-                        <div style={{padding: '10px'}}>
-                        <p className="card-text">{trainer.age}</p>
-                        </div>
+//                         <div style={{padding: '10px'}}>
+//                         <p className="card-text">{trainer.age}</p>
+//                         </div>
 
-                        <div style={{padding: '10px'}}>
-                        <Rating
-                          initialRating={this.state.initialRating}
-                          readonly
-                          emptySymbol="fa fa-star-o fa-2x"
-                          fullSymbol="fa fa-star fa-2x"
-                          style={{ color: "gold" }}
-                        />
-                        </div>
+//                         <div style={{padding: '10px'}}>
+//                         <Rating
+//                           initialRating={this.state.initialRating}
+//                           readonly
+//                           emptySymbol="fa fa-star-o fa-2x"
+//                           fullSymbol="fa fa-star fa-2x"
+//                           style={{ color: "gold" }}
+//                         />
+//                         </div>
 
-                        <div style={{padding: '10px'}}>
-                        <Link
-                          to={`/trainer/${trainer.id}`}
-                          className="btn btn-success btn-sm"
-                        >
-                          View Trainer
-                        </Link>
-                        </div>
+//                         <div style={{padding: '10px'}}>
+//                         <Link
+//                           to={`/trainer/${trainer.id}`}
+//                           className="btn btn-success btn-sm"
+//                         >
+//                           View Trainer
+//                         </Link>
+//                         </div>
 
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               );
+//             })}
+//           </div>
+//         </div>
 
-      </div>
+//       </div>
 
-      </React.Fragment>
-    );
-  }
-}
+//       </React.Fragment>
+//     );
+//   }
+// }
 
-export default Trainers;
+// export default Trainers;
