@@ -53,8 +53,7 @@ async function json(url, method = 'GET', payload = {}) {
     if (!authToken) {
         populateAuthToken();
     }
-    
-    console.log('im sending the request with tbis auth token', authToken);
+
     let data = {
         method,
         body: JSON.stringify(payload),
@@ -71,11 +70,11 @@ async function json(url, method = 'GET', payload = {}) {
     let response = await makeFetch(url, data);
     if (response.ok) {
         let contentType = response.headers.get('Content-Type');
-
-        if (contentType.indexOf('application/json') > -1) {
+        if (contentType === null) {
+            
+        } else if (contentType.indexOf('application/json') > -1) {
             return response.json();
         }
-
         return response.statusText;
     }
     throw response;

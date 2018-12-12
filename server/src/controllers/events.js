@@ -11,7 +11,13 @@ function all(req, res, next) {
 
 function read(req, res, next) {
     Events.read([req.params.id]).then((events) => {
-        res.json(client(events));
+        const {start, end} = events;
+        const e = {
+            ...client(events),
+            start,
+            end
+        }
+        res.json(e);
     });
 }
 
