@@ -139,7 +139,7 @@ class SignUp extends Component {
      
       <div
         style={{
-          minHeight: "100vh",
+          minHeight: "120vh",
           backgroundImage: `url(${BGPic})`,
           backgroundSize: "cover"
         }}
@@ -190,9 +190,8 @@ class SignUp extends Component {
                 padding: "25px",
                 borderRadius: "3px",
                 backgroundColor: "lightGray",
-                marginBottom: "150px",
-                position: "relative",
-                bottom: "100px"
+                marginBottom: "0px",
+                position: "relative"
               }}
             >
               <div className="form-row">
