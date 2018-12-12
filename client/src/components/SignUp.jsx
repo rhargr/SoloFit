@@ -190,7 +190,9 @@ class SignUp extends Component {
                 padding: "25px",
                 borderRadius: "3px",
                 backgroundColor: "lightGray",
-                marginBottom: "150px"
+                marginBottom: "150px",
+                position: "relative",
+                bottom: "100px"
               }}
             >
               <div className="form-row">

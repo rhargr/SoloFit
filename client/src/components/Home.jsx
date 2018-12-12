@@ -21,8 +21,10 @@ class Homepage extends Component {
           style={{
             margin: "0px",
             height: "1100px",
+            width: "auto",
             backgroundImage: `url(${jumbo})`,
             padding: "0px",
+            backgroundSize: 'cover',
             borderBottom: '50px solid #FFA400'
           }}
         >
