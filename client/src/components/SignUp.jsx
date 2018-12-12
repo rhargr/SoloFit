@@ -97,13 +97,11 @@ class SignUp extends Component {
 
   submit = e => {
     
-    
 
     e.preventDefault();
     if (!this.isValid()) {
       return;
     }
-    console.log("it was valid");
 
     let newUser = {
       name: this.state.user.name,
@@ -128,7 +126,11 @@ class SignUp extends Component {
           hash: ""
         } });
       })
+      
       .catch(e => console.log(e));
+
+      this.props.history.push('/')
+      
 
   };
 
@@ -142,7 +144,7 @@ class SignUp extends Component {
           backgroundSize: "cover"
         }}
       >
-      <Nav1 />
+      <Nav1 /> 
       
         <div
           style={{
