@@ -104,7 +104,7 @@ class Profile extends Component {
                                 <div className="card text-center" style={{ width: '18rem' }}>
                                     <div className="card-body">
                                         <h5 className="card-title">Book a Session Today!</h5>
-                                        <Link to="/Scheduling" className="btn btn-success"><i className="fa fa-calendar"></i>Check Availability</Link>
+                                        <Link to={`/trainer/${this.state.trainer.id}/schedule`} className="btn btn-success"><i className="fa fa-calendar"></i>Check Availability</Link>
                                     </div>
                                 </div>
                             </div>

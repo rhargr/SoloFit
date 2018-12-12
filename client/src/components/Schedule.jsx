@@ -363,7 +363,6 @@ class Schedule extends Component {
             
             <div>
                 <h4>Create Event</h4>
-                <Nav1 />
                 <div className="form-group">
                     <input
                         className="form-control"
