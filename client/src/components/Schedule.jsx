@@ -479,7 +479,6 @@ class Schedule extends Component {
                     startAccessor="start"
                     endAccessor="end"
                     resourceAccessor="id"
-                    defaultView="week"
                 />
                 <ReactModal
                     style={{ overlay: { zIndex: 1000 } }}
