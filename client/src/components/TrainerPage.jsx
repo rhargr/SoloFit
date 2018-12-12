@@ -85,10 +85,8 @@ class Trainers extends Component {
                   display: 'flex', 
                   alignItems: 'center', 
                   flexDirection: 'row', 
+                  flexWrap: 'wrap',
                   justifyContent: 'center', 
-                  marginLeft: '200px', 
-                  marginRight: '200px', 
-                  marginBottom: '300px',
                   width: '1200px'}}>
 
             {this.state.trainers.map(trainer => {

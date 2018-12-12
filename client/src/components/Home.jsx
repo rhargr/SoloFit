@@ -44,8 +44,8 @@ class Homepage extends Component {
           </div>
         </div>
 
-        <div class="jumbotron jumbotron-fluid" style={{ margin: '0px', backgroundColor: 'aliceblue'}}>
-          <div class="container">
+        <div className="jumbotron jumbotron-fluid" style={{ margin: '0px', backgroundColor: 'aliceblue'}}>
+          <div className="container">
             <div
             
             >
