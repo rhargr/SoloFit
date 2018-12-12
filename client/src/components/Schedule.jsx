@@ -159,24 +159,36 @@ class Schedule extends Component {
     };
 
     handleEventStartChange = ( momentObj ) => {
-        const stateName = this.state.eventType === 'event'
-            ? 'selectedEvent'
-            : 'event'
         this.setState( {
-            [ stateName ]: {
-                ...this.state[ stateName ],
-                start: momentObj.format(),
+            event: {
+                ...this.state.event,
+                start: momentObj.format( 'HH:mm:ss' ),
             },
         } );
     };
 
     handleEventEndChange = ( momentObj ) => {
-        const stateName = this.state.eventType === 'event'
-            ? 'selectedEvent'
-            : 'event'
         this.setState( {
-            [ stateName ]: {
-                ...this.state[ stateName ],
+            event: {
+                ...this.state.event,
+                end: momentObj.format( 'HH:mm:ss' ),
+            },
+        } );
+    };
+
+    handleEventEditStartChange = ( momentObj ) => {
+        this.setState( {
+            selectedEvent: {
+                ...this.state.selectedEvent,
+                start: momentObj.format(),
+            },
+        } );
+    };
+
+    handleEventEditEndChange = ( momentObj ) => {
+        this.setState( {
+            selectedEvent: {
+                ...this.state.selectedEvent,
                 end: momentObj.format(),
             },
         } );
@@ -208,16 +220,6 @@ class Schedule extends Component {
         const event = {
             ...this.state.selectedEvent,
         };
-
-        // console.log( `DATES -- ${ moment(
-        //     `${ event.start }`,
-        // ).format( 'YYYY-MM-DD HH:mm:ss' ) }`)
-        // event.start = moment(
-        //     `${ this.state.selectedDate } ${ event.start }`,
-        // ).format( 'YYYY-MM-DD HH:mm:ss' );
-        // event.end = moment( `${ this.state.selectedDate } ${ event.end }` ).format(
-        //     'YYYY-MM-DD HH:mm:ss',
-        // );
 
         this.eventRepo.update( this.state.selectedEvent.id, event ).then( () => {
             this.eventRepo.all( {
@@ -273,7 +275,7 @@ class Schedule extends Component {
                         id="startTime"
                         placeholder="Start Time"
                         showSecond={false}
-                        onChange={this.handleEventStartChange}
+                        onChange={this.handleEventEditStartChange}
                         defaultValue={moment( this.state.selectedEvent.start )}
                         name="start"
                         use12Hours
@@ -283,7 +285,7 @@ class Schedule extends Component {
                     <TimePicker
                         id="endTime"
                         placeholder="End Time"
-                        onChange={this.handleEventEndChange}
+                        onChange={this.handleEventEditEndChange}
                         defaultValue={moment( this.state.selectedEvent.end )}
                         showSecond={false}
                         name="end"
