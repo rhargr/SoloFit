@@ -108,7 +108,7 @@ class Login extends Component {
     <input
         type="submit"
         value="Login"
-        className="btn btn-info"
+        className="btn btn-dark"
     />
 </form>
 </div>

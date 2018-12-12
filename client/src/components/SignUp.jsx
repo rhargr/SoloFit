@@ -191,7 +191,7 @@ class SignUp extends Component {
                 borderRadius: "3px",
                 backgroundColor: "lightGray",
                 marginBottom: "0px",
-                position: "relative"
+                position: "relative"  
               }}
             >
               <div className="form-row">
