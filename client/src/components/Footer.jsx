@@ -10,7 +10,7 @@ class Footer extends Component {
   render() {
     return (
       <React.Fragment>
-            <footer id="foot" className="navbar bg-info sticky-bottom py-2">
+            <footer id="foot" className="navbar sticky-bottom py-2" style={{backgroundColor: "#FFA400"}}>
                 <span className="text-black mx-auto"><strong>Birmingham, Ala.</strong></span>
               
                  <a href="http://facebook.com">

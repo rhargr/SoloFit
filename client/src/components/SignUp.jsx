@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import Homepage from "./Home";
 import BGPic from "../images/BG.png";
 import DataInjectable from "../injectables/data";
+import Nav1 from "./Nav1";
 
 class SignUp extends Component {
   constructor(props) {
@@ -133,6 +134,7 @@ class SignUp extends Component {
 
   render() {
     return (
+     
       <div
         style={{
           minHeight: "100vh",
@@ -140,6 +142,7 @@ class SignUp extends Component {
           backgroundSize: "cover"
         }}
       >
+      <Nav1 />
       
         <div
           style={{

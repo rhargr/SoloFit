@@ -8,6 +8,7 @@ import UserRepository from '../repositories/user';
 import { upperFirst, forEach } from 'lodash';
 import TimePicker from 'rc-time-picker';
 import moment from 'moment';
+import Nav1 from './Nav1';
 
 const localizer = BigCalendar.momentLocalizer( moment );
 
@@ -359,8 +360,10 @@ class Schedule extends Component {
 
     renderCreateSlot = () => {
         return (
+            
             <div>
                 <h4>Create Event</h4>
+                <Nav1 />
                 <div className="form-group">
                     <input
                         className="form-control"
@@ -462,6 +465,7 @@ class Schedule extends Component {
                 style={{
                     minHeight: '100vh',
                 }}>
+                <Nav1 />
                 <BigCalendar
                     style={{
                         minHeight: '100vh',
@@ -483,6 +487,7 @@ class Schedule extends Component {
                     {modalBody}
                 </ReactModal>
             </div>
+         
         );
     }
 }

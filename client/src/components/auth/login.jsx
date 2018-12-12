@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import * as userService from '../../services/user';
 import { Redirect } from 'react-router-dom';
 import IndeterminateProgress from '../utilities/indeterminateProgress';
+import Nav1 from '../Nav1';
 
 class Login extends Component {
     constructor(props) {
@@ -67,8 +68,9 @@ class Login extends Component {
 
         return (
             <Fragment>
+                <Nav1 />
                 <p>You must be logged in to view this page.</p>
-                <form onSubmit={(e) => this.login(e)}>
+                <form style={{minHeight: '100vh'}} onSubmit={(e) => this.login(e)}>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input

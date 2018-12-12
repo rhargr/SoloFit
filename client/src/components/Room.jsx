@@ -3,6 +3,7 @@ import socketIOClient from 'socket.io-client';
 import RoomsRepository from '../repositories/rooms';
 import MessagesRepository from '../repositories/messages';
 import UserRepository from '../repositories/user';
+import Nav1 from './Nav1';
 
 class Room extends Component {
     constructor(props) {
@@ -48,13 +49,6 @@ class Room extends Component {
                     messages,
                 });
             });
-
-        // this.roomsRepo.all().then(rooms => {
-        //     console.log(rooms);
-        //     this.setState({
-        //       rooms
-        //     });
-        //   });
     }
 
     handleMessageSubmission = () => {
@@ -76,11 +70,12 @@ class Room extends Component {
 
         return (
             <React.Fragment>
+                <Nav1 />
                 <section className="module">
                     <header className="top-bar">
                         <div className="left">
                             <i className="fa fa-comment" />
-                            <h1 className="chat-header">Hangouts</h1>
+                            <h1 className="chat-header"></h1>
                         </div>
 
                         <div className="right">
@@ -104,9 +99,7 @@ class Room extends Component {
                                     <li className="self" key={message.id}>
                                         <div className="messages">
                                             <p>{message.message}</p>
-                                            <time dateTime={message.date}>
-                                                37 mins
-                                            </time>
+                                            {/* <time dateTime={message.date}>{message.date}</time> */}
                                         </div>
                                     </li>
                                 );
@@ -115,9 +108,7 @@ class Room extends Component {
                                     <li className="other" key={message.id}>
                                         <div className="messages">
                                             <p>{message.message}</p>
-                                            <time dateTime={message.date}>
-                                                Timothy • 51 min
-                                            </time>
+                                            {/* <time dateTime={message.date}>{message.date}</time> */}
                                         </div>
                                     </li>
                                 );
@@ -146,10 +137,6 @@ class Room extends Component {
                         </div>
                     </div>
                 </section>
-
-                <div style={{ textAlign: 'center' }}>
-                    {response ? <p>{response}</p> : <p>Loading...</p>}
-                </div>
             </React.Fragment>
         );
         // })

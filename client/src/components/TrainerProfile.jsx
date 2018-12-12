@@ -5,23 +5,31 @@ import * as classService from '../services/classes';
 import Reviews from './Reviews';
 import Rating from 'react-rating';
 import TrainerRepository from '../repositories/trainer';
+import UserRepository from '../repositories/user';
+import RoomsRepository from '../repositories/rooms';
 import { upperFirst } from 'lodash';
-import profilePicture from '../images/profile-picture-placholder.png';
-import jumboPic from '../images/t-profile.jpg';
-import bgImage from '../images/jumbo.jpg';
+import jumPic from '../images/trainer-profile.jpg';
+import Nav1 from './Nav1';
+
 
 class Profile extends Component {
 
     constructor(props) {
         super(props);
+
         this.trainerRepo = new TrainerRepository();
+        this.userRepo = new UserRepository();
+        this.roomRepo = new RoomsRepository();
+
         this.handleRatingClick = this.handleRatingClick.bind(this);
+
         this.state = {
             avgRating: 0,
             initialRating: 3,
             trainer: {
                 services: []
             }
+            
         };
     };
 
@@ -33,6 +41,10 @@ class Profile extends Component {
             });
         });
     };
+
+    handleCreateRoom = () => {
+
+    }
 
     handleAvgRating = (avgRating) => {
         console.log('avgRating', avgRating);
@@ -48,17 +60,18 @@ class Profile extends Component {
     render() {
         return (
             <React.Fragment>
+                <Nav1 />
                 {/* JUMBOTRON */}
-                {/* <div className="jumbotron jumbotron-fluid" id="trainerJumbo" style={{ backgroundImage: `url(${jumboPic})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '400px', marginBottom: '0' }}>
-                </div> */}
+                <div className="jumbotron jumbotron-fluid" id="trainerJumbo" style={{ backgroundImage: `url(${jumPic})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '400px', marginBottom: '0' }}>
+                </div>
                 {/* END JUMBOTRON */}
 
 
                 {/* PROFILE */}
-                <div className="container-fluid py-5" style={{ minHeight: '100vh', backgroundImage: `url(${bgImage})`}}>
-                    <div className="inner container" style={{ backgroundColor: 'grey', padding: '20px', maxWidth: '960px'}}>
+                <div className="container-fluid py-5 " style={{ minHeight: '100vh', backgroundColor: 'lightblue' }}>
+                    <div className="inner container" style={{ backgroundColor: '#ECEBE4', padding: '20px', maxWidth: '960px', boxShadow: '0 0 35px rgba(0, 0, 0, 0.50)'}}>
 
-                        <div className="top-div" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <div className="top-div" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingBottom: '10px' }}>
                             {/* PROFILE PICTURE */}
                             <div className="profile-picture-container" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                                 <div>
@@ -70,7 +83,7 @@ class Profile extends Component {
                                     <p style={{fontFamily: 'Josefin Sans, sans-serif', fontSize: '25px'}}>{this.state.trainer.city}, {this.state.trainer.state}</p>
                                 </div> 
                                 <div style={{textAlign: 'center' }}>
-                                    <button className="btn btn-success" style={{marginBottom: '10px'}}><i className="fa fa-comment"></i> Message</button>
+                                    <Link to="/room"><button className="btn btn-success" style={{marginBottom: '10px'}}><i className="fa fa-comment"></i> Message</button></Link>
                                     <br/>
                                     <Rating
                                         initialRating={this.state.avgRating}
@@ -88,16 +101,9 @@ class Profile extends Component {
 
                             {/* CHECK AVAIL */}
                             <div className="check-avail-container" style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-
-                                {/* If Logged in as trainer.. see this...
-                                <div className="trainer-edit-button" style={{ paddingBottom: '10px' }}>
-                                    <button className="btn btn-primary">Edit Profile</button>
-                                </div> */}
-
                                 <div className="card text-center" style={{ width: '18rem' }}>
                                     <div className="card-body">
                                         <h5 className="card-title">Book a Session Today!</h5>
-                                        <p className="card-text">Starting Cost : $35</p>
                                         <Link to="/Scheduling" className="btn btn-success"><i className="fa fa-calendar"></i>Check Availability</Link>
                                     </div>
                                 </div>
@@ -112,10 +118,11 @@ class Profile extends Component {
                                 <div className="card border-dark mb-3">
                                     <div className="card-header">ABOUT</div>
                                     <div className="card-body text-dark">
-                                        {this.state.trainer.services.map((service) => {
+                                        Services Offered: {this.state.trainer.services.map((service) => {
                                             return <h5 key={service.id}>{upperFirst(service.name)}</h5>; 
                                         })}
-                                        <p className="card-text">{this.state.trainer.aboutMe}</p>
+                                        {/* <p className="card-text">{this.state.trainer.aboutMe}</p> */}
+                                        <p className="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
                                     </div>
                                 </div>
                             </div>                     
