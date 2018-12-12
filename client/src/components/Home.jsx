@@ -20,7 +20,7 @@ class Homepage extends Component {
           className="jumbotron jumbotron-fluid"
           style={{
             margin: "0px",
-            height: "1100px",
+            height: "110vh",
             width: "auto",
             backgroundImage: `url(${jumbo})`,
             padding: "0px",
@@ -90,15 +90,15 @@ class Homepage extends Component {
         
 <div style={{display: 'flex', justifyContent: 'space-around', paddingTop: '100px', paddingBottom: '60px'}}>
 
-<div style={{height: '400px', width: '400px', backgroundImage: `url(${pic1})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', border: '8px solid #FFA400'}}>
+<div style={{height: '300px', width: '300px', backgroundImage: `url(${pic1})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', border: '8px solid #FFA400'}}>
 
 </div>
 
-<div style={{height: '450px', width: '450px', backgroundImage: `url(${pic2})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', border: '8px solid #FFA400'}}>
+<div style={{height: '300px', width: '300px', backgroundImage: `url(${pic2})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', border: '8px solid #FFA400'}}>
 
 </div>
 
-<div style={{height: '400px', width: '400px', backgroundImage: `url(${pic3})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', border: '8px solid #FFA400'}}>
+<div style={{height: '300px', width: '300px', backgroundImage: `url(${pic3})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', border: '8px solid #FFA400'}}>
 
 </div>
 
@@ -128,13 +128,13 @@ class Homepage extends Component {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                flexWrap: "nowrap",
+                flexWrap: "wrap",
                 justifyContent: "center"
 
               }}
             >
               <div
-                className="card text-white mb-3 col-3"
+                className="card text-white mb-3 col-md-3"
                 style={{ marginLeft: "15px", marginRight: "15px", backgroundColor: "#283044"}}
               >
                 <div className="card-header">
