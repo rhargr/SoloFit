@@ -92,7 +92,7 @@ class Homepage extends Component {
 
 </div>
 
-<div style={{height: '400px', width: '400px', backgroundImage: `url(${pic2})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', border: '8px solid #FFA400'}}>
+<div style={{height: '450px', width: '450px', backgroundImage: `url(${pic2})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', border: '8px solid #FFA400'}}>
 
 </div>
 

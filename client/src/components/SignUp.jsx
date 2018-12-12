@@ -189,7 +189,8 @@ class SignUp extends Component {
                 maxWidth: "900px",
                 padding: "25px",
                 borderRadius: "3px",
-                backgroundColor: "lightGray"
+                backgroundColor: "lightGray",
+                marginBottom: "150px"
               }}
             >
               <div className="form-row">
