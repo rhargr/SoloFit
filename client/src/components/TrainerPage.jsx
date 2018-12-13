@@ -82,8 +82,7 @@ class Trainers extends Component {
         >
           <div className="row" 
                 style={{
-                  display: 'flex', 
-                  alignItems: 'center', 
+                  display: 'flex',  
                   flexDirection: 'row', 
                   flexWrap: 'wrap',
                   justifyContent: 'center', 
@@ -100,7 +99,8 @@ class Trainers extends Component {
                     style={{
                       marginTop: "20px",
                       backgroundColor: "grey",
-                      top: "50px"
+                      top: "50px",
+                      marginBottom: "50px"
                     }}
                   >
                     <h5 className="card-header" style={{backgroundColor: '#283044', color: 'white'}} >{trainer.name}</h5>
