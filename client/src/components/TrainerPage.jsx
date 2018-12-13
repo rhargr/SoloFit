@@ -7,7 +7,7 @@ import { upperFirst } from 'lodash';
 import qs from 'query-string';
 import ServiceRepository from '../repositories/service';
 import Nav1 from './Nav1';
-import look from '../images/track.jpg';
+
 
 
 
@@ -93,7 +93,7 @@ class Trainers extends Component {
               return (
                 <div key={trainer.id} 
                       className="col-lg-5 col-md-5 col-sm-12" 
-                      style={{minheight: '250px', maxHeight: '250px', margin: '25px', marginBottom: '50px'}}>
+                      style={{}}>
 
                   <div
                     className="card"
