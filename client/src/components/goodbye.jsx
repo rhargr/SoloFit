@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import * as classService from '../services/classes';
 
 class GoodbyeWorld extends Component {
-    
     constructor(props) {
         super(props);
     }
@@ -12,7 +11,6 @@ class GoodbyeWorld extends Component {
         // This is here as an example. Delete it if you wish.
         try {
             let classes = await classService.all();
-            console.log(classes);
         } catch (e) {
             console.log(e);
         }

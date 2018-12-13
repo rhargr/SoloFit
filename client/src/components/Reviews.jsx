@@ -10,40 +10,38 @@ class Reviews extends Component {
 
         this.state = {
             reviews: [],
-        }
+        };
     }
 
     componentDidMount() {
-        console.log(this.props)
-        const id = this.props.match.params.id
-
+        const id = this.props.match.params.id;
 
         this.reviewRepo.getReviewsByTrainer(id).then((reviews) => {
-            console.log(reviews);
             let total = 0;
 
             reviews.forEach((review) => {
                 total += +review.rating;
             });
 
-            console.log(this.props);
-
             this.props.handleRating(total / reviews.length);
 
             this.setState({
-                reviews,
+                reviews: reviews.reverse(),
             });
         });
-    };
+    }
 
     render() {
         if (this.state.reviews.length === 0) {
             return <h3>This trainer currently has no reviews.</h3>;
         }
 
-        return this.state.reviews.map(review => {
+        return this.state.reviews.map((review) => {
             return (
-                <div className="review-card" style={{ paddingBottom: '20px' }} key={review.id}>
+                <div
+                    className="review-card"
+                    style={{ paddingBottom: '20px' }}
+                    key={review.id}>
                     <div className="card" style={{ textAlign: 'left' }}>
                         <div className="card-header">{review.name}</div>
                         <div className="card-body">
@@ -52,7 +50,7 @@ class Reviews extends Component {
                                 readonly
                                 emptySymbol="fa fa-star-o fa-2x"
                                 fullSymbol="fa fa-star fa-2x"
-                                style={{ color: 'gold'}}
+                                style={{ color: 'gold' }}
                             />
                             <br />
                             <p className="card-text">{review.text}</p>
@@ -60,12 +58,9 @@ class Reviews extends Component {
                         </div>
                     </div>
                 </div>
-
-            )
-        })
-
+            );
+        });
     }
-
 }
 
 export default withRouter(Reviews);

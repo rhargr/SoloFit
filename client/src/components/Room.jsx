@@ -3,7 +3,8 @@ import socketIOClient from 'socket.io-client';
 import RoomsRepository from '../repositories/rooms';
 import MessagesRepository from '../repositories/messages';
 import UserRepository from '../repositories/user';
-import Nav1 from './Nav1';
+import { checkLogin } from '../services/user';
+import { isEmpty } from 'lodash';
 
 class Room extends Component {
     constructor(props) {
@@ -18,45 +19,92 @@ class Room extends Component {
             endpoint: 'http://localhost:3000',
             messages: [],
             me: {
-                id: ''
-            }
+                id: '',
+            },
+            isLoggedIn: false,
+            isClosed: false,
         };
 
         this.socket = socketIOClient(this.state.endpoint);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     componentDidMount() {
-        this.userRepo.me().then((me) => {
-            console.log(me);
-            this.setState({
-                me
-            });
-        });
+        checkLogin()
+            .then((isLoggedIn) => {
+                if (!isLoggedIn) {
+                    throw new Error();
+                }
 
-        this.socket.on('message', (messagePacket) => {
-            this.setState({
-                messages: [...this.state.messages, messagePacket],
-            });
-        });
-
-        this.messagesRepo
-            .all({
-                roomId: 1,
-            })
-            .then((messages) => {
-                this.setState({
-                    messages,
+                this.socket.on('message', (messagePacket) => {
+                    this.setState({
+                        messages: [...this.state.messages, messagePacket],
+                    });
                 });
+
+                return Promise.all([
+                    this.userRepo.me(),
+                    this.messagesRepo.all({
+                        roomId: 1,
+                    }),
+                ]);
+            })
+            .then(([me, messages]) => {
+                console.log(me);
+                this.setState(
+                    {
+                        isLoggedIn: true,
+                        me,
+                        messages,
+                    },
+                    () => {
+                        this.messagesEl = document.getElementById('messages');
+                    },
+                );
             });
     }
 
+    handlePopup = () => {
+        if (!this.state.showChat) {
+            this.snapToBottom();
+        }
+
+        this.setState({
+            showChat: !this.state.showChat,
+        });
+    };
+
+    handleClose = () => {
+        if (this.state.isClosed) {
+            return;
+        }
+
+        this.setState({
+            isClosed: true,
+        });
+    };
+
+    snapToBottom = () => {
+        this.messagesEl.scrollTop = this.messagesEl.scrollHeight;
+    };
+
     handleMessageSubmission = () => {
+        if (isEmpty(this.state.response)) {
+            return;
+        }
+
         this.socket.emit('clientMessage', {
             message: this.state.response,
             senderId: this.state.me.id,
             roomId: 1,
         });
+
+        this.setState({
+            response: '',
+        });
+
+        this.snapToBottom();
     };
 
     handleInputChange(event) {
@@ -66,31 +114,43 @@ class Room extends Component {
     }
 
     render() {
-        const { response } = this.state;
+        if (!this.state.isLoggedIn) {
+            return null;
+        }
 
         return (
             <React.Fragment>
-                <Nav1 />
-                <section className="module">
+                <section
+                    className={
+                        'module messaging-container' +
+                        (this.state.showChat ? ' show' : '')
+                    }
+                    id="chatBox"
+                    style={{
+                        bottom: this.state.isClosed ? '-27em' : '-23em',
+                    }}>
                     <header className="top-bar">
                         <div className="left">
                             <i className="fa fa-comment" />
-                            <h1 className="chat-header"></h1>
+                            <h1 className="chat-header">
+                                {this.state.me.id === 2221 ? 'Calley' : 'Ash'}
+                            </h1>
                         </div>
-
                         <div className="right">
-                            <i className="fa fa-caret-down" />
-                            <i
-                                className="fa fa-times"
-                                style={{
-                                    paddingRight: '5px',
-                                    paddingLeft: '10px',
-                                }}
-                            />
+                            <button
+                                className="chat-buttons"
+                                onClick={this.handlePopup}>
+                                <i className="fa fa-caret-down" />
+                            </button>
+                            <button
+                                className="chat-buttons"
+                                onClick={this.handleClose}>
+                                <i className="fa fa-times" />
+                            </button>
                         </div>
                     </header>
-
                     <ol
+                        id="messages"
                         className="discussion"
                         style={{ height: '300px', overflowY: 'scroll' }}>
                         {this.state.messages.map((message) => {
@@ -115,22 +175,22 @@ class Room extends Component {
                             }
                         })}
                     </ol>
-
-                    <div className="input-group mb-3">
+                    <div className="input-group">
                         <input
                             type="text"
                             className="form-control"
                             placeholder="Send message..."
                             aria-label="Send message..."
                             aria-describedby="button-addon2"
-                            value={this.state.message}
+                            value={this.state.response}
                             onChange={this.handleInputChange}
                         />
                         <div className="input-group-append">
                             <button
                                 onClick={this.handleMessageSubmission}
-                                className="btn btn-outline-secondary"
+                                className="btn btn-outline-secondary submit-button"
                                 type="button"
+                                style={{ backgroundColor: 'gainsboro' }}
                                 id="button-addon2">
                                 <i className="fa fa-paper-plane" />
                             </button>
@@ -139,7 +199,6 @@ class Room extends Component {
                 </section>
             </React.Fragment>
         );
-        // })
     }
 }
 

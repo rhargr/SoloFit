@@ -42,8 +42,7 @@ function configurePassport(app) {
 
     passport.use(
         new BearerStrategy(async (token, done) => {
-            console.log('')
-            console.log('this is the fucking token', token);
+            console.log('');
             let tokenId = decode(token);
             if (!tokenId) {
                 return done(null, false, { message: 'Invalid token' });
