@@ -97,13 +97,11 @@ class SignUp extends Component {
 
   submit = e => {
     
-    
 
     e.preventDefault();
     if (!this.isValid()) {
       return;
     }
-    console.log("it was valid");
 
     let newUser = {
       name: this.state.user.name,
@@ -128,7 +126,11 @@ class SignUp extends Component {
           hash: ""
         } });
       })
+      
       .catch(e => console.log(e));
+
+      this.props.history.push('/')
+      
 
   };
 
@@ -137,12 +139,12 @@ class SignUp extends Component {
      
       <div
         style={{
-          minHeight: "100vh",
+          minHeight: "120vh",
           backgroundImage: `url(${BGPic})`,
           backgroundSize: "cover"
         }}
       >
-      <Nav1 />
+      <Nav1 /> 
       
         <div
           style={{
@@ -187,7 +189,9 @@ class SignUp extends Component {
                 maxWidth: "900px",
                 padding: "25px",
                 borderRadius: "3px",
-                backgroundColor: "lightGray"
+                backgroundColor: "lightGray",
+                marginBottom: "0px",
+                position: "relative"  
               }}
             >
               <div className="form-row">

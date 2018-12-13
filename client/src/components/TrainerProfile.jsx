@@ -35,11 +35,13 @@ class Profile extends Component {
 
     componentDidMount() {
         this.trainerRepo.read(this.props.match.params.id).then((trainer) => {
-            console.log(trainer);
+            console.log("from CDM: ", trainer);
             this.setState({
                 trainer,
             });
         });
+
+        console.log(this.state.trainer)
     };
 
     handleCreateRoom = () => {
@@ -111,7 +113,7 @@ class Profile extends Component {
                                 <div className="card text-center" style={{ width: '18rem' }}>
                                     <div className="card-body">
                                         <h5 className="card-title">Book a Session Today!</h5>
-                                        <Link to="/Scheduling" className="btn btn-success"><i className="fa fa-calendar"></i>Check Availability</Link>
+                                        <Link to={`/trainer/${this.state.trainer.id}/schedule`} className="btn btn-success"><i className="fa fa-calendar"></i>Check Availability</Link>
                                     </div>
                                 </div>
                             </div>
@@ -128,8 +130,8 @@ class Profile extends Component {
                                         Services Offered: {this.state.trainer.services.map((service) => {
                                             return <h5 key={service.id}>{upperFirst(service.name)}</h5>; 
                                         })}
-                                        {/* <p className="card-text">{this.state.trainer.aboutMe}</p> */}
-                                        <p className="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                                        <p className="card-text">{this.state.trainer.about_me}</p>
+                                        {/* <p className="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p> */}
                                     </div>
                                 </div>
                             </div>                     

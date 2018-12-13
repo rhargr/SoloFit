@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react';
 import * as userService from '../../services/user';
 import { Redirect } from 'react-router-dom';
 import IndeterminateProgress from '../utilities/indeterminateProgress';
-import Nav1 from '../Nav1';
+import Nav2 from '../Nav2';
+import jog from '../../images/jogger.jpg'
+import { relative } from 'path';
 
 class Login extends Component {
     constructor(props) {
@@ -68,42 +70,51 @@ class Login extends Component {
 
         return (
             <Fragment>
-                <Nav1 />
-                <p>You must be logged in to view this page.</p>
-                <form style={{minHeight: '100vh'}} onSubmit={(e) => this.login(e)}>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            id="email"
-                            className="form-control"
-                            type="email"
-                            onChange={(e) =>
-                                this.handleEmailChange(e.target.value)
-                            }
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            id="password"
-                            className="form-control"
-                            type="password"
-                            onChange={(e) =>
-                                this.handlePasswordChange(e.target.value)
-                            }
-                            required
-                        />
-                    </div>
-                    {this.state.feedbackMessage ? (
-                        <p>{this.state.feedbackMessage}</p>
-                    ) : null}
-                    <input
-                        type="submit"
-                        value="Login"
-                        className="btn btn-primary"
-                    />
-                </form>
+                <Nav2 />
+                <div style={{minHeight: '100vh', display: 'flex', justifyContent: 'flex-end', backgroundImage: `url(${jog})`, backgroundSize: 'cover'}}>
+               
+
+
+<form style={{position: 'relative', top: '225px', height: '250px', width: '600px', padding: '60px', opacity: '.7'}} onSubmit={(e) => this.login(e)}>
+    <div className="form-group">
+
+        <input
+            id="email"
+            className="form-control"
+            type="email"
+            placeholder="Email"
+            onChange={(e) =>
+                this.handleEmailChange(e.target.value)
+            }
+            required
+        />
+    </div>
+    <div className="form-group">
+    
+        <input
+            id="password"
+            className="form-control"
+            type="password"
+            placeholder="Password"
+            onChange={(e) =>
+                this.handlePasswordChange(e.target.value)
+            }
+            required
+        />
+    </div>
+    {this.state.feedbackMessage ? (
+        <p>{this.state.feedbackMessage}</p>
+    ) : null}
+    <input
+        type="submit"
+        value="Login"
+        className="btn btn-dark"
+    />
+</form>
+</div>
+
+               
+               
             </Fragment>
         );
     }

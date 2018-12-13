@@ -34,11 +34,19 @@ class Schedule extends Component {
                 traineeId: null,
                 title: null,
             },
+            selectedEvent: {
+                description: null,
+                start: null,
+                end: null,
+                trainerId: this.props.match.params.trainerId,
+                traineeId: null,
+                title: null,
+                serviceId: null
+            },
         };
     }
 
     componentDidMount () {
-        console.log( 'SCHEDULE -- componentDidMount' );
         Promise.all( [
             this.eventRepo.all( {
                 trainerId: this.props.match.params.trainerId,
@@ -71,7 +79,6 @@ class Schedule extends Component {
     }
 
     validateStartAndEnd = ( start, end ) => {
-        console.log( 'SCHEDULE -- validateStartAndEnd' );
         const mStart = moment( start );
         const mEnd = moment( end );
 
@@ -99,7 +106,6 @@ class Schedule extends Component {
     };
 
     resetStateEvent = () => {
-        console.log( 'SCHEDULE -- resetStateEvent' );
         const event = { ...this.state.event };
 
         forEach( event, ( value, key ) => {
@@ -112,18 +118,19 @@ class Schedule extends Component {
         } );
     };
 
-    handleEventSelect = ( start ) => {
-        console.log( 'SCHEDULE -- handleEventSelect' );
-        this.setState( {
-            eventType: 'event',
-            selectedDate: moment( start ).format( 'YYYY-MM-DD' ),
-        } );
+    handleEventSelect = ( { start, id: eventId } ) => {
+        this.eventRepo.read( eventId )
+            .then( selectedEvent => {
+                this.setState( {
+                    eventType: 'event',
+                    selectedEvent,
+                    selectedDate: moment( start ).format( 'YYYY-MM-DD' ),
+                } )
+            } );
         this.handleModalVisibility();
-        console.log( 'inside event select' );
     };
 
     handleSlotSelect = ( { start, end, slots } ) => {
-        console.log( 'SCHEDULE -- handleSlotSelect' );
         this.setState( {
             eventType: 'slot',
             selectedDate: moment( start ).format( 'YYYY-MM-DD' ),
@@ -132,27 +139,26 @@ class Schedule extends Component {
     };
 
     handleModalVisibility = () => {
-        console.log( 'SCHEDULE -- handleModalVisibility' );
         this.setState( {
             isOpen: !this.state.isOpen,
         } );
     };
 
     handleEventChange = ( e ) => {
-        console.log( 'SCHEDULE -- handleEventChange' );
         const name = e.target.name;
         const value = e.target.value;
+        const stateName = this.state.eventType === 'event'
+            ? 'selectedEvent'
+            : 'event'
         this.setState( {
-            event: {
-                ...this.state.event,
+            [ stateName ]: {
+                ...this.state[ stateName ],
                 [ name ]: value,
             },
         } );
     };
 
     handleEventStartChange = ( momentObj ) => {
-        console.log( 'SCHEDULE -- handleEventStartChange' );
-        console.log( 'handleEventStartChange', momentObj.format( 'HH:mm:ss' ) );
         this.setState( {
             event: {
                 ...this.state.event,
@@ -162,8 +168,6 @@ class Schedule extends Component {
     };
 
     handleEventEndChange = ( momentObj ) => {
-        console.log( 'SCHEDULE -- handleEventEndChange' );
-        console.log( 'handleEventEndChange', momentObj.format( 'HH:mm:ss' ) );
         this.setState( {
             event: {
                 ...this.state.event,
@@ -172,12 +176,28 @@ class Schedule extends Component {
         } );
     };
 
+    handleEventEditStartChange = ( momentObj ) => {
+        this.setState( {
+            selectedEvent: {
+                ...this.state.selectedEvent,
+                start: momentObj.format(),
+            },
+        } );
+    };
+
+    handleEventEditEndChange = ( momentObj ) => {
+        this.setState( {
+            selectedEvent: {
+                ...this.state.selectedEvent,
+                end: momentObj.format(),
+            },
+        } );
+    };
+
     handleEventSubmit = () => {
-        console.log( 'SCHEDULE -- handleEventSubmit' );
         const event = {
             ...this.state.event,
         };
-        console.log( 'handleEventSubmit', { selectedDate: this.state.selectedDate } );
 
         event.start = moment(
             `${ this.state.selectedDate } ${ event.start }`,
@@ -196,13 +216,155 @@ class Schedule extends Component {
         } );
     };
 
-    renderEditEvent = () => { };
+    handleEventEdit = ( e ) => {
+        const event = {
+            ...this.state.selectedEvent,
+        };
+
+        this.eventRepo.update( this.state.selectedEvent.id, event ).then( () => {
+            this.eventRepo.all( {
+                trainerId: this.props.match.params.trainerId,
+            } )
+                .then( ( events ) => {
+                    this.setState( {
+                        events: events.map( ( event ) => {
+                            event.start = moment( event.start ).toDate();
+                            event.end = moment( event.end ).toDate();
+                            return event;
+                        } ),
+                    } )
+                } );
+            this.handleModalVisibility();
+        } );
+    };
+
+    handleEventDelete = ( e ) => {
+        this.eventRepo.destroy( this.state.selectedEvent.id ).then( () => {
+            this.eventRepo.all( {
+                trainerId: this.props.match.params.trainerId,
+            } )
+                .then( ( events ) => {
+                    this.setState( {
+                        events: events.map( ( event ) => {
+                            event.start = moment( event.start ).toDate();
+                            event.end = moment( event.end ).toDate();
+                            return event;
+                        } ),
+                    } )
+                } );
+            this.handleModalVisibility();
+        } );;
+    };
+
+    renderEditEvent = () => {
+        return (
+            <div>
+                <h4>Edit</h4>
+                <div className="form-group">
+                    <input
+                        className="form-control"
+                        type="text"
+                        placeholder="Title"
+                        onChange={this.handleEventChange}
+                        name="title"
+                        value={this.state.selectedEvent.title}
+                    />
+                </div>
+                <div className="form-group">
+                    <TimePicker
+                        id="startTime"
+                        placeholder="Start Time"
+                        showSecond={false}
+                        onChange={this.handleEventEditStartChange}
+                        defaultValue={moment( this.state.selectedEvent.start )}
+                        name="start"
+                        use12Hours
+                    />
+                </div>
+                <div className="form-group">
+                    <TimePicker
+                        id="endTime"
+                        placeholder="End Time"
+                        onChange={this.handleEventEditEndChange}
+                        defaultValue={moment( this.state.selectedEvent.end )}
+                        showSecond={false}
+                        name="end"
+                        use12Hours
+                    />
+                </div>
+                <div className="form-group">
+                    <select
+                        className="form-control"
+                        name="traineeId"
+                        value={this.state.selectedEvent.traineeId}
+                        onChange={this.handleEventChange}>
+                        {this.state.trainees.map( ( trainee ) => {
+                            return (
+                                <option key={trainee.id} value={trainee.id}>
+                                    {trainee.name}
+                                </option>
+                            );
+                        } )}
+                    </select>
+                </div>
+                <div className="form-group">
+                    <select
+                        className="form-control"
+                        name="serviceId"
+                        value={this.state.selectedEvent.serviceId}
+                        onChange={this.handleEventChange}>
+                        {this.state.services.map( ( service ) => {
+                            return (
+                                <option key={service.id} value={service.id}>
+                                    {upperFirst( service.name )}
+                                </option>
+                            );
+                        } )}
+                    </select>
+                </div>
+                <div className="form-group">
+                    <textarea
+                        className="form-control"
+                        onChange={this.handleEventChange}
+                        id=""
+                        cols="30"
+                        name="description"
+                        rows="10"
+                        placeholder="Description"
+                        value={this.state.selectedEvent.description}
+                    />
+                </div>
+                <div className="form-group">
+                    <div className="btn-group brn-group-lg" role="group">
+                        <button
+                            type="button"
+                            className="btn btn-secondary"
+                            onClick={this.handleModalVisibility}>
+                            CANCEL
+                        </button>
+                        <button
+                            type="button"
+                            className="btn btn-secondary"
+                            onClick={this.handleEventDelete}>
+                            DELETE
+                        </button>
+                        <button
+                            type="button"
+                            className="btn btn-secondary"
+                            onClick={this.handleEventEdit}>
+                            SUBMIT
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
 
     renderCreateSlot = () => {
         return (
             
             <div>
-                <Nav1 />
+                <h4>Create Event</h4>
                 <div className="form-group">
                     <input
                         className="form-control"
@@ -317,6 +479,7 @@ class Schedule extends Component {
                     events={this.state.events}
                     startAccessor="start"
                     endAccessor="end"
+                    resourceAccessor="id"
                 />
                 <ReactModal
                     style={{ overlay: { zIndex: 1000 } }}

@@ -7,7 +7,7 @@ import { upperFirst } from 'lodash';
 import qs from 'query-string';
 import ServiceRepository from '../repositories/service';
 import Nav1 from './Nav1';
-import dead from '../images/rep.jpg';
+import look from '../images/track.jpg';
 
 
 
@@ -59,7 +59,7 @@ class Trainers extends Component {
       <React.Fragment>
         <Nav1 />
 
-        <div style={{backgroundImage: `url(${dead})`, backgroundSize: 'cover'}}>
+        <div style={{backgroundColor: 'aliceblue', backgroundSize: 'cover'}}>
 
         {/* NAV SHIZ */}
         <ul className="nav justify-content-center" style={{paddingTop: '70px'}}>
@@ -85,17 +85,15 @@ class Trainers extends Component {
                   display: 'flex', 
                   alignItems: 'center', 
                   flexDirection: 'row', 
+                  flexWrap: 'wrap',
                   justifyContent: 'center', 
-                  marginLeft: '200px', 
-                  marginRight: '200px', 
-                  marginBottom: '300px'}}>
+                  width: '1200px'}}>
 
             {this.state.trainers.map(trainer => {
               return (
                 <div key={trainer.id} 
-                      className="col-sm-6" 
-                      style={{
-                        maxWidth: '40%'}}>
+                      className="col-lg-5 col-md-5 col-sm-12" 
+                      style={{minheight: '250px', maxHeight: '250px', margin: '25px', marginBottom: '50px'}}>
 
                   <div
                     className="card"
@@ -105,8 +103,8 @@ class Trainers extends Component {
                       top: "50px"
                     }}
                   >
-                    <h5 className="card-header">{trainer.name}</h5>
-                    <div className="card-body">
+                    <h5 className="card-header" style={{backgroundColor: '#283044', color: 'white'}} >{trainer.name}</h5>
+                    <div className="card-body" style={{backgroundColor: 'lightgrey'}}>
                       <div>
                         <img
                           style={{
@@ -148,7 +146,7 @@ class Trainers extends Component {
                         <div style={{padding: '10px'}}>
                         <Link
                           to={`/trainer/${trainer.id}`}
-                          className="btn btn-success btn-sm"
+                          className="btn btn-info btn-sm"
                         >
                           View Trainer
                         </Link>

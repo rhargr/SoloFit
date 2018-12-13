@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import Navbar from './Navbar';
-
+import mount from '../images/Mtn.jpg';
+import pic1 from '../images/pic1.jpg';
 import jumbo from "../images/Girl.jpg";
+import pic2 from '../images/pic2.jpg';
+import pic3 from '../images/pic3.jpg';
 
 class Homepage extends Component {
   constructor(props) {
@@ -11,15 +14,17 @@ class Homepage extends Component {
 
   render() {
     return (
-      <div style={{backgroundColor: "#EBF5EE" }}>
+      <div style={{backgroundColor: "white" }}>
 
         <div
           className="jumbotron jumbotron-fluid"
           style={{
             margin: "0px",
-            height: "1100px",
+            height: "110vh",
+            width: "auto",
             backgroundImage: `url(${jumbo})`,
             padding: "0px",
+            backgroundSize: 'cover',
             borderBottom: '50px solid #FFA400'
           }}
         >
@@ -39,8 +44,8 @@ class Homepage extends Component {
           </div>
         </div>
 
-        <div class="jumbotron jumbotron-fluid" style={{backgroundColor: "#EBF5EE"}}>
-          <div class="container">
+        <div className="jumbotron jumbotron-fluid" style={{ margin: '0px', backgroundColor: 'aliceblue'}}>
+          <div className="container">
             <div
             
             >
@@ -50,6 +55,7 @@ class Homepage extends Component {
                     fontFamily: "Oswald, sans-serif",
                     fontSize: "60px",
                     color: "#283044"
+                    
                   }}
                 >
                   "We enhance the opportunity for you 
@@ -61,6 +67,7 @@ class Homepage extends Component {
                     fontFamily: "Oswald, sans-serif",
                     fontSize: "60px",
                     color: "#283044"
+                    
                   }}
                 >
                   to maximize your full potential 
@@ -72,6 +79,7 @@ class Homepage extends Component {
                     fontFamily: "Oswald, sans-serif",
                     fontSize: "60px",
                     color: "#283044"
+                    
                   }}
                 >
                  within your own boundaries."
@@ -79,17 +87,25 @@ class Homepage extends Component {
               </div>
             </div>
           </div>
-        </div>
+        
+<div style={{display: 'flex', justifyContent: 'space-around', paddingTop: '100px', paddingBottom: '60px'}}>
 
-        <div
-          className="jumbotron jumbotron-fluid"
-          style={{
-            height: "410px",
-            padding: "0px",
-            marginBottom: "0",
-            backgroundColor: "#EBF5EE"
-          }}
-        >
+<div style={{height: '300px', width: '300px', backgroundImage: `url(${pic1})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', border: '8px solid #FFA400'}}>
+
+</div>
+
+<div style={{height: '300px', width: '300px', backgroundImage: `url(${pic2})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', border: '8px solid #FFA400'}}>
+
+</div>
+
+<div style={{height: '300px', width: '300px', backgroundImage: `url(${pic3})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', border: '8px solid #FFA400'}}>
+
+</div>
+
+
+
+</div>
+       
           <div className="container" style={{ marginBottom: "50px" }}>
             <div style={{ padding: "20px", color: "white" }}>
               <h1
@@ -99,7 +115,8 @@ class Homepage extends Component {
                   fontSize: "60px",
                   color: "#283044",
                   marginBottom: "30px",
-                  marginTop: "30px"
+                  marginTop: "30px",
+                  
                 }}
               >
                Choose Your Fit
@@ -111,19 +128,20 @@ class Homepage extends Component {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                flexWrap: "nowrap",
+                flexWrap: "wrap",
                 justifyContent: "center"
+
               }}
             >
               <div
-                className="card text-white mb-3 col-3"
-                style={{ marginLeft: "15px", marginRight: "15px", backgroundColor: "#283044" }}
+                className="card text-white mb-3 col-md-3"
+                style={{ marginLeft: "15px", marginRight: "15px", backgroundColor: "#283044"}}
               >
                 <div className="card-header">
                  Strength
                 </div>
-                <div className="card-body">
-                  <p className="card-text">
+                <div className="card-body"  >
+                  <p className="card-text" >
                     A method of improving muscular strength by gradually
                     increasing the ability to resist force through the use of
                     free weights and machines.
@@ -133,7 +151,7 @@ class Homepage extends Component {
 
               <div
                 className="card text-white mb-3 col-3"
-                style={{ marginLeft: "10px", marginRight: "10px", backgroundColor: "#283044"  }}
+                style={{ marginLeft: "10px", marginRight: "10px", backgroundColor: "#283044" }}
               >
                 <div className="card-header">
                  Yoga
@@ -179,7 +197,7 @@ class Homepage extends Component {
               </div>
               <div
                 className="card text-white mb-3 col-3"
-                style={{ marginLeft: "10px", marginRight: "10px", backgroundColor: "#283044" }}
+                style={{ marginLeft: "10px", marginRight: "10px", backgroundColor: "#283044"  }}
               >
                 <div className="card-header">
                  Weight-Loss
