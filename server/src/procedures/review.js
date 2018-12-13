@@ -8,6 +8,7 @@ function all(args) {
 
 function create(args) {
     return procedure(`spInsertReview`, args).then((res) => {
+        console.log(res[0][0])
         return res[0][0];
     });
 }

@@ -46,6 +46,10 @@ class Profile extends Component {
 
     }
 
+    handleCLientRating() {
+
+    }
+
     handleAvgRating = (avgRating) => {
         console.log('avgRating', avgRating);
         this.setState({
@@ -68,7 +72,7 @@ class Profile extends Component {
 
 
                 {/* PROFILE */}
-                <div className="container-fluid py-5 " style={{ minHeight: '100vh', backgroundColor: 'lightblue' }}>
+                <div className="container-fluid py-5 " style={{ minHeight: '100vh', backgroundColor: 'aliceblue' }}>
                     <div className="inner container" style={{ backgroundColor: '#ECEBE4', padding: '20px', maxWidth: '960px', boxShadow: '0 0 35px rgba(0, 0, 0, 0.50)'}}>
 
                         <div className="top-div" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingBottom: '10px' }}>
@@ -85,8 +89,11 @@ class Profile extends Component {
                                 <div style={{textAlign: 'center' }}>
                                     <Link to="/room"><button className="btn btn-success" style={{marginBottom: '10px'}}><i className="fa fa-comment"></i> Message</button></Link>
                                     <br/>
+                                    <Link to={`/ClientRate/${this.state.trainer.id}`}><button className="btn btn-success" style={{marginBottom: '10px'}}>Rate {this.state.trainer.name}</button></Link>
+                                    <br/>
                                     <Rating
                                         initialRating={this.state.avgRating}
+                                        readonly
                                         emptySymbol="fa fa-star-o fa-2x"
                                         fullSymbol="fa fa-star fa-2x"
                                         style={{ color: 'gold'}}
