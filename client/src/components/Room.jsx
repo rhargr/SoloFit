@@ -76,13 +76,15 @@ class Room extends Component {
     };
 
     handleClose = () => {
-        if (this.state.isClosed) {
-            return;
-        }
+        const chatBox = document.getElementById('chatBox');
+        chatBox.classList.remove('open', 'full-open', 'full-close', 'close');
+        chatBox.classList += ' shrink';
+    };
 
-        this.setState({
-            isClosed: true,
-        });
+    handleFullClose = () => {
+        const chatBox = document.getElementById('chatBox');
+        chatBox.classList.remove('open', 'full-open', 'close', 'shrink');
+        chatBox.classList += ' full-close';
     };
 
     snapToBottom = () => {
@@ -123,12 +125,9 @@ class Room extends Component {
                 <section
                     className={
                         'module messaging-container' +
-                        (this.state.showChat ? ' show' : '')
+                        (this.state.showChat ? ' open' : ' close')
                     }
-                    id="chatBox"
-                    style={{
-                        bottom: this.state.isClosed ? '-27em' : '-23em',
-                    }}>
+                    id="chatBox">
                     <header className="top-bar">
                         <div className="left">
                             <i className="fa fa-comment" />
@@ -139,12 +138,12 @@ class Room extends Component {
                         <div className="right">
                             <button
                                 className="chat-buttons"
-                                onClick={this.handlePopup}>
+                                onClick={this.handleClose}>
                                 <i className="fa fa-caret-down" />
                             </button>
                             <button
                                 className="chat-buttons"
-                                onClick={this.handleClose}>
+                                onClick={this.handleFullClose}>
                                 <i className="fa fa-times" />
                             </button>
                         </div>

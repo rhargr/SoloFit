@@ -161,12 +161,48 @@ time {
     right: 0;
 }
 
-@keyframes popup {
+@keyframes open {
     0% {
         bottom: -23em;
     }
     100% {
         bottom: -1.2em;
+    }
+}
+
+@keyframes fullOpen {
+    0% {
+        bottom: -27em;
+    }
+    100% {
+        bottom: -1.2em;
+    }
+}
+
+@keyframes shrink {
+    0% {
+        bottom: -1.2em;
+    }
+    100% {
+        bottom: -23em;
+    }
+}
+
+@keyframes fullClose {
+    0% {
+        bottom: -1.2em;
+    }
+    100% {
+        bottom: -27em;
+    }
+}
+
+@keyframes close {
+    0% {
+        bottom: -23em;
+    }
+    100% {
+        bottom: -27em;
     }
 }
 
@@ -179,6 +215,22 @@ time {
     margin: 0;
 }
 
-.show {
-    animation: popup 1000 forwards;
+.full-open {
+    animation: fullOpen 1000 forwards;
+}
+
+.full-close {
+    animation: fullClose 1000 forwards;
+}
+
+.close {
+    animation: close 1000 forwards;
+}
+
+.open {
+    animation: open 1000 forwards;
+}
+
+.shrink {
+    animation: shrink 1000 forwards;
 }

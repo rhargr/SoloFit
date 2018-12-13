@@ -27,17 +27,23 @@ class Profile extends Component {
             trainer: {
                 services: [],
             },
+            messagesOpen: false,
         };
     }
 
     componentDidMount() {
         this.trainerRepo.read(this.props.match.params.id).then((trainer) => {
-            console.log('from CDM: ', trainer);
             this.setState({
                 trainer,
             });
         });
     }
+
+    openMessages = () => {
+        const el = document.getElementById('chatBox');
+        el.classList.remove('open', 'close', 'full-close', 'shrink');
+        el.classList += ' full-open';
+    };
 
     handleCreateRoom = () => {};
 
@@ -145,16 +151,15 @@ class Profile extends Component {
                                         </p>
                                     </div>
                                     <div style={{ textAlign: 'center' }}>
-                                        <Link to="/room">
-                                            <button
-                                                className="btn btn-success"
-                                                style={{
-                                                    marginBottom: '10px',
-                                                }}>
-                                                <i className="fa fa-comment" />{' '}
-                                                Message
-                                            </button>
-                                        </Link>
+                                        <button
+                                            className="btn btn-success"
+                                            onClick={this.openMessages}
+                                            style={{
+                                                marginBottom: '10px',
+                                            }}>
+                                            <i className="fa fa-comment" />{' '}
+                                            Message
+                                        </button>
                                         <br />
                                         <Link
                                             to={`/ClientRate/${
