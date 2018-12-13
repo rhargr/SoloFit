@@ -7,8 +7,8 @@ import { checkLogin } from '../services/user';
 import { isEmpty } from 'lodash';
 
 class Room extends Component {
-    constructor(props) {
-        super(props);
+    constructor ( props ) {
+        super( props );
 
         this.roomsRepo = new RoomsRepository();
         this.messagesRepo = new MessagesRepository();
@@ -25,33 +25,33 @@ class Room extends Component {
             isClosed: false,
         };
 
-        this.socket = socketIOClient(this.state.endpoint);
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleClose = this.handleClose.bind(this);
+        this.socket = socketIOClient( this.state.endpoint );
+        this.handleInputChange = this.handleInputChange.bind( this );
+        this.handleClose = this.handleClose.bind( this );
     }
 
-    componentDidMount() {
+    componentDidMount () {
         checkLogin()
-            .then((isLoggedIn) => {
-                if (!isLoggedIn) {
+            .then( ( isLoggedIn ) => {
+                if ( !isLoggedIn ) {
                     throw new Error();
                 }
 
-                this.socket.on('message', (messagePacket) => {
-                    this.setState({
-                        messages: [...this.state.messages, messagePacket],
-                    });
-                });
+                this.socket.on( 'message', ( messagePacket ) => {
+                    this.setState( {
+                        messages: [ ...this.state.messages, messagePacket ],
+                    } );
+                } );
 
-                return Promise.all([
+                return Promise.all( [
                     this.userRepo.me(),
-                    this.messagesRepo.all({
+                    this.messagesRepo.all( {
                         roomId: 1,
-                    }),
-                ]);
-            })
-            .then(([me, messages]) => {
-                console.log(me);
+                    } ),
+                ] );
+            } )
+            .then( ( [ me, messages ] ) => {
+                console.log( me );
                 this.setState(
                     {
                         isLoggedIn: true,
@@ -59,31 +59,37 @@ class Room extends Component {
                         messages,
                     },
                     () => {
-                        this.messagesEl = document.getElementById('messages');
+                        this.messagesEl = document.getElementById( 'messages' );
                     },
                 );
-            });
+            } );
     }
 
     handlePopup = () => {
-        if (!this.state.showChat) {
+        if ( !this.state.showChat ) {
             this.snapToBottom();
         }
 
-        this.setState({
+        this.setState( {
             showChat: !this.state.showChat,
-        });
+        } );
     };
 
     handleClose = () => {
-        const chatBox = document.getElementById('chatBox');
-        chatBox.classList.remove('open', 'full-open', 'full-close', 'close');
-        chatBox.classList += ' shrink';
+        const chatBox = document.getElementById( 'chatBox' );
+
+        if ( chatBox.classList.contains( 'shrink' ) ) {
+            chatBox.classList.remove( 'shrink', 'full-open', 'full-close', 'close' );
+            chatBox.classList += ' open';
+        } else {
+            chatBox.classList.remove( 'open', 'full-open', 'full-close', 'close' );
+            chatBox.classList += ' shrink';
+        }
     };
 
     handleFullClose = () => {
-        const chatBox = document.getElementById('chatBox');
-        chatBox.classList.remove('open', 'full-open', 'close', 'shrink');
+        const chatBox = document.getElementById( 'chatBox' );
+        chatBox.classList.remove( 'open', 'full-open', 'close', 'shrink' );
         chatBox.classList += ' full-close';
     };
 
@@ -92,40 +98,40 @@ class Room extends Component {
     };
 
     handleMessageSubmission = () => {
-        if (isEmpty(this.state.response)) {
+        if ( isEmpty( this.state.response ) ) {
             return;
         }
 
-        this.socket.emit('clientMessage', {
+        this.socket.emit( 'clientMessage', {
             message: this.state.response,
             senderId: this.state.me.id,
             roomId: 1,
-        });
+        } );
 
-        this.setState({
+        this.setState( {
             response: '',
-        });
+        } );
 
         this.snapToBottom();
     };
 
-    handleInputChange(event) {
-        this.setState({
+    handleInputChange ( event ) {
+        this.setState( {
             response: event.target.value,
-        });
+        } );
     }
 
-    render() {
-        if (!this.state.isLoggedIn) {
-            return null;
-        }
+    render () {
+        // if (!this.state.isLoggedIn) {
+        //     return null;
+        // }
 
         return (
             <React.Fragment>
                 <section
                     className={
                         'module messaging-container' +
-                        (this.state.showChat ? ' open' : ' close')
+                        ( this.state.showChat ? ' open' : ' close' )
                     }
                     id="chatBox">
                     <header className="top-bar">
@@ -152,8 +158,8 @@ class Room extends Component {
                         id="messages"
                         className="discussion"
                         style={{ height: '300px', overflowY: 'scroll' }}>
-                        {this.state.messages.map((message) => {
-                            if (message.sender_id === this.state.me.id) {
+                        {this.state.messages.map( ( message ) => {
+                            if ( message.sender_id === this.state.me.id ) {
                                 return (
                                     <li className="self" key={message.id}>
                                         <div className="messages">
@@ -172,7 +178,7 @@ class Room extends Component {
                                     </li>
                                 );
                             }
-                        })}
+                        } )}
                     </ol>
                     <div className="input-group">
                         <input
